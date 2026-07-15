@@ -1,0 +1,9 @@
+{
+  "files.encoding": "utf8",
+  "files.eol": "\n",
+  "files.trimTrailingWhitespace": true,
+  "editor.wordWrap": "on",
+  "editor.formatOnSave": false,
+  "cSpell.language": "de-DE,en"
+}
+

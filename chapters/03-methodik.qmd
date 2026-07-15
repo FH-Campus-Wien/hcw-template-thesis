@@ -1,0 +1,12 @@
+# Methodik
+
+Beschreiben und begründen Sie das methodische Vorgehen.
+
+## Beispiel für eine Formel
+
+$$
+E = mc^2
+$$ {#eq-relativitaet}
+
+Auf @eq-relativitaet kann im Text verwiesen werden.
+

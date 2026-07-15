@@ -1,0 +1,26 @@
+---
+title: "Smoke Test"
+format:
+  pdf:
+    documentclass: scrreprt
+    pdf-engine: lualatex
+    include-in-header: preamble.tex
+    toc: true
+    lof: true
+    lot: true
+lang: de
+---
+
+# Test
+
+Test mit Umlauten: Ä, Ö, Ü und ß.
+
+| Spalte A | Spalte B |
+|---|---:|
+| Text | 42 |
+
+: Testtabelle {#tbl-test}
+
+$$
+E = mc^2
+$$

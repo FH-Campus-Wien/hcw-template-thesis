@@ -1,0 +1,17 @@
+# Ergebnisse
+
+Präsentieren Sie hier die Ergebnisse der Arbeit.
+
+## Beispiel für eine Tabelle
+
+| Merkmal | Wert |
+|---|---:|
+| Beispiel A | 42 |
+| Beispiel B | 23 |
+
+: Beispielhafte Ergebnisse {#tbl-ergebnisse}
+
+Wie @fig-microcontroller zeigt, können Abbildungen direkt aus dem Projektordner
+eingebunden und im Text referenziert werden.
+
+![Generisches Microcontroller-Entwicklungsboard](../images/microcontroller.png){#fig-microcontroller width=75% fig-alt="Grüne Leiterplatte mit einem zentralen Microcontroller, Anschlussleisten und elektronischen Bauteilen"}

@@ -1,0 +1,36 @@
+project:
+  type: book
+  output-dir: build
+
+book:
+  title: "Titel der Abschlussarbeit"
+  subtitle: "Bachelorarbeit"
+  output-file: abschlussarbeit
+  author: "Vorname Nachname"
+  date: today
+  date-format: "D. MMMM YYYY"
+  chapters:
+    - index.qmd
+    - chapters/01-einleitung.qmd
+    - chapters/02-grundlagen.qmd
+    - chapters/03-methodik.qmd
+    - chapters/04-ergebnisse.qmd
+    - chapters/05-fazit.qmd
+    - references.qmd
+
+bibliography: references.bib
+lang: de
+
+format:
+  pdf:
+    documentclass: scrreprt
+    pdf-engine: lualatex
+    papersize: a4
+    fontsize: 11pt
+    number-sections: true
+    toc: true
+    lof: true
+    lot: true
+    colorlinks: false
+    keep-tex: false
+    include-in-header: template/preamble.tex

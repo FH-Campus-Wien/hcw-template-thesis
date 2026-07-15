@@ -1,0 +1,30 @@
+# Angaben zur Arbeit {.unnumbered}
+
+| | |
+|---|---|
+| **Studiengang** | Name des Studiengangs |
+| **Verfasser:in** | Vorname Nachname |
+| **Matrikelnummer** | 00000000 |
+| **Betreuung** | Titel Vorname Nachname |
+| **Abgabedatum** | TT. Monat JJJJ |
+
+\newpage
+
+# Kurzfassung {.unnumbered}
+
+Hier steht die deutschsprachige Kurzfassung der Arbeit.
+
+# Abstract {.unnumbered}
+
+The English abstract goes here.
+
+\newpage
+
+# Eigenständigkeitserklärung {.unnumbered}
+
+Hier wird die von der Hochschule vorgegebene Eigenständigkeitserklärung eingefügt.
+
+\vspace{2cm}
+
+Ort, Datum \hfill Unterschrift
+

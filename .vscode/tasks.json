@@ -1,0 +1,64 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Thesis: Umgebung erstellen",
+      "type": "process",
+      "command": "docker",
+      "args": [
+        "build",
+        "--platform", "linux/amd64",
+        "--tag", "thesis-builder:local",
+        "."
+      ],
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Thesis: PDF erstellen",
+      "type": "process",
+      "command": "docker",
+      "args": [
+        "run", "--rm", "--platform", "linux/amd64",
+        "--mount", "type=bind,source=${workspaceFolder},target=/work",
+        "--workdir", "/work",
+        "thesis-builder:local", "render"
+      ],
+      "options": { "cwd": "${workspaceFolder}" },
+      "dependsOn": "Thesis: Umgebung erstellen",
+      "problemMatcher": [],
+      "group": { "kind": "build", "isDefault": true }
+    },
+    {
+      "label": "Thesis: Vorschau starten",
+      "type": "process",
+      "command": "docker",
+      "args": [
+        "run", "--rm", "--init", "--platform", "linux/amd64",
+        "--name", "thesis-preview",
+        "--mount", "type=bind,source=${workspaceFolder},target=/work",
+        "--workdir", "/work",
+        "--publish", "127.0.0.1:4242:4242",
+        "--entrypoint", "thesis-preview",
+        "thesis-builder:local",
+        "--host", "0.0.0.0", "--port", "4242", "--no-browser"
+      ],
+      "options": { "cwd": "${workspaceFolder}" },
+      "dependsOn": "Thesis: Umgebung erstellen",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "focus": true,
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "Thesis: Vorschau stoppen",
+      "type": "process",
+      "command": "docker",
+      "args": ["stop", "thesis-preview"],
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": []
+    }
+  ]
+}

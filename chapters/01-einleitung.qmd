@@ -1,0 +1,14 @@
+# Einleitung
+
+Beschreiben Sie Problemstellung, Motivation und Zielsetzung der Arbeit.
+
+Hello
+
+## Forschungsfrage
+
+Formulieren Sie hier die zentrale Forschungsfrage.
+
+## Aufbau der Arbeit
+
+Geben Sie einen kurzen Überblick über die folgenden Kapitel.
+
