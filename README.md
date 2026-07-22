@@ -1,11 +1,13 @@
 # Abschlussarbeit mit Quarto, Markdown und Docker
 
 Vorlage für Bachelor- und Masterarbeiten. Geschrieben wird hauptsächlich in
-Quarto-Markdown (`.qmd`). Quarto, Pandoc und LaTeX laufen ausschließlich in
-Docker und müssen nicht lokal installiert werden.
+Quarto-Markdown (`.qmd`). Quarto, Pandoc und LaTeX laufen ausschließlich im
+öffentlichen, versionierten Docker-Image der FH Campus Wien und müssen nicht
+lokal installiert werden.
 
-GitHub dient nur zum Herunterladen und zur Versionsverwaltung. PDF-Erzeugung
-und Vorschau laufen vollständig auf dem eigenen Computer.
+GitHub dient zum Herunterladen, zur Versionsverwaltung und zum einmaligen Bezug
+des Builder-Images. PDF-Erzeugung und Vorschau laufen vollständig auf dem
+eigenen Computer und funktionieren nach dem ersten Download auch offline.
 
 ## Voraussetzungen
 
@@ -61,10 +63,17 @@ ohne Änderung der VS-Code-Konfiguration geschrieben werden.
 
 Die folgenden VS-Code-Tasks sind vorkonfiguriert:
 
-- `Thesis: Umgebung erstellen` erstellt das lokale Docker-Image.
 - `Thesis: PDF erstellen` erzeugt `build/abschlussarbeit.pdf`.
-- `Thesis: Vorschau starten` startet <http://localhost:4242>.
+- `Thesis: Vorschau starten` stellt die PDF unter
+  <http://localhost:4242/abschlussarbeit.pdf> bereit.
 - `Thesis: Vorschau stoppen` beendet den laufenden Vorschau-Container.
+
+Ein separater Task zum Erstellen der Umgebung ist nicht mehr erforderlich.
+Beim ersten Start von `PDF erstellen` oder `Vorschau starten` lädt Docker
+automatisch das öffentliche Image
+`ghcr.io/fh-campus-wien/fh-document-builder:1.0.0`. Dafür ist keine
+GitHub-Anmeldung notwendig. Danach liegt das Image lokal in Docker und wird bei
+weiteren Starts wiederverwendet.
 
 Mit **Terminal → Run Task** ist das Menü in der oberen Menüleiste von VS Code
 gemeint, nicht das Eingeben eines Befehls in einer Shell. Je nach Sprache der
@@ -84,22 +93,27 @@ startet direkt den Standardtask `Thesis: PDF erstellen`. Wer stattdessen einen
 Befehl in das integrierte Terminal eingeben möchte, verwendet die
 Docker-Befehle im folgenden Abschnitt **Ohne VS Code**.
 
-Beim ersten Durchlauf werden das
-Basis-Image und TeX Live geladen; spätere Durchläufe verwenden den Docker-Cache.
-Auf Macs mit Apple Silicon verwendet das offizielle Quarto-Image derzeit
-Docker-Emulation; der erste Image-Build kann dort deshalb länger dauern.
+Beim ersten Durchlauf wird das fertige Builder-Image heruntergeladen. Das kann
+je nach Internetverbindung einige Minuten dauern; es werden dabei keine
+LaTeX-Pakete auf dem eigenen Betriebssystem installiert. Auf Macs mit Apple
+Silicon läuft die festgelegte `linux/amd64`-Variante über Docker-Emulation. Die
+entsprechende Plattformmeldung ist daher erwartet und kein Fehler.
 
 ## Ohne VS Code
 
-### Einmalig: Docker-Image erstellen
+### Builder-Image vorab laden (optional)
 
-Dieser Befehl ist auf allen Betriebssystemen gleich:
+Die folgenden `docker run`-Befehle laden das Image automatisch, wenn es noch
+nicht vorhanden ist. Wer den Download bewusst vor dem ersten Build ausführen
+möchte, verwendet auf allen Betriebssystemen:
 
 ```shell
-docker build --platform linux/amd64 --tag thesis-builder:local .
+docker pull --platform linux/amd64 ghcr.io/fh-campus-wien/fh-document-builder:1.0.0
 ```
 
-Er muss beim ersten Start und nach Änderungen am `Dockerfile` ausgeführt werden.
+Das Image ist öffentlich; `docker login` ist nicht erforderlich. Die konkrete
+Version `1.0.0` ist absichtlich festgelegt, damit alle Studierenden mit
+derselben Toolchain arbeiten.
 
 ### Windows PowerShell
 
@@ -109,18 +123,19 @@ PDF erstellen:
 docker run --rm --platform linux/amd64 `
   --mount "type=bind,source=$PWD,target=/work" `
   --workdir /work `
-  thesis-builder:local render
+  ghcr.io/fh-campus-wien/fh-document-builder:1.0.0 render
 ```
 
 Vorschau starten:
 
 ```powershell
 docker run --rm --init --platform linux/amd64 `
+  --name thesis-preview `
   --mount "type=bind,source=$PWD,target=/work" `
   --workdir /work `
   --publish 127.0.0.1:4242:4242 `
-  --entrypoint thesis-preview `
-  thesis-builder:local --host 0.0.0.0 --port 4242 --no-browser
+  --entrypoint fh-preview `
+  ghcr.io/fh-campus-wien/fh-document-builder:1.0.0 --host 0.0.0.0 --port 4242 --no-browser
 ```
 
 ### Windows-Eingabeaufforderung (cmd.exe)
@@ -128,13 +143,13 @@ docker run --rm --init --platform linux/amd64 `
 PDF erstellen:
 
 ```bat
-docker run --rm --platform linux/amd64 --mount "type=bind,source=%cd%,target=/work" --workdir /work thesis-builder:local render
+docker run --rm --platform linux/amd64 --mount "type=bind,source=%cd%,target=/work" --workdir /work ghcr.io/fh-campus-wien/fh-document-builder:1.0.0 render
 ```
 
 Vorschau starten:
 
 ```bat
-docker run --rm --init --platform linux/amd64 --mount "type=bind,source=%cd%,target=/work" --workdir /work --publish 127.0.0.1:4242:4242 --entrypoint thesis-preview thesis-builder:local --host 0.0.0.0 --port 4242 --no-browser
+docker run --rm --init --platform linux/amd64 --name thesis-preview --mount "type=bind,source=%cd%,target=/work" --workdir /work --publish 127.0.0.1:4242:4242 --entrypoint fh-preview ghcr.io/fh-campus-wien/fh-document-builder:1.0.0 --host 0.0.0.0 --port 4242 --no-browser
 ```
 
 ### macOS und Linux
@@ -145,21 +160,28 @@ PDF erstellen:
 docker run --rm --platform linux/amd64 \
   --mount "type=bind,source=$PWD,target=/work" \
   --workdir /work \
-  thesis-builder:local render
+  ghcr.io/fh-campus-wien/fh-document-builder:1.0.0 render
 ```
 
 Vorschau starten:
 
 ```bash
 docker run --rm --init --platform linux/amd64 \
+  --name thesis-preview \
   --mount "type=bind,source=$PWD,target=/work" \
   --workdir /work \
   --publish 127.0.0.1:4242:4242 \
-  --entrypoint thesis-preview \
-  thesis-builder:local --host 0.0.0.0 --port 4242 --no-browser
+  --entrypoint fh-preview \
+  ghcr.io/fh-campus-wien/fh-document-builder:1.0.0 --host 0.0.0.0 --port 4242 --no-browser
 ```
 
-Die Vorschau wird mit `Ctrl+C` beendet.
+Die Vorschau wird mit `Ctrl+C` beendet. Falls das aktuelle Terminal keine
+Eingabe annimmt, kann sie aus einem zweiten Terminal auf allen Betriebssystemen
+mit folgendem Befehl gestoppt werden:
+
+```shell
+docker stop thesis-preview
+```
 
 ### Arbeiten mit der automatischen PDF-Vorschau
 
@@ -171,7 +193,7 @@ PDF-Vorschau im Browser aktualisiert.
 Ein typischer Schreibablauf sieht so aus:
 
 1. In VS Code **Terminal → Run Task → Thesis: Vorschau starten** auswählen.
-2. Im Browser <http://localhost:4242> öffnen.
+2. Im Browser <http://localhost:4242/abschlussarbeit.pdf> öffnen.
 3. Eine `.qmd`-Datei in VS Code bearbeiten und speichern.
 4. Warten, bis der laufende Task den neuen Build im Terminal meldet.
 5. Die aktualisierte PDF im Browser kontrollieren.
@@ -595,21 +617,25 @@ dem dokumentierten `docker run`-Befehl neu erstellt.
 
 ## Offline verwenden
 
-Nur der erste Image-Build benötigt Internet. Danach sind Basis-Image, Quarto
-und TeX Live lokal in Docker gespeichert und die PDF kann offline entstehen.
+Nur das erstmalige Laden des Builder-Images benötigt Internet. Danach sind
+Quarto, Pandoc, TeX Live und die benötigten Pakete lokal in Docker gespeichert;
+PDF-Build und Vorschau funktionieren ohne Netzwerkverbindung.
 
 Ein vorbereitetes Image lässt sich für vollständig offline arbeitende Rechner
 exportieren:
 
 ```shell
-docker save thesis-builder:local --output thesis-builder.tar
+docker save --output fh-document-builder-1.0.0.tar ghcr.io/fh-campus-wien/fh-document-builder:1.0.0
 ```
 
 Import auf dem Zielrechner:
 
 ```shell
-docker load --input thesis-builder.tar
+docker load --input fh-document-builder-1.0.0.tar
 ```
+
+Das geladene Image behält seinen vollständigen Namen und Versions-Tag. Die
+mitgelieferten VS-Code-Tasks funktionieren deshalb anschließend unverändert.
 
 ## Fehlerbehebung
 
@@ -625,13 +651,17 @@ docker version
 
 Links vom Doppelpunkt einen anderen Port verwenden, beispielsweise
 `--publish 127.0.0.1:4243:4242`, und danach
-<http://localhost:4243> öffnen.
+<http://localhost:4243/abschlussarbeit.pdf> öffnen.
 
-### Umgebung vollständig neu erstellen
+### Builder-Image erneut laden
 
 ```shell
-docker build --no-cache --platform linux/amd64 --tag thesis-builder:local .
+docker pull --platform linux/amd64 ghcr.io/fh-campus-wien/fh-document-builder:1.0.0
 ```
+
+Der Befehl ist normalerweise nicht nötig. Er prüft, ob das gepinnte Image lokal
+vorhanden ist, und lädt fehlende Layer erneut. Ein lokaler Image-Build ist für
+dieses Template nicht vorgesehen.
 
 ### Dateinamen
 
@@ -717,11 +747,21 @@ format:
 
 ### Rolle des Docker-Images
 
-Das `Dockerfile` baut das lokale Image `thesis-builder:local`. Darin befinden
-sich eine festgelegte Quarto-Version sowie TeX Live und die benötigten
-LaTeX-Pakete. Ein kleiner Test wird bereits beim Image-Build gerendert. Dadurch
-fällt eine unvollständige LaTeX-Umgebung früh auf und nicht erst während der
-Arbeit an einem Kapitel.
+Das Builder-Image wird unabhängig von diesem Dokument-Template im öffentlichen
+Repository
+[FH-Campus-Wien/fh-document-builder](https://github.com/FH-Campus-Wien/fh-document-builder)
+gepflegt. Darin befinden sich eine festgelegte Quarto-Version sowie TeX Live
+und die benötigten LaTeX-Pakete. Bei jedem Image-Build wird bereits ein kleines
+PDF als Smoke-Test gerendert. Dadurch fällt eine unvollständige LaTeX-Umgebung
+vor der Veröffentlichung auf und nicht erst während der Arbeit an einem
+Kapitel.
+
+Freigegebene Versionen werden als öffentliches Container-Image auf GitHub
+Container Registry veröffentlicht. Dieses Template verwendet bewusst die
+vollständige Version
+`ghcr.io/fh-campus-wien/fh-document-builder:1.0.0` und nicht `latest`. Ein
+Update der zentralen Toolchain verändert bestehende Arbeiten daher nicht
+unbemerkt.
 
 Beim späteren `docker run` wird das Projekt nicht in den Container kopiert. Das
 aktuelle Verzeichnis wird als sogenannter Bind Mount unter `/work` eingebunden:
@@ -736,12 +776,24 @@ durch `--rm` entfernt; das Docker-Image und alle Projektdateien bleiben erhalten
 
 ### Warum funktioniert der Build offline?
 
-Der erste `docker build` benötigt Internet, um das Quarto-Basis-Image und die
-TeX-Live-Pakete herunterzuladen. Danach befinden sich alle Programme und Pakete
-im lokalen Image. `docker run` verwendet dieses Image und benötigt für normale
-PDF-Builds keine Netzwerkverbindung.
+Der erste `docker pull` beziehungsweise `docker run` benötigt Internet, um das
+fertige Builder-Image herunterzuladen. Danach befinden sich alle Programme und
+Pakete im lokalen Image. `docker run` verwendet diese lokale Kopie und benötigt
+für normale PDF-Builds keine Netzwerkverbindung.
 
-Die Reproduzierbarkeit hängt davon ab, dass die Basisversion im `Dockerfile`
-fest angegeben bleibt. Eine Änderung der Quarto-Version oder der installierten
-TeX-Live-Pakete sollte deshalb bewusst vorgenommen und anschließend mit einem
-vollständigen PDF-Build getestet werden.
+Die Reproduzierbarkeit entsteht durch den fest angegebenen Image-Tag `1.0.0`.
+Eine neue Quarto-Version oder geänderte LaTeX-Pakete werden zuerst im separaten
+Builder-Repository getestet und als neue Version veröffentlicht. Erst danach
+wird ein Template bewusst auf diese neue Version umgestellt und erneut als PDF
+getestet.
+
+### Builder-Version im Template aktualisieren
+
+Eine neue Builder-Version wird nicht automatisch übernommen. Für ein geplantes
+Update sind folgende Schritte erforderlich:
+
+1. Den neuen Release im Builder-Repository samt Smoke-Test veröffentlichen.
+2. Den vollständigen Image-Tag in `.vscode/tasks.json` und in den
+   Betriebssystem-Beispielen dieser README gemeinsam ändern.
+3. PDF-Erzeugung, Vorschau, Vorschau-Neustart und Offline-Build testen.
+4. Die Template-Änderung als eigene, nachvollziehbare Version veröffentlichen.
