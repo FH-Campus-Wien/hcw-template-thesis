@@ -2,7 +2,7 @@
 
 Vorlage für Bachelor- und Masterarbeiten. Geschrieben wird hauptsächlich in
 Quarto-Markdown (`.qmd`). Quarto, Pandoc und LaTeX laufen ausschließlich im
-öffentlichen, versionierten Docker-Image der FH Campus Wien und müssen nicht
+öffentlichen, versionierten Docker-Image der Hochschule Campus Wien und müssen nicht
 lokal installiert werden.
 
 GitHub dient zum Herunterladen, zur Versionsverwaltung und zum einmaligen Bezug
@@ -22,11 +22,9 @@ WSL-Installation ist nicht erforderlich.
 ## Herunterladen
 
 ```shell
-git clone https://github.com/EURE-ORGANISATION/EUER-REPOSITORY.git
-cd EUER-REPOSITORY
+git clone https://github.com/FH-Campus-Wien/hcw-template-thesis.git
+cd hcw-template-thesis
 ```
-
-Die Platzhalter sind durch die tatsächlichen Repository-Angaben zu ersetzen.
 
 ## Empfohlen: Visual Studio Code
 
@@ -71,7 +69,7 @@ Die folgenden VS-Code-Tasks sind vorkonfiguriert:
 Ein separater Task zum Erstellen der Umgebung ist nicht mehr erforderlich.
 Beim ersten Start von `PDF erstellen` oder `Vorschau starten` lädt Docker
 automatisch das öffentliche Image
-`ghcr.io/fh-campus-wien/fh-document-builder:1.0.0`. Dafür ist keine
+`ghcr.io/fh-campus-wien/hcw-document-builder:1.1.0`. Dafür ist keine
 GitHub-Anmeldung notwendig. Danach liegt das Image lokal in Docker und wird bei
 weiteren Starts wiederverwendet.
 
@@ -108,11 +106,11 @@ nicht vorhanden ist. Wer den Download bewusst vor dem ersten Build ausführen
 möchte, verwendet auf allen Betriebssystemen:
 
 ```shell
-docker pull --platform linux/amd64 ghcr.io/fh-campus-wien/fh-document-builder:1.0.0
+docker pull --platform linux/amd64 ghcr.io/fh-campus-wien/hcw-document-builder:1.1.0
 ```
 
 Das Image ist öffentlich; `docker login` ist nicht erforderlich. Die konkrete
-Version `1.0.0` ist absichtlich festgelegt, damit alle Studierenden mit
+Version `1.1.0` ist absichtlich festgelegt, damit alle Studierenden mit
 derselben Toolchain arbeiten.
 
 ### Windows PowerShell
@@ -123,7 +121,7 @@ PDF erstellen:
 docker run --rm --platform linux/amd64 `
   --mount "type=bind,source=$PWD,target=/work" `
   --workdir /work `
-  ghcr.io/fh-campus-wien/fh-document-builder:1.0.0 render
+  ghcr.io/fh-campus-wien/hcw-document-builder:1.1.0 render
 ```
 
 Vorschau starten:
@@ -134,8 +132,8 @@ docker run --rm --init --platform linux/amd64 `
   --mount "type=bind,source=$PWD,target=/work" `
   --workdir /work `
   --publish 127.0.0.1:4242:4242 `
-  --entrypoint fh-preview `
-  ghcr.io/fh-campus-wien/fh-document-builder:1.0.0 --host 0.0.0.0 --port 4242 --no-browser
+  --entrypoint hcw-preview `
+  ghcr.io/fh-campus-wien/hcw-document-builder:1.1.0 --host 0.0.0.0 --port 4242 --no-browser
 ```
 
 ### Windows-Eingabeaufforderung (cmd.exe)
@@ -143,13 +141,13 @@ docker run --rm --init --platform linux/amd64 `
 PDF erstellen:
 
 ```bat
-docker run --rm --platform linux/amd64 --mount "type=bind,source=%cd%,target=/work" --workdir /work ghcr.io/fh-campus-wien/fh-document-builder:1.0.0 render
+docker run --rm --platform linux/amd64 --mount "type=bind,source=%cd%,target=/work" --workdir /work ghcr.io/fh-campus-wien/hcw-document-builder:1.1.0 render
 ```
 
 Vorschau starten:
 
 ```bat
-docker run --rm --init --platform linux/amd64 --name thesis-preview --mount "type=bind,source=%cd%,target=/work" --workdir /work --publish 127.0.0.1:4242:4242 --entrypoint fh-preview ghcr.io/fh-campus-wien/fh-document-builder:1.0.0 --host 0.0.0.0 --port 4242 --no-browser
+docker run --rm --init --platform linux/amd64 --name thesis-preview --mount "type=bind,source=%cd%,target=/work" --workdir /work --publish 127.0.0.1:4242:4242 --entrypoint hcw-preview ghcr.io/fh-campus-wien/hcw-document-builder:1.1.0 --host 0.0.0.0 --port 4242 --no-browser
 ```
 
 ### macOS und Linux
@@ -160,7 +158,7 @@ PDF erstellen:
 docker run --rm --platform linux/amd64 \
   --mount "type=bind,source=$PWD,target=/work" \
   --workdir /work \
-  ghcr.io/fh-campus-wien/fh-document-builder:1.0.0 render
+  ghcr.io/fh-campus-wien/hcw-document-builder:1.1.0 render
 ```
 
 Vorschau starten:
@@ -171,8 +169,8 @@ docker run --rm --init --platform linux/amd64 \
   --mount "type=bind,source=$PWD,target=/work" \
   --workdir /work \
   --publish 127.0.0.1:4242:4242 \
-  --entrypoint fh-preview \
-  ghcr.io/fh-campus-wien/fh-document-builder:1.0.0 --host 0.0.0.0 --port 4242 --no-browser
+  --entrypoint hcw-preview \
+  ghcr.io/fh-campus-wien/hcw-document-builder:1.1.0 --host 0.0.0.0 --port 4242 --no-browser
 ```
 
 Die Vorschau wird mit `Ctrl+C` beendet. Falls das aktuelle Terminal keine
@@ -625,13 +623,13 @@ Ein vorbereitetes Image lässt sich für vollständig offline arbeitende Rechner
 exportieren:
 
 ```shell
-docker save --output fh-document-builder-1.0.0.tar ghcr.io/fh-campus-wien/fh-document-builder:1.0.0
+docker save --output hcw-document-builder-1.1.0.tar ghcr.io/fh-campus-wien/hcw-document-builder:1.1.0
 ```
 
 Import auf dem Zielrechner:
 
 ```shell
-docker load --input fh-document-builder-1.0.0.tar
+docker load --input hcw-document-builder-1.1.0.tar
 ```
 
 Das geladene Image behält seinen vollständigen Namen und Versions-Tag. Die
@@ -656,7 +654,7 @@ Links vom Doppelpunkt einen anderen Port verwenden, beispielsweise
 ### Builder-Image erneut laden
 
 ```shell
-docker pull --platform linux/amd64 ghcr.io/fh-campus-wien/fh-document-builder:1.0.0
+docker pull --platform linux/amd64 ghcr.io/fh-campus-wien/hcw-document-builder:1.1.0
 ```
 
 Der Befehl ist normalerweise nicht nötig. Er prüft, ob das gepinnte Image lokal
@@ -749,7 +747,7 @@ format:
 
 Das Builder-Image wird unabhängig von diesem Dokument-Template im öffentlichen
 Repository
-[FH-Campus-Wien/fh-document-builder](https://github.com/FH-Campus-Wien/fh-document-builder)
+[FH-Campus-Wien/hcw-document-builder](https://github.com/FH-Campus-Wien/hcw-document-builder)
 gepflegt. Darin befinden sich eine festgelegte Quarto-Version sowie TeX Live
 und die benötigten LaTeX-Pakete. Bei jedem Image-Build wird bereits ein kleines
 PDF als Smoke-Test gerendert. Dadurch fällt eine unvollständige LaTeX-Umgebung
@@ -759,7 +757,7 @@ Kapitel.
 Freigegebene Versionen werden als öffentliches Container-Image auf GitHub
 Container Registry veröffentlicht. Dieses Template verwendet bewusst die
 vollständige Version
-`ghcr.io/fh-campus-wien/fh-document-builder:1.0.0` und nicht `latest`. Ein
+`ghcr.io/fh-campus-wien/hcw-document-builder:1.1.0` und nicht `latest`. Ein
 Update der zentralen Toolchain verändert bestehende Arbeiten daher nicht
 unbemerkt.
 
@@ -781,7 +779,7 @@ fertige Builder-Image herunterzuladen. Danach befinden sich alle Programme und
 Pakete im lokalen Image. `docker run` verwendet diese lokale Kopie und benötigt
 für normale PDF-Builds keine Netzwerkverbindung.
 
-Die Reproduzierbarkeit entsteht durch den fest angegebenen Image-Tag `1.0.0`.
+Die Reproduzierbarkeit entsteht durch den fest angegebenen Image-Tag `1.1.0`.
 Eine neue Quarto-Version oder geänderte LaTeX-Pakete werden zuerst im separaten
 Builder-Repository getestet und als neue Version veröffentlicht. Erst danach
 wird ein Template bewusst auf diese neue Version umgestellt und erneut als PDF
