@@ -26,12 +26,33 @@ Unter Windows muss Docker Desktop mit Linux-Containern laufen. Das übliche
 WSL-2-Backend ist geeignet. Eine eigene LaTeX-, Quarto-, Pandoc- oder
 WSL-Installation ist nicht erforderlich.
 
-## Herunterladen
+## Neues Projekt aus der Vorlage erstellen
+
+Dieses Repository ist als GitHub Template Repository eingerichtet. Für jede
+Abschlussarbeit wird daraus ein neues, unabhängiges Repository erstellt:
+
+1. Auf GitHub
+   [FH-Campus-Wien/hcw-template-thesis](https://github.com/FH-Campus-Wien/hcw-template-thesis)
+   öffnen.
+2. **Use this template → Create a new repository** auswählen.
+3. Eigentümer:in, Repository-Name und gewünschte Sichtbarkeit festlegen.
+4. **Create repository** auswählen.
+5. Das neu erstellte Repository klonen:
 
 ```shell
-git clone https://github.com/FH-Campus-Wien/hcw-template-thesis.git
-cd hcw-template-thesis
+git clone https://github.com/ORGANISATION-ODER-BENUTZER/NEUES-REPOSITORY.git
+cd NEUES-REPOSITORY
 ```
+
+Wenn die Hochschule bereits ein persönliches Repository bereitgestellt hat,
+werden die ersten vier Schritte übersprungen und direkt dessen Clone-URL
+verwendet.
+
+Das zentrale Template-Repository sollte nicht direkt geklont werden. Andernfalls
+zeigt `origin` weiterhin auf die zentrale Vorlage, was beim späteren Pushen
+verwirrend ist. Für eine ausschließlich lokale Arbeit ohne GitHub-Repository
+kann die Vorlage über **Code → Download ZIP** heruntergeladen und entpackt
+werden.
 
 ## Empfohlen: Visual Studio Code
 
@@ -40,6 +61,11 @@ cd hcw-template-thesis
 ```shell
 code .
 ```
+
+Falls das Terminal auf macOS `command not found: code` meldet, wird der Ordner
+über **Datei → Ordner öffnen** ausgewählt. Optional lässt sich der Befehl in
+VS Code über `Cmd+Shift+P` und
+**Shell Command: Install 'code' command in PATH** aktivieren.
 
 Installieren Sie die von VS Code empfohlenen Erweiterungen:
 
