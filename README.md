@@ -9,6 +9,13 @@ GitHub dient zum Herunterladen, zur Versionsverwaltung und zum einmaligen Bezug
 des Builder-Images. PDF-Erzeugung und Vorschau laufen vollständig auf dem
 eigenen Computer und funktionieren nach dem ersten Download auch offline.
 
+Das Repository enthält außerdem eine freigegebene Kopie des gemeinsamen
+Quarto-Formats `hcw-pdf` in Version `0.1.1`. Logo, Schrift, Farben,
+Seitengrundlayout und gemeinsame LaTeX-Einstellungen werden dadurch zentral
+gepflegt, sind für normale Builds aber direkt im Template vorhanden. Das
+Format wird beim Schreiben weder aus GitHub nachgeladen noch automatisch
+aktualisiert.
+
 ## Voraussetzungen
 
 - Git
@@ -69,7 +76,7 @@ Die folgenden VS-Code-Tasks sind vorkonfiguriert:
 Ein separater Task zum Erstellen der Umgebung ist nicht mehr erforderlich.
 Beim ersten Start von `PDF erstellen` oder `Vorschau starten` lädt Docker
 automatisch das öffentliche Image
-`ghcr.io/fh-campus-wien/hcw-document-builder:1.1.0`. Dafür ist keine
+`ghcr.io/fh-campus-wien/hcw-document-builder:1.2.0`. Dafür ist keine
 GitHub-Anmeldung notwendig. Danach liegt das Image lokal in Docker und wird bei
 weiteren Starts wiederverwendet.
 
@@ -106,11 +113,11 @@ nicht vorhanden ist. Wer den Download bewusst vor dem ersten Build ausführen
 möchte, verwendet auf allen Betriebssystemen:
 
 ```shell
-docker pull --platform linux/amd64 ghcr.io/fh-campus-wien/hcw-document-builder:1.1.0
+docker pull --platform linux/amd64 ghcr.io/fh-campus-wien/hcw-document-builder:1.2.0
 ```
 
 Das Image ist öffentlich; `docker login` ist nicht erforderlich. Die konkrete
-Version `1.1.0` ist absichtlich festgelegt, damit alle Studierenden mit
+Version `1.2.0` ist absichtlich festgelegt, damit alle Studierenden mit
 derselben Toolchain arbeiten.
 
 ### Windows PowerShell
@@ -121,7 +128,7 @@ PDF erstellen:
 docker run --rm --platform linux/amd64 `
   --mount "type=bind,source=$PWD,target=/work" `
   --workdir /work `
-  ghcr.io/fh-campus-wien/hcw-document-builder:1.1.0 render
+  ghcr.io/fh-campus-wien/hcw-document-builder:1.2.0 render
 ```
 
 Vorschau starten:
@@ -133,7 +140,7 @@ docker run --rm --init --platform linux/amd64 `
   --workdir /work `
   --publish 127.0.0.1:4242:4242 `
   --entrypoint hcw-preview `
-  ghcr.io/fh-campus-wien/hcw-document-builder:1.1.0 --host 0.0.0.0 --port 4242 --no-browser
+  ghcr.io/fh-campus-wien/hcw-document-builder:1.2.0 --host 0.0.0.0 --port 4242 --no-browser
 ```
 
 ### Windows-Eingabeaufforderung (cmd.exe)
@@ -141,13 +148,13 @@ docker run --rm --init --platform linux/amd64 `
 PDF erstellen:
 
 ```bat
-docker run --rm --platform linux/amd64 --mount "type=bind,source=%cd%,target=/work" --workdir /work ghcr.io/fh-campus-wien/hcw-document-builder:1.1.0 render
+docker run --rm --platform linux/amd64 --mount "type=bind,source=%cd%,target=/work" --workdir /work ghcr.io/fh-campus-wien/hcw-document-builder:1.2.0 render
 ```
 
 Vorschau starten:
 
 ```bat
-docker run --rm --init --platform linux/amd64 --name thesis-preview --mount "type=bind,source=%cd%,target=/work" --workdir /work --publish 127.0.0.1:4242:4242 --entrypoint hcw-preview ghcr.io/fh-campus-wien/hcw-document-builder:1.1.0 --host 0.0.0.0 --port 4242 --no-browser
+docker run --rm --init --platform linux/amd64 --name thesis-preview --mount "type=bind,source=%cd%,target=/work" --workdir /work --publish 127.0.0.1:4242:4242 --entrypoint hcw-preview ghcr.io/fh-campus-wien/hcw-document-builder:1.2.0 --host 0.0.0.0 --port 4242 --no-browser
 ```
 
 ### macOS und Linux
@@ -158,7 +165,7 @@ PDF erstellen:
 docker run --rm --platform linux/amd64 \
   --mount "type=bind,source=$PWD,target=/work" \
   --workdir /work \
-  ghcr.io/fh-campus-wien/hcw-document-builder:1.1.0 render
+  ghcr.io/fh-campus-wien/hcw-document-builder:1.2.0 render
 ```
 
 Vorschau starten:
@@ -170,7 +177,7 @@ docker run --rm --init --platform linux/amd64 \
   --workdir /work \
   --publish 127.0.0.1:4242:4242 \
   --entrypoint hcw-preview \
-  ghcr.io/fh-campus-wien/hcw-document-builder:1.1.0 --host 0.0.0.0 --port 4242 --no-browser
+  ghcr.io/fh-campus-wien/hcw-document-builder:1.2.0 --host 0.0.0.0 --port 4242 --no-browser
 ```
 
 Die Vorschau wird mit `Ctrl+C` beendet. Falls das aktuelle Terminal keine
@@ -237,9 +244,54 @@ chapters/         Kapitel der Arbeit
 references.bib    Literaturdatenbank im BibTeX-Format
 references.qmd    Position des Literaturverzeichnisses
 images/           Abbildungen
-template/         zentrale LaTeX-Gestaltung
+_extensions/
+└── FH-Campus-Wien/hcw/
+                   lokale Kopie des gemeinsamen HCW-Formats
+hcw-format-version.txt
+                   übernommener Release-Tag des HCW-Formats
+template/          thesis-spezifische LaTeX-Ergänzungen
+scripts/           Werkzeuge für Vorlagenbetreuer:innen
 build/            erzeugte PDF und weitere Ausgaben
 ```
+
+## Gemeinsames HCW-Format
+
+In `_quarto.yml` wird nicht mehr Quartos allgemeines `pdf`-Format, sondern das
+gemeinsame Format `hcw-pdf` verwendet:
+
+```yaml
+format:
+  hcw-pdf:
+    documentclass: scrreprt
+    toc: true
+    number-sections: true
+```
+
+Die zentrale Quelle ist das öffentliche Repository
+[FH-Campus-Wien/hcw-quarto-format](https://github.com/FH-Campus-Wien/hcw-quarto-format).
+Dieses Thesis-Template enthält eine geprüfte Kopie unter
+`_extensions/FH-Campus-Wien/hcw/`. Dadurch benötigt ein Build keinen Zugriff
+auf GitHub und eine spätere Änderung des zentralen Formats verändert eine
+bestehende Abschlussarbeit nicht unbemerkt.
+
+Das gemeinsame Format liefert derzeit:
+
+- HCW-Logo und gemeinsame Titelseitengestaltung
+- TeX Gyre Heros als frei verfügbare Helvetica-Alternative
+- Farben, Seitenränder, Überschriften und Beschriftungen
+- gemeinsame Kopfzeilen- und PDF-Grundeinstellungen
+
+Thesis-spezifisch bleiben `scrreprt`, Kapitelstruktur, Verzeichnisse,
+eineinhalbfacher Zeilenabstand und die für Abschlussarbeiten angepasste
+Kopfzeile. Diese Ergänzungen stehen in `_quarto.yml` und
+`template/preamble.tex`. Damit bleibt die Trennung klar: allgemeines
+Hochschuldesign im Format-Repository, inhaltsspezifische Regeln im
+Thesis-Template.
+
+Die Quarto-Format-Extension ist nicht mit der gleichnamigen
+VS-Code-Erweiterung zu verwechseln. Die VS-Code-Erweiterung unterstützt das
+Bearbeiten von `.qmd`-Dateien; `hcw-pdf` bestimmt die PDF-Gestaltung innerhalb
+des Docker-Containers.
 
 Normaler Inhalt wird als Markdown geschrieben:
 
@@ -623,13 +675,13 @@ Ein vorbereitetes Image lässt sich für vollständig offline arbeitende Rechner
 exportieren:
 
 ```shell
-docker save --output hcw-document-builder-1.1.0.tar ghcr.io/fh-campus-wien/hcw-document-builder:1.1.0
+docker save --output hcw-document-builder-1.2.0.tar ghcr.io/fh-campus-wien/hcw-document-builder:1.2.0
 ```
 
 Import auf dem Zielrechner:
 
 ```shell
-docker load --input hcw-document-builder-1.1.0.tar
+docker load --input hcw-document-builder-1.2.0.tar
 ```
 
 Das geladene Image behält seinen vollständigen Namen und Versions-Tag. Die
@@ -654,7 +706,7 @@ Links vom Doppelpunkt einen anderen Port verwenden, beispielsweise
 ### Builder-Image erneut laden
 
 ```shell
-docker pull --platform linux/amd64 ghcr.io/fh-campus-wien/hcw-document-builder:1.1.0
+docker pull --platform linux/amd64 ghcr.io/fh-campus-wien/hcw-document-builder:1.2.0
 ```
 
 Der Befehl ist normalerweise nicht nötig. Er prüft, ob das gepinnte Image lokal
@@ -706,6 +758,7 @@ _quarto.yml
       ├── index.qmd
       ├── chapters/*.qmd
       ├── references.bib
+      ├── _extensions/FH-Campus-Wien/hcw/
       └── template/preamble.tex
                │
                ▼
@@ -730,7 +783,8 @@ Beim Rendern führt Quarto sinngemäß diese Aufgaben aus:
 2. Alle Kapitel in der angegebenen Reihenfolge zusammenführen.
 3. Markdown, Querverweise und Zitationen verarbeiten.
 4. Ein temporäres LaTeX-Dokument erzeugen.
-5. `template/preamble.tex` in das LaTeX-Dokument einbinden.
+5. Gemeinsames HCW-Format und `template/preamble.tex` in das LaTeX-Dokument
+   einbinden.
 6. LuaLaTeX so oft ausführen, wie es für Verzeichnisse und Referenzen nötig ist.
 7. Die fertige PDF im Verzeichnis `build/` ablegen.
 
@@ -739,7 +793,7 @@ von LaTeX-Problemen kann in `_quarto.yml` vorübergehend Folgendes gesetzt werde
 
 ```yaml
 format:
-  pdf:
+  hcw-pdf:
     keep-tex: true
 ```
 
@@ -757,7 +811,7 @@ Kapitel.
 Freigegebene Versionen werden als öffentliches Container-Image auf GitHub
 Container Registry veröffentlicht. Dieses Template verwendet bewusst die
 vollständige Version
-`ghcr.io/fh-campus-wien/hcw-document-builder:1.1.0` und nicht `latest`. Ein
+`ghcr.io/fh-campus-wien/hcw-document-builder:1.2.0` und nicht `latest`. Ein
 Update der zentralen Toolchain verändert bestehende Arbeiten daher nicht
 unbemerkt.
 
@@ -779,7 +833,7 @@ fertige Builder-Image herunterzuladen. Danach befinden sich alle Programme und
 Pakete im lokalen Image. `docker run` verwendet diese lokale Kopie und benötigt
 für normale PDF-Builds keine Netzwerkverbindung.
 
-Die Reproduzierbarkeit entsteht durch den fest angegebenen Image-Tag `1.1.0`.
+Die Reproduzierbarkeit entsteht durch den fest angegebenen Image-Tag `1.2.0`.
 Eine neue Quarto-Version oder geänderte LaTeX-Pakete werden zuerst im separaten
 Builder-Repository getestet und als neue Version veröffentlicht. Erst danach
 wird ein Template bewusst auf diese neue Version umgestellt und erneut als PDF
@@ -795,3 +849,25 @@ Update sind folgende Schritte erforderlich:
    Betriebssystem-Beispielen dieser README gemeinsam ändern.
 3. PDF-Erzeugung, Vorschau, Vorschau-Neustart und Offline-Build testen.
 4. Die Template-Änderung als eigene, nachvollziehbare Version veröffentlichen.
+
+### HCW-Format im Template aktualisieren
+
+Auch das gemeinsame Quarto-Format wird nicht automatisch übernommen. Der
+aktuell eingebundene Release-Tag steht in `hcw-format-version.txt`. Ein Update
+ist ausschließlich für Vorlagenbetreuer:innen vorgesehen:
+
+1. Im Repository `hcw-quarto-format` eine neue Version testen und mit einem Tag
+   wie `v0.2.0` veröffentlichen.
+2. In `hcw-format-version.txt` denselben Tag eintragen.
+3. In VS Code den Task `Maintainer: HCW-Format aktualisieren` ausführen.
+4. Die Änderungen unter `_extensions/FH-Campus-Wien/hcw/` mit `git diff`
+   kontrollieren.
+5. `Thesis: PDF erstellen` ausführen und die vollständige PDF visuell prüfen.
+6. Versionsdatei und aktualisierte Extension gemeinsam committen.
+
+Der Maintainer-Task ruft im Builder-Container das Skript
+`scripts/update-hcw-format.sh` auf. Dieses installiert den angegebenen
+Release, prüft Manifest, Version, Logo und LaTeX-Partials und bricht bei einer
+unvollständigen Extension ab. Nur dieser bewusste Aktualisierungsschritt
+benötigt Netzwerkzugriff; Schreiben, PDF-Erstellung und Vorschau bleiben
+offlinefähig.

@@ -1,0 +1,24 @@
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{caption}
+\usepackage{scrlayer-scrpage}
+
+\definecolor{HCWAnthrazit}{HTML}{4A4F52}
+
+\KOMAoptions{parskip=half}
+\setkomafont{sectioning}{\sffamily\bfseries\color{HCWAnthrazit}}
+\setkomafont{pageheadfoot}{\sffamily\small\color{HCWAnthrazit}}
+\captionsetup{
+  font=small,
+  labelfont=bf,
+  justification=raggedright,
+  singlelinecheck=false
+}
+
+\clearpairofpagestyles
+\ihead{\headmark}
+\ohead{\pagemark}
+\KOMAoptions{headsepline=true}
+\automark{section}
+\pagestyle{scrheadings}

@@ -20,17 +20,16 @@ book:
 
 bibliography: references.bib
 lang: de
+document-type: "Abschlussarbeit"
 
 format:
-  pdf:
+  hcw-pdf:
     documentclass: scrreprt
-    pdf-engine: lualatex
-    papersize: a4
-    fontsize: 11pt
     number-sections: true
     toc: true
     lof: true
     lot: true
     colorlinks: false
     keep-tex: false
-    include-in-header: template/preamble.tex
+    include-in-header:
+      - template/preamble.tex
