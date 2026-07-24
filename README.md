@@ -331,15 +331,97 @@ Das ist ein Absatz mit einer Quelle [@mustermann2025].
 Welche Auswirkungen hat ...?
 ```
 
-LaTeX kann in Ausnahmefällen direkt eingebettet werden:
+### LaTeX für Sonderfälle
+
+Normaler Inhalt sollte in Markdown geschrieben werden. Dadurch bleiben
+Quelldateien lesbar und Quarto kann Nummerierung, Querverweise und andere
+Ausgabeformate korrekt verarbeiten. Direktes LaTeX ist für einzelne
+PDF-spezifische Layoutanforderungen vorgesehen, die sich mit Markdown nicht
+sinnvoll ausdrücken lassen.
+
+#### LaTeX innerhalb eines Absatzes
+
+Raw-LaTeX kann mit der Pandoc-Attributsyntax in einen Markdown-Absatz
+eingebettet werden:
+
+```markdown
+Der Begriff `\textsc{Versuchsaufbau}`{=latex} wird in Kapitälchen gesetzt.
+```
+
+Für Fett- oder Kursivschrift ist weiterhin normales Markdown vorzuziehen:
+
+```markdown
+Dieser Text ist **fett** und dieser Text ist *kursiv*.
+```
+
+#### LaTeX-Blöcke
+
+Mehrzeiliges LaTeX steht in einem Raw-LaTeX-Block:
+
+````markdown
+```{=latex}
+\begin{center}
+  \fbox{
+    \parbox{0.75\textwidth}{
+      Dieser Kasten wird direkt von LaTeX gesetzt.
+    }
+  }
+\end{center}
+```
+````
+
+Auch ein erzwungener Seitenumbruch kann so geschrieben werden:
+
+````markdown
+```{=latex}
+\newpage
+```
+````
+
+#### Zusätzliche LaTeX-Pakete
+
+Zusätzliche Pakete werden nicht in einer `.qmd`-Datei und nicht unter
+`_extensions/` eingetragen. Thesis-spezifische Pakete gehören in
+`template/preamble.tex`:
+
+```latex
+\usepackage{pdflscape}
+```
+
+`pdflscape` ist in dieser Vorlage bereits eingebunden und im Builder-Image
+vorhanden. Damit kann beispielsweise eine breite Tabelle auf einer
+Querformatseite gesetzt werden:
 
 ````markdown
 ```{=latex}
 \begin{landscape}
-  % spezieller LaTeX-Inhalt
+\begin{center}
+\begin{tabular}{llllll}
+\toprule
+Messung & Spannung & Strom & Leistung & Temperatur & Status \\
+\midrule
+A & 5 V & 20 mA & 100 mW & 23 °C & gültig \\
+B & 12 V & 15 mA & 180 mW & 25 °C & gültig \\
+\bottomrule
+\end{tabular}
+\end{center}
 \end{landscape}
 ```
 ````
+
+Ein `\usepackage{...}`-Eintrag kann nur ein Paket laden, das bereits im
+versionierten Builder-Image installiert ist. Meldet LaTeX
+`File ... .sty not found`, muss das Paket kontrolliert in den
+`hcw-document-builder` aufgenommen werden. Eine Installation während eines
+normalen Builds ist wegen der Offline- und Reproduzierbarkeitsanforderungen
+nicht vorgesehen.
+
+Raw-LaTeX wird nur in der PDF-Ausgabe verarbeitet. Bei einer späteren
+HTML-Ausgabe wird solcher Inhalt nicht automatisch in HTML übersetzt. Außerdem
+liegen Raw-LaTeX-Tabellen und -Abbildungen außerhalb von Quartos automatischem
+Querverweissystem. Wenn `@tbl-...`- oder `@fig-...`-Verweise benötigt werden,
+sollten deshalb möglichst die dokumentierten Markdown-Varianten verwendet
+werden.
 
 ## Schreiben mit Quarto-Markdown
 
