@@ -6,10 +6,10 @@
       "type": "process",
       "command": "docker",
       "args": [
-        "run", "--rm", "--platform", "linux/amd64",
+        "run", "--rm",
         "--mount", "type=bind,source=${workspaceFolder},target=/work",
         "--workdir", "/work",
-        "ghcr.io/fh-campus-wien/hcw-document-builder:1.2.0", "render"
+        "ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0", "render"
       ],
       "options": { "cwd": "${workspaceFolder}" },
       "problemMatcher": [],
@@ -20,13 +20,13 @@
       "type": "process",
       "command": "docker",
       "args": [
-        "run", "--rm", "--init", "--platform", "linux/amd64",
+        "run", "--rm", "--init",
         "--name", "thesis-preview",
         "--mount", "type=bind,source=${workspaceFolder},target=/work",
         "--workdir", "/work",
         "--publish", "127.0.0.1:4242:4242",
         "--entrypoint", "hcw-preview",
-        "ghcr.io/fh-campus-wien/hcw-document-builder:1.2.0",
+        "ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0",
         "--host", "0.0.0.0", "--port", "4242", "--no-browser"
       ],
       "options": { "cwd": "${workspaceFolder}" },
@@ -50,11 +50,11 @@
       "type": "process",
       "command": "docker",
       "args": [
-        "run", "--rm", "--platform", "linux/amd64",
+        "run", "--rm",
         "--mount", "type=bind,source=${workspaceFolder},target=/work",
         "--workdir", "/work",
         "--entrypoint", "/bin/sh",
-        "ghcr.io/fh-campus-wien/hcw-document-builder:1.2.0",
+        "ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0",
         "scripts/update-hcw-format.sh"
       ],
       "options": { "cwd": "${workspaceFolder}" },

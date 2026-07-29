@@ -25,14 +25,14 @@ book:
 bibliography: references.bib
 lang: de
 
-# Titelseite: "Bachelor’s Thesis" oder "Master’s Thesis"
-thesis-type: "Bachelor’s Thesis"
+# Titelseite: "Bachelorarbeit" oder "Masterarbeit"
+thesis-type: "Bachelorarbeit"
 title-de: "Deutscher Titel der Abschlussarbeit"
 subtitle-de: "Deutscher Untertitel"
 academic-degree: "Bachelor of Science in Engineering (BSc)"
 study-program: "Name des Studiengangs"
 institution: "Hochschule Campus Wien"
-submission-place: "Vienna"
+submission-place: "Wien"
 submission-year: "2026"
 supervisors:
   - "Titel Vorname Nachname"

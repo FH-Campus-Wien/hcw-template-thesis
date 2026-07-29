@@ -17,6 +17,9 @@ offizielle BA-/MA-Titelseite einschließlich Logo und Linienmotiv bleibt bewusst
 thesis-spezifisch. Das Format wird beim Schreiben weder aus GitHub nachgeladen
 noch automatisch aktualisiert.
 
+Die geplanten Schritte bis zur stabilen Version `v1.0.0` stehen in der
+[Roadmap](ROADMAP.md).
+
 ## Voraussetzungen
 
 - Git
@@ -103,7 +106,7 @@ Die folgenden VS-Code-Tasks sind vorkonfiguriert:
 Ein separater Task zum Erstellen der Umgebung ist nicht mehr erforderlich.
 Beim ersten Start von `PDF erstellen` oder `Vorschau starten` lädt Docker
 automatisch das öffentliche Image
-`ghcr.io/fh-campus-wien/hcw-document-builder:1.2.0`. Dafür ist keine
+`ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0`. Dafür ist keine
 GitHub-Anmeldung notwendig. Danach liegt das Image lokal in Docker und wird bei
 weiteren Starts wiederverwendet.
 
@@ -127,9 +130,9 @@ Docker-Befehle im folgenden Abschnitt **Ohne VS Code**.
 
 Beim ersten Durchlauf wird das fertige Builder-Image heruntergeladen. Das kann
 je nach Internetverbindung einige Minuten dauern; es werden dabei keine
-LaTeX-Pakete auf dem eigenen Betriebssystem installiert. Auf Macs mit Apple
-Silicon läuft die festgelegte `linux/amd64`-Variante über Docker-Emulation. Die
-entsprechende Plattformmeldung ist daher erwartet und kein Fehler.
+LaTeX-Pakete auf dem eigenen Betriebssystem installiert. Das Image unterstützt
+`linux/amd64` und `linux/arm64`. Docker wählt automatisch die native Variante
+des Computers; Apple-Silicon-Macs benötigen daher keine AMD64-Emulation mehr.
 
 ## Ohne VS Code
 
@@ -140,11 +143,11 @@ nicht vorhanden ist. Wer den Download bewusst vor dem ersten Build ausführen
 möchte, verwendet auf allen Betriebssystemen:
 
 ```shell
-docker pull --platform linux/amd64 ghcr.io/fh-campus-wien/hcw-document-builder:1.2.0
+docker pull ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0
 ```
 
 Das Image ist öffentlich; `docker login` ist nicht erforderlich. Die konkrete
-Version `1.2.0` ist absichtlich festgelegt, damit alle Studierenden mit
+Version `1.3.0` ist absichtlich festgelegt, damit alle Studierenden mit
 derselben Toolchain arbeiten.
 
 ### Windows PowerShell
@@ -152,22 +155,22 @@ derselben Toolchain arbeiten.
 PDF erstellen:
 
 ```powershell
-docker run --rm --platform linux/amd64 `
+docker run --rm `
   --mount "type=bind,source=$PWD,target=/work" `
   --workdir /work `
-  ghcr.io/fh-campus-wien/hcw-document-builder:1.2.0 render
+  ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0 render
 ```
 
 Vorschau starten:
 
 ```powershell
-docker run --rm --init --platform linux/amd64 `
+docker run --rm --init `
   --name thesis-preview `
   --mount "type=bind,source=$PWD,target=/work" `
   --workdir /work `
   --publish 127.0.0.1:4242:4242 `
   --entrypoint hcw-preview `
-  ghcr.io/fh-campus-wien/hcw-document-builder:1.2.0 --host 0.0.0.0 --port 4242 --no-browser
+  ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0 --host 0.0.0.0 --port 4242 --no-browser
 ```
 
 ### Windows-Eingabeaufforderung (cmd.exe)
@@ -175,13 +178,13 @@ docker run --rm --init --platform linux/amd64 `
 PDF erstellen:
 
 ```bat
-docker run --rm --platform linux/amd64 --mount "type=bind,source=%cd%,target=/work" --workdir /work ghcr.io/fh-campus-wien/hcw-document-builder:1.2.0 render
+docker run --rm --mount "type=bind,source=%cd%,target=/work" --workdir /work ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0 render
 ```
 
 Vorschau starten:
 
 ```bat
-docker run --rm --init --platform linux/amd64 --name thesis-preview --mount "type=bind,source=%cd%,target=/work" --workdir /work --publish 127.0.0.1:4242:4242 --entrypoint hcw-preview ghcr.io/fh-campus-wien/hcw-document-builder:1.2.0 --host 0.0.0.0 --port 4242 --no-browser
+docker run --rm --init --name thesis-preview --mount "type=bind,source=%cd%,target=/work" --workdir /work --publish 127.0.0.1:4242:4242 --entrypoint hcw-preview ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0 --host 0.0.0.0 --port 4242 --no-browser
 ```
 
 ### macOS und Linux
@@ -189,22 +192,22 @@ docker run --rm --init --platform linux/amd64 --name thesis-preview --mount "typ
 PDF erstellen:
 
 ```bash
-docker run --rm --platform linux/amd64 \
+docker run --rm \
   --mount "type=bind,source=$PWD,target=/work" \
   --workdir /work \
-  ghcr.io/fh-campus-wien/hcw-document-builder:1.2.0 render
+  ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0 render
 ```
 
 Vorschau starten:
 
 ```bash
-docker run --rm --init --platform linux/amd64 \
+docker run --rm --init \
   --name thesis-preview \
   --mount "type=bind,source=$PWD,target=/work" \
   --workdir /work \
   --publish 127.0.0.1:4242:4242 \
   --entrypoint hcw-preview \
-  ghcr.io/fh-campus-wien/hcw-document-builder:1.2.0 --host 0.0.0.0 --port 4242 --no-browser
+  ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0 --host 0.0.0.0 --port 4242 --no-browser
 ```
 
 Die Vorschau wird mit `Ctrl+C` beendet. Falls das aktuelle Terminal keine
@@ -278,6 +281,7 @@ _extensions/
                    lokale Kopie des gemeinsamen HCW-Formats
 hcw-format-version.txt
                    übernommener Release-Tag des HCW-Formats
+ROADMAP.md         geplante Schritte bis zum stabilen Template v1.0.0
 template/
 ├── title.tex      thesis-spezifische Titelseite
 ├── preamble.tex   thesis-spezifische LaTeX-Ergänzungen
@@ -290,8 +294,10 @@ build/            erzeugte PDF und weitere Ausgaben
 ### Titelseite für Bachelor- und Masterarbeiten
 
 Die Titelseite folgt den offiziellen Word-Vorlagen für Bachelor- und
-Masterarbeiten. Sie enthält das HCW-Logo, das helle Linienmotiv, den englischen
-und deutschen Titel, Autor:in, akademischen Grad, Studiengang und Betreuung.
+Masterarbeiten. Sie enthält das HCW-Logo, das helle Linienmotiv, den deutschen
+und englischen Titel, Autor:in, akademischen Grad, Studiengang und Betreuung.
+Alle festen Beschriftungen sind deutsch; der deutsche Titel steht vor seiner
+englischen Fassung.
 Alle veränderlichen Angaben stehen am Anfang von `_quarto.yml`; in
 `template/title.tex` muss für eine normale Arbeit nichts geändert werden.
 
@@ -303,13 +309,13 @@ book:
   subtitle: "English subtitle"
   author: "Vorname Nachname"
 
-thesis-type: "Bachelor’s Thesis"
+thesis-type: "Bachelorarbeit"
 title-de: "Deutscher Titel der Abschlussarbeit"
 subtitle-de: "Deutscher Untertitel"
 academic-degree: "Bachelor of Science in Engineering (BSc)"
 study-program: "Name des Studiengangs"
 institution: "Hochschule Campus Wien"
-submission-place: "Vienna"
+submission-place: "Wien"
 submission-year: "2026"
 supervisors:
   - "Titel Vorname Nachname"
@@ -319,7 +325,7 @@ supervisors:
 Für eine Masterarbeit werden mindestens diese beiden Werte ausgetauscht:
 
 ```yaml
-thesis-type: "Master’s Thesis"
+thesis-type: "Masterarbeit"
 academic-degree: "Master of Science in Engineering (MSc)"
 ```
 
@@ -347,6 +353,11 @@ Referenzvorlagen:
 4. `frontmatter/03-abkuerzungsverzeichnis.qmd`: optionales
    Abkürzungsverzeichnis
 5. `frontmatter/04-inhaltsverzeichnis.qmd`: Inhaltsverzeichnis
+
+Für Kurzfassung und Abstract gilt bewusst eine einfache, saloppe Merkhilfe:
+
+> Erst das Problem und warum es ein Problem ist. Dann die Lösung und warum sie
+> eine Lösung ist.
 
 Jeder Eintrag beginnt auf einer eigenen Seite. Der Vorspann verwendet römische
 Seitenzahlen; mit dem ersten Fachkapitel beginnt die arabische
@@ -898,13 +909,13 @@ Ein vorbereitetes Image lässt sich für vollständig offline arbeitende Rechner
 exportieren:
 
 ```shell
-docker save --output hcw-document-builder-1.2.0.tar ghcr.io/fh-campus-wien/hcw-document-builder:1.2.0
+docker save --output hcw-document-builder-1.3.0.tar ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0
 ```
 
 Import auf dem Zielrechner:
 
 ```shell
-docker load --input hcw-document-builder-1.2.0.tar
+docker load --input hcw-document-builder-1.3.0.tar
 ```
 
 Das geladene Image behält seinen vollständigen Namen und Versions-Tag. Die
@@ -929,7 +940,7 @@ Links vom Doppelpunkt einen anderen Port verwenden, beispielsweise
 ### Builder-Image erneut laden
 
 ```shell
-docker pull --platform linux/amd64 ghcr.io/fh-campus-wien/hcw-document-builder:1.2.0
+docker pull ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0
 ```
 
 Der Befehl ist normalerweise nicht nötig. Er prüft, ob das gepinnte Image lokal
@@ -1034,7 +1045,7 @@ Kapitel.
 Freigegebene Versionen werden als öffentliches Container-Image auf GitHub
 Container Registry veröffentlicht. Dieses Template verwendet bewusst die
 vollständige Version
-`ghcr.io/fh-campus-wien/hcw-document-builder:1.2.0` und nicht `latest`. Ein
+`ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0` und nicht `latest`. Ein
 Update der zentralen Toolchain verändert bestehende Arbeiten daher nicht
 unbemerkt.
 
@@ -1056,7 +1067,7 @@ fertige Builder-Image herunterzuladen. Danach befinden sich alle Programme und
 Pakete im lokalen Image. `docker run` verwendet diese lokale Kopie und benötigt
 für normale PDF-Builds keine Netzwerkverbindung.
 
-Die Reproduzierbarkeit entsteht durch den fest angegebenen Image-Tag `1.2.0`.
+Die Reproduzierbarkeit entsteht durch den fest angegebenen Image-Tag `1.3.0`.
 Eine neue Quarto-Version oder geänderte LaTeX-Pakete werden zuerst im separaten
 Builder-Repository getestet und als neue Version veröffentlicht. Erst danach
 wird ein Template bewusst auf diese neue Version umgestellt und erneut als PDF

@@ -1,4 +1,4 @@
 # Abstract (Englisch) {.unnumbered}
 
-This is a concise English summary of the thesis. It describes the problem,
-method, most important results, and conclusion.
+A simple rule for the abstract: Describe the problem and why it is a problem.
+Then present your solution and explain why it is a solution.
