@@ -1,0 +1,9 @@
+# Inhaltsverzeichnis {.unnumbered .unlisted}
+
+```{=latex}
+\makeatletter
+\@starttoc{toc}
+\makeatother
+\clearpage
+\pagenumbering{arabic}
+```

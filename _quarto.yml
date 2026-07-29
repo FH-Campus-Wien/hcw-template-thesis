@@ -3,33 +3,51 @@ project:
   output-dir: build
 
 book:
-  title: "Titel der Abschlussarbeit"
-  subtitle: "Bachelorarbeit"
+  title: "English title of the thesis"
+  subtitle: "English subtitle"
   output-file: abschlussarbeit
   author: "Vorname Nachname"
-  date: today
-  date-format: "D. MMMM YYYY"
   chapters:
     - index.qmd
+    - frontmatter/01-kurzfassung.qmd
+    - frontmatter/02-abstract-englisch.qmd
+    - frontmatter/03-abkuerzungsverzeichnis.qmd
+    - frontmatter/04-inhaltsverzeichnis.qmd
     - chapters/01-einleitung.qmd
     - chapters/02-grundlagen.qmd
     - chapters/03-methodik.qmd
     - chapters/04-ergebnisse.qmd
     - chapters/05-fazit.qmd
     - references.qmd
+    - backmatter/ki-werkzeuge.qmd
+    - backmatter/eigenstaendigkeitserklaerung.qmd
 
 bibliography: references.bib
 lang: de
-document-type: "Abschlussarbeit"
+
+# Titelseite: "Bachelor’s Thesis" oder "Master’s Thesis"
+thesis-type: "Bachelor’s Thesis"
+title-de: "Deutscher Titel der Abschlussarbeit"
+subtitle-de: "Deutscher Untertitel"
+academic-degree: "Bachelor of Science in Engineering (BSc)"
+study-program: "Name des Studiengangs"
+institution: "Hochschule Campus Wien"
+submission-place: "Vienna"
+submission-year: "2026"
+supervisors:
+  - "Titel Vorname Nachname"
+  - "Titel Vorname Nachname (optional)"
 
 format:
   hcw-pdf:
     documentclass: scrreprt
     number-sections: true
-    toc: true
-    lof: true
-    lot: true
+    toc: false
+    lof: false
+    lot: false
     colorlinks: false
     keep-tex: false
+    template-partials:
+      - template/title.tex
     include-in-header:
       - template/preamble.tex

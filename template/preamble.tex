@@ -4,8 +4,11 @@
 \usepackage{scrlayer-scrpage}
 
 \onehalfspacing
+\newcommand{\HCWRunningTitle}{Abschlussarbeit}
+
 \clearpairofpagestyles
-\ihead{Abschlussarbeit}
+\ihead{\HCWRunningTitle}
 \ohead{\headmark}
-\cfoot{\pagemark}
+\cfoot*{\pagemark}
 \automark{chapter}
+\pagestyle{scrheadings}

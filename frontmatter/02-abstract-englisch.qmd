@@ -1,0 +1,4 @@
+# Abstract (Englisch) {.unnumbered}
+
+This is a concise English summary of the thesis. It describes the problem,
+method, most important results, and conclusion.

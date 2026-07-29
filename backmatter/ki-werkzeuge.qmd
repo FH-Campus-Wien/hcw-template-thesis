@@ -1,0 +1,13 @@
+# Übersicht eingesetzter KI-Werkzeuge {.unnumbered}
+
+Dokumentieren Sie hier alle KI-Werkzeuge, die bei der Erstellung der Arbeit
+eingesetzt wurden. Ersetzen Sie die Beispielzeile durch Ihre tatsächlichen
+Angaben. Wurden keine KI-Werkzeuge verwendet, halten Sie dies ausdrücklich
+fest.
+
+| KI-Werkzeug und Version | Einsatzbereich | Nutzungsart | Betroffene Abschnitte |
+|---|---|---|---|
+| Beispiel: Academic AI, Modell und Datum | Sprachliche Überarbeitung | Formulierungsvorschläge; Ergebnisse wurden vollständig geprüft und überarbeitet. | Kapitel 2 und 3 |
+
+Die Verantwortung für sämtliche Inhalte, Quellenangaben und Schlussfolgerungen
+verbleibt bei der Autorin beziehungsweise beim Autor.

@@ -1,0 +1,4 @@
+# Kurzfassung {.unnumbered}
+
+Hier steht eine kompakte deutschsprachige Zusammenfassung der Arbeit. Sie
+beschreibt Problemstellung, Methode, wichtigste Ergebnisse und Schlussfolgerung.

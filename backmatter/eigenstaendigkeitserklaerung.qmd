@@ -1,0 +1,10 @@
+# Eigenständigkeitserklärung {.unnumbered}
+
+Hier wird die von der Hochschule vorgegebene Eigenständigkeitserklärung
+eingefügt.
+
+```{=latex}
+\vspace{2cm}
+```
+
+Ort, Datum \hfill Unterschrift

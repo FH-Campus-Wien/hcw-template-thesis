@@ -10,11 +10,12 @@ des Builder-Images. PDF-Erzeugung und Vorschau laufen vollständig auf dem
 eigenen Computer und funktionieren nach dem ersten Download auch offline.
 
 Das Repository enthält außerdem eine freigegebene Kopie des gemeinsamen
-Quarto-Formats `hcw-pdf` in Version `0.1.1`. Logo, Schrift, Farben,
+Quarto-Formats `hcw-pdf` in Version `0.1.1`. Schrift, Farben,
 Seitengrundlayout und gemeinsame LaTeX-Einstellungen werden dadurch zentral
-gepflegt, sind für normale Builds aber direkt im Template vorhanden. Das
-Format wird beim Schreiben weder aus GitHub nachgeladen noch automatisch
-aktualisiert.
+gepflegt, sind für normale Builds aber direkt im Template vorhanden. Die
+offizielle BA-/MA-Titelseite einschließlich Logo und Linienmotiv bleibt bewusst
+thesis-spezifisch. Das Format wird beim Schreiben weder aus GitHub nachgeladen
+noch automatisch aktualisiert.
 
 ## Voraussetzungen
 
@@ -264,21 +265,129 @@ gelöscht.
 ## Projekt bearbeiten
 
 ```text
-_quarto.yml       Titel, Autor:in, Struktur und PDF-Einstellungen
-index.qmd         Angaben, Kurzfassung, Abstract und Erklärung
+_quarto.yml       Titelseitenangaben, Struktur und PDF-Einstellungen
+index.qmd         Danksagung
+frontmatter/      Kurzfassung, Abstract, Abkürzungen und Inhaltsverzeichnis
 chapters/         Kapitel der Arbeit
 references.bib    Literaturdatenbank im BibTeX-Format
 references.qmd    Position des Literaturverzeichnisses
+backmatter/       KI-Dokumentation und Eigenständigkeitserklärung
 images/           Abbildungen
 _extensions/
 └── FH-Campus-Wien/hcw/
                    lokale Kopie des gemeinsamen HCW-Formats
 hcw-format-version.txt
                    übernommener Release-Tag des HCW-Formats
-template/          thesis-spezifische LaTeX-Ergänzungen
+template/
+├── title.tex      thesis-spezifische Titelseite
+├── preamble.tex   thesis-spezifische LaTeX-Ergänzungen
+└── assets/        Hintergrund der Titelseite
+requirements/      ursprüngliche BA-/MA-Word-Vorlagen als Designreferenz
 scripts/           Werkzeuge für Vorlagenbetreuer:innen
 build/            erzeugte PDF und weitere Ausgaben
 ```
+
+### Titelseite für Bachelor- und Masterarbeiten
+
+Die Titelseite folgt den offiziellen Word-Vorlagen für Bachelor- und
+Masterarbeiten. Sie enthält das HCW-Logo, das helle Linienmotiv, den englischen
+und deutschen Titel, Autor:in, akademischen Grad, Studiengang und Betreuung.
+Alle veränderlichen Angaben stehen am Anfang von `_quarto.yml`; in
+`template/title.tex` muss für eine normale Arbeit nichts geändert werden.
+
+Ein Beispiel für eine Bachelorarbeit:
+
+```yaml
+book:
+  title: "English title of the thesis"
+  subtitle: "English subtitle"
+  author: "Vorname Nachname"
+
+thesis-type: "Bachelor’s Thesis"
+title-de: "Deutscher Titel der Abschlussarbeit"
+subtitle-de: "Deutscher Untertitel"
+academic-degree: "Bachelor of Science in Engineering (BSc)"
+study-program: "Name des Studiengangs"
+institution: "Hochschule Campus Wien"
+submission-place: "Vienna"
+submission-year: "2026"
+supervisors:
+  - "Titel Vorname Nachname"
+  - "Titel Vorname Nachname (optional)"
+```
+
+Für eine Masterarbeit werden mindestens diese beiden Werte ausgetauscht:
+
+```yaml
+thesis-type: "Master’s Thesis"
+academic-degree: "Master of Science in Engineering (MSc)"
+```
+
+Der tatsächlich verliehene Grad muss aus den Vorgaben des Studiengangs
+übernommen werden. Falls es nur eine Betreuungsperson gibt, wird die zweite
+Zeile unter `supervisors` vollständig gelöscht. `book.title` und
+`book.subtitle` sind der englische Titel und Untertitel; `title-de` und
+`subtitle-de` enthalten die deutschen Fassungen.
+
+Das Hintergrundbild liegt ausschließlich in diesem Thesis-Template unter
+`template/assets/hcw-thesis-title-background.jpg`. Es enthält bereits das Logo
+und das Linienmotiv und wird nur auf der Titelseite eingesetzt. Die beiden
+unveränderten Word-Vorlagen unter `requirements/` dienen
+Vorlagenbetreuer:innen als visuelle Referenz und werden zum Schreiben der
+Quarto-Arbeit nicht benötigt.
+
+### Vorspann (Front Matter)
+
+Nach der Titelseite folgt dieselbe Grundreihenfolge wie in den
+Referenzvorlagen:
+
+1. `index.qmd`: Danksagung
+2. `frontmatter/01-kurzfassung.qmd`: deutsche Kurzfassung
+3. `frontmatter/02-abstract-englisch.qmd`: englischer Abstract
+4. `frontmatter/03-abkuerzungsverzeichnis.qmd`: optionales
+   Abkürzungsverzeichnis
+5. `frontmatter/04-inhaltsverzeichnis.qmd`: Inhaltsverzeichnis
+
+Jeder Eintrag beginnt auf einer eigenen Seite. Der Vorspann verwendet römische
+Seitenzahlen; mit dem ersten Fachkapitel beginnt die arabische
+Nummerierung bei 1. Die Reihenfolge wird in `_quarto.yml` unter
+`book.chapters` festgelegt. Dateien sollten dort nur nach einer bewussten
+Anpassung der geforderten Hochschulstruktur verschoben oder entfernt werden.
+
+Die Eigenständigkeitserklärung gehört nicht in den Vorspann. Die
+HCW-Prüfungsordnung nennt sie für Bachelor- und Masterarbeiten nach dem
+Quellenverzeichnis als letzten verpflichtenden Bestandteil. Sie liegt daher
+unter `backmatter/eigenstaendigkeitserklaerung.qmd` und steht in
+`_quarto.yml` nach `references.qmd`. Ein allfälliger Anhang wird ebenfalls vor
+der Eigenständigkeitserklärung eingereiht.
+
+### Dokumentation eingesetzter KI-Werkzeuge
+
+Die Nutzung von KI-Werkzeugen ist kein Bestandteil des Vorspanns und keine
+Gestaltungsregel des gemeinsamen Quarto-Formats. Sie wird als inhaltlicher
+Bestandteil der jeweiligen Arbeit unter
+`backmatter/ki-werkzeuge.qmd` dokumentiert. Im Thesis-Template steht diese
+Übersicht nach dem Literaturverzeichnis und vor der abschließenden
+Eigenständigkeitserklärung:
+
+```text
+Literaturverzeichnis
+Übersicht eingesetzter KI-Werkzeuge
+gegebenenfalls Anhang
+Eigenständigkeitserklärung
+```
+
+Die mitgelieferte Markdown-Tabelle erfasst Werkzeug, Anbieter beziehungsweise
+Version, Einsatzbereich, Art der Nutzung und betroffene Teile der Arbeit. Die
+Beispielzeile muss durch die tatsächlichen Angaben ersetzt werden. Wurde keine
+KI verwendet, wird dies ausdrücklich vermerkt.
+
+Die HCW-Leitlinien verlangen eine transparente Kennzeichnung und
+zusammenfassende Auflistung eingesetzter KI-Werkzeuge. Das konkrete Format ist
+mit den Vorgaben des jeweiligen Studiengangs abzugleichen. Maßgeblich sind der
+[Leitfaden für wissenschaftliche Arbeiten](https://portal.hcw.ac.at/webservices/portaltoenabler/enablergetdocument.aspx?id=1982)
+und der
+[Leitfaden zum Einsatz von KI in der Lehre](https://portal.hcw.ac.at/webservices/portaltoenabler/enablergetdocument.aspx?id=2486).
 
 ## Gemeinsames HCW-Format
 
@@ -289,9 +398,14 @@ gemeinsame Format `hcw-pdf` verwendet:
 format:
   hcw-pdf:
     documentclass: scrreprt
-    toc: true
+    toc: false
     number-sections: true
 ```
+
+`toc: false` deaktiviert nur Quartos automatische Platzierung direkt nach der
+Titelseite. Das Inhaltsverzeichnis selbst wird bewusst später über
+`frontmatter/04-inhaltsverzeichnis.qmd` eingefügt, damit zuvor Danksagung,
+Kurzfassung und englischer Abstract erscheinen.
 
 Die zentrale Quelle ist das öffentliche Repository
 [FH-Campus-Wien/hcw-quarto-format](https://github.com/FH-Campus-Wien/hcw-quarto-format).
@@ -302,17 +416,18 @@ bestehende Abschlussarbeit nicht unbemerkt.
 
 Das gemeinsame Format liefert derzeit:
 
-- HCW-Logo und gemeinsame Titelseitengestaltung
+- HCW-Logo und eine gemeinsame Standard-Titelseite für andere Dokumentarten
 - TeX Gyre Heros als frei verfügbare Helvetica-Alternative
 - Farben, Seitenränder, Überschriften und Beschriftungen
 - gemeinsame Kopfzeilen- und PDF-Grundeinstellungen
 
 Thesis-spezifisch bleiben `scrreprt`, Kapitelstruktur, Verzeichnisse,
-eineinhalbfacher Zeilenabstand und die für Abschlussarbeiten angepasste
-Kopfzeile. Diese Ergänzungen stehen in `_quarto.yml` und
-`template/preamble.tex`. Damit bleibt die Trennung klar: allgemeines
-Hochschuldesign im Format-Repository, inhaltsspezifische Regeln im
-Thesis-Template.
+eineinhalbfacher Zeilenabstand, die für Abschlussarbeiten angepasste Kopfzeile
+und die offizielle BA-/MA-Titelseite. `template/title.tex` überschreibt deshalb
+nur in diesem Repository die allgemeine Titelseite des gemeinsamen Formats.
+Diese Ergänzungen stehen in `_quarto.yml` und unter `template/`. Damit bleibt
+die Trennung klar: allgemeines Hochschuldesign im Format-Repository,
+inhaltsspezifische Regeln im Thesis-Template.
 
 Die Quarto-Format-Extension ist nicht mit der gleichnamigen
 VS-Code-Erweiterung zu verwechseln. Die VS-Code-Erweiterung unterstützt das

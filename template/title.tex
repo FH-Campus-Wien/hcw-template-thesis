@@ -1,0 +1,91 @@
+$if(title)$
+\RequirePackage{eso-pic}
+\RequirePackage[absolute,overlay]{textpos}
+
+\setlength{\TPHorizModule}{1mm}
+\setlength{\TPVertModule}{1mm}
+\textblockorigin{0mm}{0mm}
+
+\newcommand{\HCWThesisBackground}{template/assets/hcw-thesis-title-background.jpg}
+
+\makeatletter
+\renewcommand{\maketitle}{%
+  \begin{titlepage}
+    \thispagestyle{empty}
+    \sffamily
+
+    \AddToShipoutPictureBG*{%
+      \AtPageLowerLeft{%
+        \includegraphics[width=\paperwidth,height=\paperheight]{\HCWThesisBackground}%
+      }%
+    }
+
+    \begin{textblock*}{145mm}(43mm,59mm)
+      $if(thesis-type)$
+      {\fontsize{20}{24}\selectfont $thesis-type$\par}
+      $endif$
+
+      \vspace{10mm}
+
+      {\fontsize{14}{17}\selectfont\bfseries $title$\par}
+      $if(subtitle)$
+      \vspace{2mm}
+      {\fontsize{12}{15}\selectfont $subtitle$\par}
+      $endif$
+
+      $if(title-de)$
+      \vspace{8mm}
+      {\fontsize{14}{17}\selectfont\bfseries $title-de$\par}
+      $endif$
+      $if(subtitle-de)$
+      \vspace{2mm}
+      {\fontsize{12}{15}\selectfont $subtitle-de$\par}
+      $endif$
+    \end{textblock*}
+
+    \begin{textblock*}{145mm}(43mm,202mm)
+      {\fontsize{11}{14}\selectfont
+      $if(authors)$
+      Submitted by \textbf{%
+        $for(authors)$$it.name.literal$$sep$, $endfor$%
+      }\par
+      $endif$
+
+      $if(academic-degree)$
+      \vspace{5mm}
+      To obtain the academic degree of\par
+      \textbf{$academic-degree$}\par
+      $endif$
+      }
+    \end{textblock*}
+
+    \begin{textblock*}{150mm}(43mm,252mm)
+      {\fontsize{9.5}{12}\selectfont
+      $if(submission-place)$
+      $submission-place$$if(submission-year)$, $submission-year$$endif$\par
+      \vspace{4mm}
+      $endif$
+
+      \begin{tabular}{@{}p{50mm}p{94mm}@{}}
+        $if(study-program)$
+        Study program: & $study-program$ \\[1.5mm]
+        $endif$
+        $if(institution)$
+        at: & $institution$ \\[1.5mm]
+        $endif$
+        $if(supervisors)$
+        supervised by: &
+        \parbox[t]{94mm}{%
+          $for(supervisors)$$supervisors$$sep$\\$endfor$%
+        }
+        $endif$
+      \end{tabular}
+      }
+    \end{textblock*}
+
+    \null
+  \end{titlepage}
+  \pagenumbering{roman}
+}
+\makeatother
+$endif$

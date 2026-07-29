@@ -1,0 +1,7 @@
+# Abkürzungsverzeichnis {.unnumbered}
+
+Optional: Führen Sie hier fachliche Abkürzungen alphabetisch an.
+
+| Abkürzung | Bedeutung |
+|---|---|
+| HCW | Hochschule Campus Wien |
