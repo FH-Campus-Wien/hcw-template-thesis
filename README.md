@@ -1105,3 +1105,9 @@ Release, prüft Manifest, Version, Logo und LaTeX-Partials und bricht bei einer
 unvollständigen Extension ab. Nur dieser bewusste Aktualisierungsschritt
 benötigt Netzwerkzugriff; Schreiben, PDF-Erstellung und Vorschau bleiben
 offlinefähig.
+
+## Hinweis zur Erstellung
+
+Diese Dokumentvorlage wurde mit Unterstützung von ChatGPT SOL 5.6 erstellt und
+weiterentwickelt. Alle Inhalte und technischen Entscheidungen wurden von den
+Projektverantwortlichen geprüft.
