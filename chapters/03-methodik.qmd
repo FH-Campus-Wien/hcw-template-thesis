@@ -2,7 +2,9 @@
 
 Beschreiben und begründen Sie das methodische Vorgehen.
 
-## Beispiel für eine Formel
+## Beispiele für Formeln
+
+Eine einfache Formel kann direkt als abgesetzte Gleichung geschrieben werden:
 
 $$
 E = mc^2
@@ -10,3 +12,49 @@ $$ {#eq-relativitaet}
 
 Auf @eq-relativitaet kann im Text verwiesen werden.
 
+Ein etwas komplexeres Beispiel ist der gewichtete Mittelwert. Die beiden
+Summen stehen dabei im Zähler und Nenner eines Bruchs:
+
+$$
+\bar{x}_w
+=
+\frac{\displaystyle\sum_{i=1}^{n} w_i x_i}
+     {\displaystyle\sum_{i=1}^{n} w_i}
+$$ {#eq-gewichteter-mittelwert}
+
+Der gewichtete Mittelwert ist in @eq-gewichteter-mittelwert definiert.
+
+Das folgende Beispiel kombiniert mehrere Brüche, Integrale, eine Summe und
+mehrere ausgerichtete Zeilen zu einer Fourier-Approximation:
+
+$$
+\begin{aligned}
+a_n
+&=
+\frac{2}{L}
+\int_{0}^{L}
+f(x)\cos\left(\frac{2\pi n x}{L}\right)
+\,\mathrm{d}x,
+\\
+b_n
+&=
+\frac{2}{L}
+\int_{0}^{L}
+f(x)\sin\left(\frac{2\pi n x}{L}\right)
+\,\mathrm{d}x,
+\\
+f_N(x)
+&=
+\frac{a_0}{2}
++
+\sum_{n=1}^{N}
+\left[
+a_n\cos\left(\frac{2\pi n x}{L}\right)
++
+b_n\sin\left(\frac{2\pi n x}{L}\right)
+\right].
+\end{aligned}
+$$ {#eq-fourier-approximation}
+
+Die Koeffizienten und die daraus gebildete Näherung sind gemeinsam in
+@eq-fourier-approximation dargestellt.

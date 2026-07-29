@@ -613,6 +613,56 @@ Quarto erzeugt daraus automatisch die richtige Formelnummer. Wenn Formeln
 hinzugefügt oder verschoben werden, werden alle Verweise beim nächsten Build
 aktualisiert.
 
+Komplexere Formeln verwenden dieselbe LaTeX-Schreibweise. Ein gewichteter
+Mittelwert mit Summen im Zähler und Nenner wird beispielsweise so geschrieben:
+
+```markdown
+$$
+\bar{x}_w
+=
+\frac{\displaystyle\sum_{i=1}^{n} w_i x_i}
+     {\displaystyle\sum_{i=1}^{n} w_i}
+$$ {#eq-gewichteter-mittelwert}
+```
+
+Mit `aligned` lassen sich mehrere zusammengehörige Formelzeilen am
+Gleichheitszeichen ausrichten. Das folgende Beispiel kombiniert mehrere
+Brüche, Integrale und eine Summe:
+
+```markdown
+$$
+\begin{aligned}
+a_n
+&=
+\frac{2}{L}
+\int_{0}^{L}
+f(x)\cos\left(\frac{2\pi n x}{L}\right)
+\,\mathrm{d}x,
+\\
+b_n
+&=
+\frac{2}{L}
+\int_{0}^{L}
+f(x)\sin\left(\frac{2\pi n x}{L}\right)
+\,\mathrm{d}x,
+\\
+f_N(x)
+&=
+\frac{a_0}{2}
++
+\sum_{n=1}^{N}
+\left[
+a_n\cos\left(\frac{2\pi n x}{L}\right)
++
+b_n\sin\left(\frac{2\pi n x}{L}\right)
+\right].
+\end{aligned}
+$$ {#eq-fourier-approximation}
+```
+
+Die vollständigen, gerenderten Beispiele stehen in
+`chapters/03-methodik.qmd`.
+
 ### Tabellen
 
 Einfache Tabellen werden direkt in Markdown geschrieben:
