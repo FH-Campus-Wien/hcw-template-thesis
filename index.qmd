@@ -1,4 +1,4 @@
-# {{< meta hcw-acknowledgements-title >}} {.unnumbered}
+# {{< meta hcw-acknowledgements-title >}} {#sec-danksagung .unnumbered}
 
 ::: {.hcw-lang-de}
 Optional: Bedanken Sie sich hier bei Personen und Institutionen, die Sie bei

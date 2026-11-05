@@ -1,12 +1,30 @@
-# Einleitung
+# {{< meta hcw-introduction-title >}} {#sec-einleitung}
 
+::: {.hcw-lang-de}
 Beschreiben Sie Problemstellung, Motivation und Zielsetzung der Arbeit.
+:::
 
-## Forschungsfrage
+::: {.hcw-lang-en}
+Describe the problem, motivation, and objectives of your thesis.
+:::
 
+## {{< meta hcw-research-question-title >}} {#sec-forschungsfrage}
+
+::: {.hcw-lang-de}
 Formulieren Sie hier die zentrale Forschungsfrage.
+:::
 
-## Aufbau der Arbeit
+::: {.hcw-lang-en}
+State the central research question here.
+:::
 
+## {{< meta hcw-structure-title >}} {#sec-aufbau}
+
+::: {.hcw-lang-de}
 Geben Sie einen kurzen Überblick über die folgenden Kapitel.
+:::
+
+::: {.hcw-lang-en}
+Give a brief overview of the following chapters.
+:::
 

@@ -1,4 +1,4 @@
-# {{< meta hcw-bibliography-title >}} {.unnumbered}
+# {{< meta hcw-bibliography-title >}} {#sec-literatur .unnumbered}
 
 ::: {#refs}
 :::

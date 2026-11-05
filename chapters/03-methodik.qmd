@@ -1,60 +1,156 @@
-# Methodik
+# {{< meta hcw-methodology-title >}} {#sec-methodik}
 
-Beschreiben und begründen Sie das methodische Vorgehen.
+::: {.hcw-lang-de}
+Beschreiben und begründen Sie das methodische Vorgehen. Die Beispiele aus den
+V1-Vorlagen zeigen, wie Formeln eingebunden, erläutert und referenziert werden.
+:::
 
-## Beispiele für Formeln
+::: {.hcw-lang-en}
+Describe and justify your methodology. These examples from the V1 templates
+show how to integrate, explain, and reference equations.
+:::
 
-Eine einfache Formel kann direkt als abgesetzte Gleichung geschrieben werden:
+## {{< meta hcw-fourier-section >}} {#sec-fourier}
+
+::: {.hcw-lang-de}
+Gleichungen sind in den Text zu integrieren. Satzzeichen gehören deshalb auch
+zu abgesetzten Formeln. Ein Beispiel ist die Fourier-Transformation
+:::
+
+::: {.hcw-lang-en}
+Equations are part of the text, so punctuation also belongs in displayed
+equations. One example is the Fourier transform
+:::
 
 $$
-E = mc^2
-$$ {#eq-relativitaet}
+\underline{U}(\mathrm{j}\omega)
+= \int_{-\infty}^{\infty} u(t)\,\mathrm{e}^{-\mathrm{j}\omega t}\,\mathrm{d}t.
+$$ {#eq-fourier-transformation}
 
-Auf @eq-relativitaet kann im Text verwiesen werden.
+::: {.hcw-lang-de}
+In @eq-fourier-transformation bezeichnet $\underline{U}(\mathrm{j}\omega)$
+die Fourier-Transformierte des zeitabhängigen Signals $u(t)$. Dabei ist
+$\omega$ die Kreisfrequenz und $\mathrm{j}$ die imaginäre Einheit. Variablen
+im Fließtext werden genauso mathematisch gesetzt wie in der Formel.
 
-Ein etwas komplexeres Beispiel ist der gewichtete Mittelwert. Die beiden
-Summen stehen dabei im Zähler und Nenner eines Bruchs:
+Physikalische Größen stehen kursiv; Einheiten und mathematische Konstanten
+stehen aufrecht. In $t = 5\,\mathrm{s}$ ist $t$ eine Größe und $\mathrm{s}$
+die Einheit Sekunde. Auch die Eulersche Zahl $\mathrm{e}$, die imaginäre
+Einheit $\mathrm{j}$ und das Differential $\mathrm{d}t$ sind aufrecht gesetzt
+[@austrianstandards2018].
+
+Ein Beistrich kann eine Formel mit dem folgenden Satzteil verbinden, wie bei
+der inversen Fourier-Transformation
+:::
+
+::: {.hcw-lang-en}
+In @eq-fourier-transformation, $\underline{U}(\mathrm{j}\omega)$ denotes the
+Fourier transform of the time-dependent signal $u(t)$. Here, $\omega$ is the
+angular frequency and $\mathrm{j}$ is the imaginary unit. Variables in the
+running text use the same mathematical typesetting as in the equation.
+
+Physical quantities are italicized; units and mathematical constants are set
+upright. In $t = 5\,\mathrm{s}$, $t$ is a quantity and $\mathrm{s}$ is the unit
+second. Euler's number $\mathrm{e}$, the imaginary unit $\mathrm{j}$, and the
+differential $\mathrm{d}t$ are also upright [@austrianstandards2018].
+
+A comma can connect an equation to the following clause, as in the inverse
+Fourier transform
+:::
 
 $$
-\bar{x}_w
-=
-\frac{\displaystyle\sum_{i=1}^{n} w_i x_i}
-     {\displaystyle\sum_{i=1}^{n} w_i}
-$$ {#eq-gewichteter-mittelwert}
+u(t) = \frac{1}{2\pi}
+\int_{-\infty}^{\infty}
+\underline{U}(\mathrm{j}\omega)\,\mathrm{e}^{\mathrm{j}\omega t}\,\mathrm{d}\omega,
+$$ {#eq-fourier-invers}
 
-Der gewichtete Mittelwert ist in @eq-gewichteter-mittelwert definiert.
+::: {.hcw-lang-de}
+die das Zeitsignal aus seiner Fourier-Transformierten rekonstruiert. Bereits
+eingeführte Variablen müssen nicht erneut definiert werden.
+:::
 
-Das folgende Beispiel kombiniert mehrere Brüche, Integrale, eine Summe und
-mehrere ausgerichtete Zeilen zu einer Fourier-Approximation:
+::: {.hcw-lang-en}
+which reconstructs the time-domain signal from its Fourier transform.
+Variables that have already been introduced need not be defined again.
+:::
+
+## {{< meta hcw-aligned-section >}} {#sec-gleichungssysteme}
+
+::: {.hcw-lang-de}
+Mehrere zusammengehörende Gleichungen können einen gemeinsamen Block bilden.
+@eq-lineares-system zeigt ein lineares System mit den Eingangsgrößen $x_1$,
+$x_2$, den Ausgangsgrößen $y_1$, $y_2$ und den Koeffizienten $A_{ij}$.
+:::
+
+::: {.hcw-lang-en}
+Several related equations can form one block. @eq-lineares-system shows a
+linear system with inputs $x_1$, $x_2$, outputs $y_1$, $y_2$, and coefficients
+$A_{ij}$.
+:::
 
 $$
 \begin{aligned}
-a_n
-&=
-\frac{2}{L}
-\int_{0}^{L}
-f(x)\cos\left(\frac{2\pi n x}{L}\right)
-\,\mathrm{d}x,
-\\
-b_n
-&=
-\frac{2}{L}
-\int_{0}^{L}
-f(x)\sin\left(\frac{2\pi n x}{L}\right)
-\,\mathrm{d}x,
-\\
-f_N(x)
-&=
-\frac{a_0}{2}
-+
-\sum_{n=1}^{N}
-\left[
-a_n\cos\left(\frac{2\pi n x}{L}\right)
-+
-b_n\sin\left(\frac{2\pi n x}{L}\right)
-\right].
+y_1 &= A_{11}x_1 + A_{12}x_2, \\
+y_2 &= A_{21}x_1 + A_{22}x_2.
 \end{aligned}
-$$ {#eq-fourier-approximation}
+$$ {#eq-lineares-system}
 
-Die Koeffizienten und die daraus gebildete Näherung sind gemeinsam in
-@eq-fourier-approximation dargestellt.
+::: {.hcw-lang-de}
+Unterschiedlich lange Gleichungen werden am Gleichheitszeichen ausgerichtet.
+In @eq-spannungen ist $U_2$ die Spannung über $R_2$ und $U_{\mathrm{ges}}$ die
+Gesamtspannung über den in Reihe geschalteten Widerständen $R_1$ und $R_2$.
+Durch beide Widerstände fließt derselbe Strom $I_{\mathrm{ges}}$.
+:::
+
+::: {.hcw-lang-en}
+Equations of different lengths are aligned at the equals sign. In
+@eq-spannungen, $U_2$ is the voltage across $R_2$, and $U_{\mathrm{ges}}$ is the
+total voltage across the series-connected resistors $R_1$ and $R_2$. The same
+current $I_{\mathrm{ges}}$ flows through both resistors.
+:::
+
+$$
+\begin{aligned}
+U_2 &= I_{\mathrm{ges}} R_2, \\
+U_{\mathrm{ges}} &= I_{\mathrm{ges}}(R_1 + R_2).
+\end{aligned}
+$$ {#eq-spannungen}
+
+## {{< meta hcw-long-equations-section >}} {#sec-lange-formeln}
+
+::: {.hcw-lang-de}
+Lange Formeln werden an einer sinnvollen Stelle umgebrochen, bevor sie mit
+der Gleichungsnummer oder dem Seitenrand kollidieren. @eq-logarithmusreihe
+zeigt die Reihenentwicklung des natürlichen Logarithmus mit einer Summe,
+Potenzen und mehreren Brüchen. Der Gültigkeitsbereich $0 < x \leq 2$ gehört
+zur Aussage der Formel.
+:::
+
+::: {.hcw-lang-en}
+Long equations are broken at a meaningful point before they collide with the
+equation number or page margin. @eq-logarithmusreihe shows the series
+expansion of the natural logarithm with a sum, powers, and several fractions.
+The domain $0 < x \leq 2$ is part of the mathematical statement.
+:::
+
+$$
+\begin{aligned}
+\ln(x)
+&= \sum_{n=1}^{\infty} \frac{(-1)^{n+1}}{n}(x-1)^n \\
+&= (x-1) - \frac{(x-1)^2}{2} + \frac{(x-1)^3}{3} - \cdots, \\
+&\qquad 0 < x \leq 2.
+\end{aligned}
+$$ {#eq-logarithmusreihe}
+
+::: {.hcw-lang-de}
+In Quarto werden diese Beispiele als LaTeX-Mathematik gesetzt. Die Umgebung
+`aligned` richtet die Zeilen am Zeichen `&` aus;
+`\\` beginnt eine neue Zeile. Jeder zusammengehörende Block erhält
+hier eine gemeinsame Nummer und ein Label. Verweise werden automatisch aktualisiert.
+:::
+
+::: {.hcw-lang-en}
+In Quarto, these examples use LaTeX math. The `aligned` environment
+aligns lines at `&`; `\\` starts a new line. Each
+related block has one number and one label here. References are updated automatically.
+:::

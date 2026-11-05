@@ -1,5 +1,12 @@
-# Fazit und Ausblick
+# {{< meta hcw-conclusion-title >}} {#sec-fazit}
 
+::: {.hcw-lang-de}
 Fassen Sie die Ergebnisse zusammen, beantworten Sie die Forschungsfrage und
 zeigen Sie mögliche weiterführende Arbeiten auf.
+:::
+
+::: {.hcw-lang-en}
+Summarize your results, answer the research question, and identify possible
+directions for further work.
+:::
 

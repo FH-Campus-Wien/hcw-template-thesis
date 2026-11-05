@@ -1,11 +1,14 @@
-# {{< meta hcw-abbreviations-title >}} {.unnumbered}
+# {{< meta hcw-abbreviations-title >}} {#sec-abkuerzungen .unnumbered}
 
 ::: {.hcw-lang-de}
 Optional: Führen Sie hier fachliche Abkürzungen alphabetisch an.
 
 | Abkürzung | Bedeutung |
 |---|---|
+| DFT | Discrete Fourier Transform |
+| FFT | Fast Fourier Transform |
 | HCW | Hochschule Campus Wien |
+| MAC | Multiply-and-Accumulate |
 :::
 
 ::: {.hcw-lang-en}
@@ -13,5 +16,8 @@ Optional: List technical abbreviations in alphabetical order.
 
 | Abbreviation | Meaning |
 |---|---|
+| DFT | Discrete Fourier Transform |
+| FFT | Fast Fourier Transform |
 | HCW | Hochschule Campus Wien |
+| MAC | Multiply-and-Accumulate |
 :::

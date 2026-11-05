@@ -1,4 +1,4 @@
-# {{< meta hcw-ai-tools-title >}} {.unnumbered}
+# {{< meta hcw-ai-tools-title >}} {#sec-ki-werkzeuge .unnumbered}
 
 ::: {.hcw-lang-de}
 Dokumentieren Sie hier alle KI-Werkzeuge, die bei der Erstellung der Arbeit

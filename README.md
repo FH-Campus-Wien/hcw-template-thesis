@@ -329,6 +329,9 @@ Vorspann. Der Build- und Vorschau-Task liest `setup.tex` automatisch; die
 internen Profile `_quarto-de.yml` und `_quarto-en.yml` werden nicht manuell
 gestartet.
 
+Nach einer Änderung der Sprache wird eine bereits laufende Vorschau gestoppt
+und neu gestartet, damit sie das passende Sprachprofil lädt.
+
 Die persönlichen und arbeitsspezifischen Angaben bleiben in `_quarto.yml`:
 
 ```yaml
@@ -365,6 +368,63 @@ und das Linienmotiv und wird nur auf der Titelseite eingesetzt. Die vier
 V1-Word-Vorlagen unter `requirements/` sind die verbindlichen Referenzen für
 Deutsch/Englisch und Bachelor/Master. Sie werden zum Schreiben der
 Quarto-Arbeit nicht benötigt.
+
+### Bilder, Formeln und Erklärungen aus den V1-Vorlagen
+
+Die Inhaltsbeispiele wurden mit allen vier V1-Dateien verglichen. Bachelor-
+und Mastervorlage verwenden dieselben mathematischen Beispiele und Bilder.
+Die Erläuterungen und Bildunterschriften erscheinen passend zu
+`HCWLanguage` auf Deutsch oder Englisch. Die Auswahl `ba`/`ma` verwendet
+dieselben Beispiele mit der passenden Titelseite und Abschlussbezeichnung.
+
+| Datei | Beispiele |
+|---|---|
+| `chapters/03-methodik.qmd` | Fourier-Transformation und inverse Transformation, lineares Gleichungssystem, ausgerichtete Spannungsgleichungen, Logarithmusreihe mit Summen und Brüchen |
+| `chapters/04-ergebnisse.qmd` | Magnetron-Sputtern, kleines Grafikbeispiel, zwei Teilabbildungen, Cosinussignal mit Periodendauer, Kontrastvergleich sowie Tabellen und Querformat |
+| `images/v1/` | neun gemeinsam verwendete Bilddateien aus den vier Referenzen |
+| `references.bib` | die fünf Quellen der übernommenen V1-Beispiele |
+
+Die Formeln bleiben editierbarer LaTeX-Mathematikcode. Zusammengehörende
+Gleichungen werden mit `aligned` am Gleichheitszeichen ausgerichtet und hier
+als gemeinsamer Block nummeriert. Die Vorlage erläutert außerdem Satzzeichen
+an Formeln, die Definition von Variablen und aufrecht gesetzte Einheiten und
+Konstanten, beispielsweise `$t = 5\,\mathrm{s}$`.
+
+Die Rasterbilder sind unverändert aus den Word-Dateien extrahiert. Die drei
+eingebetteten EMF-Grafiken liegen als Vektor-PDFs vor, damit sie im
+plattformunabhängigen Docker-Build ohne zusätzliche Programme funktionieren.
+Auch die beiden als Grafik vorliegenden Tabellen bleiben Tabellen mit
+`tbl-`-Labels. Die große Verteilungsübersicht demonstriert eine eigene
+Querformatseite. Die ursprünglichen Beschriftungen innerhalb der Grafiken
+bleiben erhalten; Bildunterschriften und begleitende Erklärungen sind
+zweisprachig.
+
+Herkunft und Prüfsummen sind unter `images/v1/README.md` und
+`images/v1/manifest.json` dokumentiert. Das dort beschriebene
+`scripts/import-v1-images.py` ist ein optionales Werkzeug für
+Vorlagenbetreuer:innen; für das Schreiben ist keine Extraktion erforderlich.
+
+Die sprachabhängigen Erklärungen stehen in Blöcken mit `.hcw-lang-de` und
+`.hcw-lang-en`. Bearbeiten Sie den Block Ihrer Arbeitssprache. Formeln und
+Abbildungen stehen außerhalb dieser Blöcke und werden einmal gepflegt.
+Überschriften und kurze Beschriftungen kommen aus `_quarto-de.yml` und
+`_quarto-en.yml`. Labels wie `eq-fourier-transformation` bleiben sprachübergreifend
+gleich; deshalb bleiben auch Querverweise beim Umschalten erhalten.
+
+Dynamische Überschriften erhalten zusätzlich ein eindeutiges Abschnittslabel,
+etwa `# {{< meta hcw-methodology-title >}} {#sec-methodik}`. Dadurch kann Quarto
+die Kapitel unabhängig von der gewählten Sprache eindeutig zusammenführen.
+Die ergänzte Notiz unter der Verteilungsübersicht kennzeichnet das in der
+Originalgrafik falsch gesetzte Varianzsymbol der Gleichverteilung und nennt
+die korrekte Schreibweise.
+
+Die Teilabbildungen in Kapitel 4 verwenden einen gemeinsamen Div-Block mit
+`#fig-htm` und `layout-ncol=2`. Jedes Teilbild hat zusätzlich ein eigenes
+`fig-`-Label; so können die Gesamtgrafik und einzelne Teile referenziert
+werden. `layout-ncol=1` stellt die beiden Kontrastbeispiele untereinander dar.
+Grafisch importierte Tabellen stehen analog in einem `tbl-`-Div mit einer
+Tabellenbeschriftung. Das Beispiel im Querformat verwendet die bereits
+eingebundene LaTeX-Umgebung `landscape`.
 
 ### Vorspann (Front Matter)
 
@@ -689,8 +749,9 @@ b_n\sin\left(\frac{2\pi n x}{L}\right)
 $$ {#eq-fourier-approximation}
 ```
 
-Die vollständigen, gerenderten Beispiele stehen in
-`chapters/03-methodik.qmd`.
+Diese zusätzlichen Syntaxbeispiele ergänzen die Formeln aus den offiziellen
+V1-Vorlagen. Deren gerenderte Beispiele mit deutschen und englischen
+Erklärungen stehen in `chapters/03-methodik.qmd`.
 
 ### Tabellen
 
@@ -752,10 +813,11 @@ Im Text kann anschließend automatisch auf die Abbildung verwiesen werden:
 Der verwendete Aufbau ist in @fig-microcontroller dargestellt.
 ```
 
-Das mitgelieferte Beispielbild liegt unter `images/microcontroller.png` und ist
-in `chapters/04-ergebnisse.qmd` eingebunden. Bilddateien sollten aussagekräftige
-Namen ohne Leerzeichen besitzen. Groß- und Kleinschreibung muss mit dem Pfad im
-Markdown exakt übereinstimmen.
+Das zusätzliche Beispielbild liegt unter `images/microcontroller.png` und
+kann mit dem gezeigten Code eingebunden werden. Die tatsächlich gerenderten
+V1-Bildbeispiele in `chapters/04-ergebnisse.qmd` verwenden `images/v1/`.
+Bilddateien sollten aussagekräftige Namen ohne Leerzeichen besitzen. Groß-
+und Kleinschreibung muss mit dem Pfad im Markdown exakt übereinstimmen.
 
 ### Querverweise
 

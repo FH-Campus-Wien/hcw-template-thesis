@@ -1,0 +1,85 @@
+{
+  "sources": [
+    {
+      "file": "requirements/HCW_BA_Abschlussarbeit_deutsch_V1.dotx",
+      "sha256": "7c5b879db784e5e0bd7df7055a0e8bf27c81b7883aefe5101333347a038f4211"
+    },
+    {
+      "file": "requirements/HCW_BA_Abschlussarbeit_englisch_V1.dotx",
+      "sha256": "dd86afa068e902a1e64e94b044a4c5010d6522bfee7ad61e277037e60886ea45"
+    },
+    {
+      "file": "requirements/HCW_MA_Abschlussarbeit_deutsch_V1.dotx",
+      "sha256": "60bc02b615f0d6b96686686dd91dc4ec0360259986dc905ec7e3a07e9c283b0e"
+    },
+    {
+      "file": "requirements/HCW_MA_Abschlussarbeit_englisch_V1.dotx",
+      "sha256": "a3371cff30a168ea16c426d1d8b6b89d080a60dc518d88e2220990b882a5fee5"
+    }
+  ],
+  "assets": [
+    {
+      "source_part": "word/media/image3.png",
+      "source_sha256": "2bdfc7f9302e3ff8cdbac12d0131cd3a5002d040a7602cd7143af3b027f85aae",
+      "file": "images/v1/magnetron-sputtern.png",
+      "sha256": "2bdfc7f9302e3ff8cdbac12d0131cd3a5002d040a7602cd7143af3b027f85aae",
+      "conversion": "original bytes"
+    },
+    {
+      "source_part": "word/media/image4.png",
+      "source_sha256": "eba2541564cc8dfe165ecb1dd1cabd48f73daa302fa9b975fd41094ceab57017",
+      "file": "images/v1/buecher.png",
+      "sha256": "eba2541564cc8dfe165ecb1dd1cabd48f73daa302fa9b975fd41094ceab57017",
+      "conversion": "original bytes"
+    },
+    {
+      "source_part": "word/media/image5.jpeg",
+      "source_sha256": "f249ea69428e1a65d6fa44164cce583e68810d44f630bc566b5437325fbfb599",
+      "file": "images/v1/fertigungsstrasse.jpeg",
+      "sha256": "f249ea69428e1a65d6fa44164cce583e68810d44f630bc566b5437325fbfb599",
+      "conversion": "original bytes"
+    },
+    {
+      "source_part": "word/media/image6.jpeg",
+      "source_sha256": "33aa6850babf2ce9d7e64b6699417b143a23061a61d5944a8b8b548f3ada17a5",
+      "file": "images/v1/3d-druck-stuetzmaterial.jpeg",
+      "sha256": "33aa6850babf2ce9d7e64b6699417b143a23061a61d5944a8b8b548f3ada17a5",
+      "conversion": "original bytes"
+    },
+    {
+      "source_part": "word/media/image7.emf",
+      "source_sha256": "468cb65deaf4b0b699191a8dd68b7d8dbcb6185adf65e5d8d6d6f11e85ad494b",
+      "file": "images/v1/sinussignal.pdf",
+      "sha256": "97f6da079f8e98b86af41a39c855c7aca11b30876bf3e1b866246805fe8e5124",
+      "conversion": "EMF to vector PDF via LibreOffice; whitespace cropped"
+    },
+    {
+      "source_part": "word/media/image8.emf",
+      "source_sha256": "b49e3385eb99e3246dbf12c3205a4a8076076a3ba5161e9c7fe03c28e8404727",
+      "file": "images/v1/dft-fft-aufwand.pdf",
+      "sha256": "95b4f1681ba9c4f074a88e2d9cb6a5cc5993c22cd171326cac186900102080aa",
+      "conversion": "EMF to vector PDF via LibreOffice; whitespace cropped"
+    },
+    {
+      "source_part": "word/media/image9.emf",
+      "source_sha256": "50afef5b49b9eadcb5c35d45fd793c2aa4d87e81d4592c2e21e86aefda1e0a66",
+      "file": "images/v1/wahrscheinlichkeitsverteilungen.pdf",
+      "sha256": "6a09d3ab2e240087effb667e46b847dc099d5b1726fa44f55c37e0d117955c52",
+      "conversion": "EMF to vector PDF via LibreOffice; whitespace cropped"
+    },
+    {
+      "source_part": "word/media/image10.png",
+      "source_sha256": "b0dd49ff50358473676fe15862ffa733e67d67347d48dfbf88b4e1eb96cb6602",
+      "file": "images/v1/kontrast-schlecht.png",
+      "sha256": "b0dd49ff50358473676fe15862ffa733e67d67347d48dfbf88b4e1eb96cb6602",
+      "conversion": "original bytes"
+    },
+    {
+      "source_part": "word/media/image11.png",
+      "source_sha256": "e05875411c4a04bffd1c2769c4231cbcf6fdb7d44aadaccd3fe81e25c7426908",
+      "file": "images/v1/kontrast-gut.png",
+      "sha256": "e05875411c4a04bffd1c2769c4231cbcf6fdb7d44aadaccd3fe81e25c7426908",
+      "conversion": "original bytes"
+    }
+  ]
+}

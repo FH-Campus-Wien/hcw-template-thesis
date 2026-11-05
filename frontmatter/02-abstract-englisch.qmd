@@ -1,4 +1,4 @@
-# {{< meta hcw-secondary-summary-title >}} {.unnumbered}
+# {{< meta hcw-secondary-summary-title >}} {#sec-zusammenfassung-zweitsprache .unnumbered}
 
 ::: {.hcw-lang-de}
 A simple rule for the abstract: Describe the problem and why it is a problem.

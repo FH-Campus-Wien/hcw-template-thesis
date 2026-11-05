@@ -1,4 +1,4 @@
-# {{< meta hcw-declaration-title >}} {.unnumbered}
+# {{< meta hcw-declaration-title >}} {#sec-eigenstaendigkeit .unnumbered}
 
 ::: {.hcw-lang-de}
 Hier wird die von der Hochschule vorgegebene Eigenständigkeitserklärung

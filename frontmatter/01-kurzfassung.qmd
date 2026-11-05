@@ -1,4 +1,4 @@
-# {{< meta hcw-primary-summary-title >}} {.unnumbered}
+# {{< meta hcw-primary-summary-title >}} {#sec-zusammenfassung .unnumbered}
 
 ::: {.hcw-lang-de}
 Eine einfache Merkhilfe für die Kurzfassung: Beschreiben Sie das Problem und

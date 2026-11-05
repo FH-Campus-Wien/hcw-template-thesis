@@ -8,3 +8,38 @@ hcw-contents-title: Table of Contents
 hcw-bibliography-title: Bibliography
 hcw-ai-tools-title: Overview of AI Tools Used
 hcw-declaration-title: Declaration of Academic Integrity
+
+hcw-methodology-title: Methodology
+hcw-introduction-title: Introduction
+hcw-research-question-title: Research question
+hcw-structure-title: Structure of the thesis
+hcw-background-title: Theoretical background
+hcw-conclusion-title: Conclusions and outlook
+hcw-fourier-section: Fourier transform and mathematical notation
+hcw-aligned-section: Systems of equations and alignment
+hcw-long-equations-section: Long equations and sums
+hcw-results-title: Results
+hcw-sputtering-section: Explain and cite figures
+hcw-image-layout-section: Placement and captions
+hcw-subfigures-section: Multiple subfigures
+hcw-diagrams-section: Diagrams and signal parameters
+hcw-contrast-section: Contrast and printing
+hcw-tables-section: Tables and landscape pages
+hcw-magnetron-caption: Schematic diagram of a magnetron sputtering process.
+hcw-books-caption: Small illustration from the V1 template.
+hcw-production-caption: Section of a production line
+hcw-support-caption: Support material from a 3D print
+hcw-htm-caption: Sample images from the High Tech Manufacturing degree program.
+hcw-sinus-caption: Cosine signal with amplitude, period, and initial phase angle.
+hcw-contrast-caption: The same signal with poor contrast above and better print contrast below.
+hcw-table-col1: Title 1
+hcw-table-col2: Title 2
+hcw-table-col3: Title 3
+hcw-example-table-caption: Simple example table from the V1 template.
+hcw-dft-caption: Computational effort of a DFT and an FFT in complex MAC operations.
+hcw-probability-caption: Overview of important probability distributions.
+hcw-density-label: probability density function
+hcw-mean-label: expected value
+hcw-variance-label: variance
+hcw-dirac-label: Dirac delta function
+hcw-probability-label: probability
