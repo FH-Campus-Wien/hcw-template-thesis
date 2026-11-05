@@ -1,4 +1,12 @@
-# Abstract (Englisch) {.unnumbered}
+# {{< meta hcw-secondary-summary-title >}} {.unnumbered}
 
+::: {.hcw-lang-de}
 A simple rule for the abstract: Describe the problem and why it is a problem.
 Then present your solution and explain why it is a solution.
+:::
+
+::: {.hcw-lang-en}
+Eine einfache Merkhilfe für die Kurzfassung: Beschreiben Sie das Problem und
+warum es ein Problem ist. Stellen Sie dann Ihre Lösung vor und erklären Sie,
+warum sie eine Lösung ist.
+:::

@@ -1,7 +1,17 @@
-# Abkürzungsverzeichnis {.unnumbered}
+# {{< meta hcw-abbreviations-title >}} {.unnumbered}
 
+::: {.hcw-lang-de}
 Optional: Führen Sie hier fachliche Abkürzungen alphabetisch an.
 
 | Abkürzung | Bedeutung |
 |---|---|
 | HCW | Hochschule Campus Wien |
+:::
+
+::: {.hcw-lang-en}
+Optional: List technical abbreviations in alphabetical order.
+
+| Abbreviation | Meaning |
+|---|---|
+| HCW | Hochschule Campus Wien |
+:::

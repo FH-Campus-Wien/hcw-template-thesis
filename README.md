@@ -158,7 +158,9 @@ PDF erstellen:
 docker run --rm `
   --mount "type=bind,source=$PWD,target=/work" `
   --workdir /work `
-  ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0 render
+  --entrypoint /bin/sh `
+  ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0 `
+  scripts/thesis.sh render
 ```
 
 Vorschau starten:
@@ -169,8 +171,9 @@ docker run --rm --init `
   --mount "type=bind,source=$PWD,target=/work" `
   --workdir /work `
   --publish 127.0.0.1:4242:4242 `
-  --entrypoint hcw-preview `
-  ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0 --host 0.0.0.0 --port 4242 --no-browser
+  --entrypoint /bin/sh `
+  ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0 `
+  scripts/thesis.sh preview --host 0.0.0.0 --port 4242 --no-browser
 ```
 
 ### Windows-Eingabeaufforderung (cmd.exe)
@@ -178,13 +181,13 @@ docker run --rm --init `
 PDF erstellen:
 
 ```bat
-docker run --rm --mount "type=bind,source=%cd%,target=/work" --workdir /work ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0 render
+docker run --rm --mount "type=bind,source=%cd%,target=/work" --workdir /work --entrypoint /bin/sh ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0 scripts/thesis.sh render
 ```
 
 Vorschau starten:
 
 ```bat
-docker run --rm --init --name thesis-preview --mount "type=bind,source=%cd%,target=/work" --workdir /work --publish 127.0.0.1:4242:4242 --entrypoint hcw-preview ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0 --host 0.0.0.0 --port 4242 --no-browser
+docker run --rm --init --name thesis-preview --mount "type=bind,source=%cd%,target=/work" --workdir /work --publish 127.0.0.1:4242:4242 --entrypoint /bin/sh ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0 scripts/thesis.sh preview --host 0.0.0.0 --port 4242 --no-browser
 ```
 
 ### macOS und Linux
@@ -195,7 +198,9 @@ PDF erstellen:
 docker run --rm \
   --mount "type=bind,source=$PWD,target=/work" \
   --workdir /work \
-  ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0 render
+  --entrypoint /bin/sh \
+  ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0 \
+  scripts/thesis.sh render
 ```
 
 Vorschau starten:
@@ -206,8 +211,9 @@ docker run --rm --init \
   --mount "type=bind,source=$PWD,target=/work" \
   --workdir /work \
   --publish 127.0.0.1:4242:4242 \
-  --entrypoint hcw-preview \
-  ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0 --host 0.0.0.0 --port 4242 --no-browser
+  --entrypoint /bin/sh \
+  ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0 \
+  scripts/thesis.sh preview --host 0.0.0.0 --port 4242 --no-browser
 ```
 
 Die Vorschau wird mit `Ctrl+C` beendet. Falls das aktuelle Terminal keine
@@ -268,9 +274,12 @@ gelöscht.
 ## Projekt bearbeiten
 
 ```text
+setup.tex         Auswahl Deutsch/Englisch und Bachelor/Master
 _quarto.yml       Titelseitenangaben, Struktur und PDF-Einstellungen
-index.qmd         Danksagung
-frontmatter/      Kurzfassung, Abstract, Abkürzungen und Inhaltsverzeichnis
+_quarto-de.yml    deutsche Beschriftungen und Quarto-Sprachregeln
+_quarto-en.yml    englische Beschriftungen und Quarto-Sprachregeln
+index.qmd         Danksagung beziehungsweise Acknowledgements
+frontmatter/      Zusammenfassungen, Abkürzungen und Inhaltsverzeichnis
 chapters/         Kapitel der Arbeit
 references.bib    Literaturdatenbank im BibTeX-Format
 references.qmd    Position des Literaturverzeichnisses
@@ -286,7 +295,7 @@ template/
 ├── title.tex      thesis-spezifische Titelseite
 ├── preamble.tex   thesis-spezifische LaTeX-Ergänzungen
 └── assets/        Hintergrund der Titelseite
-requirements/      ursprüngliche BA-/MA-Word-Vorlagen als Designreferenz
+requirements/      offizielle BA-/MA-Referenzen für Deutsch und Englisch
 scripts/           Werkzeuge für Vorlagenbetreuer:innen
 build/            erzeugte PDF und weitere Ausgaben
 ```
@@ -296,12 +305,31 @@ build/            erzeugte PDF und weitere Ausgaben
 Die Titelseite folgt den offiziellen Word-Vorlagen für Bachelor- und
 Masterarbeiten. Sie enthält das HCW-Logo, das helle Linienmotiv, den deutschen
 und englischen Titel, Autor:in, akademischen Grad, Studiengang und Betreuung.
-Alle festen Beschriftungen sind deutsch; der deutsche Titel steht vor seiner
-englischen Fassung.
-Alle veränderlichen Angaben stehen am Anfang von `_quarto.yml`; in
-`template/title.tex` muss für eine normale Arbeit nichts geändert werden.
+Die Sprache und die Abschlussart werden ausschließlich am Anfang von
+`setup.tex` gewählt:
 
-Ein Beispiel für eine Bachelorarbeit:
+```latex
+\newcommand{\HCWLanguage}{de}    % de oder en
+\newcommand{\HCWThesisLevel}{ba} % ba oder ma
+```
+
+Damit ergeben sich vier unterstützte Varianten:
+
+| `HCWLanguage` | `HCWThesisLevel` | Variante |
+|---|---|---|
+| `de` | `ba` | Bachelorarbeit auf Deutsch |
+| `de` | `ma` | Masterarbeit auf Deutsch |
+| `en` | `ba` | Bachelor’s Thesis auf Englisch |
+| `en` | `ma` | Master’s Thesis auf Englisch |
+
+Der Schalter steuert die Abschlussbezeichnung, den akademischen Grad, die
+Reihenfolge der beiden Titel, die festen Beschriftungen der Titelseite, die
+Sprache der Quarto-Querverweise sowie die Bezeichnungen und Reihenfolge im
+Vorspann. Der Build- und Vorschau-Task liest `setup.tex` automatisch; die
+internen Profile `_quarto-de.yml` und `_quarto-en.yml` werden nicht manuell
+gestartet.
+
+Die persönlichen und arbeitsspezifischen Angaben bleiben in `_quarto.yml`:
 
 ```yaml
 book:
@@ -309,43 +337,39 @@ book:
   subtitle: "English subtitle"
   author: "Vorname Nachname"
 
-thesis-type: "Bachelorarbeit"
 title-de: "Deutscher Titel der Abschlussarbeit"
 subtitle-de: "Deutscher Untertitel"
-academic-degree: "Bachelor of Science in Engineering (BSc)"
 study-program: "Name des Studiengangs"
 institution: "Hochschule Campus Wien"
-submission-place: "Wien"
 submission-year: "2026"
 supervisors:
   - "Titel Vorname Nachname"
   - "Titel Vorname Nachname (optional)"
 ```
 
-Für eine Masterarbeit werden mindestens diese beiden Werte ausgetauscht:
-
-```yaml
-thesis-type: "Masterarbeit"
-academic-degree: "Master of Science in Engineering (MSc)"
-```
-
-Der tatsächlich verliehene Grad muss aus den Vorgaben des Studiengangs
-übernommen werden. Falls es nur eine Betreuungsperson gibt, wird die zweite
-Zeile unter `supervisors` vollständig gelöscht. `book.title` und
-`book.subtitle` sind der englische Titel und Untertitel; `title-de` und
+Die akademischen Grade sind in `setup.tex` entsprechend den Referenzvorlagen
+mit `Bachelor of Science in Engineering` und `Master of Science in
+Engineering` vorbelegt. Verleiht ein Studiengang einen anderen Grad, wird die
+betreffende Zeile dort angepasst. Falls es nur eine Betreuungsperson gibt,
+wird die zweite Zeile unter `supervisors` vollständig gelöscht. `book.title`
+und `book.subtitle` sind der englische Titel und Untertitel; `title-de` und
 `subtitle-de` enthalten die deutschen Fassungen.
+
+Die Spracheinstellung übersetzt keine selbst verfassten Kapitel. Studierende
+schreiben den eigentlichen Inhalt in der gewählten Sprache. Sie schaltet die
+von der Vorlage bereitgestellten festen Texte und Bezeichnungen um.
 
 Das Hintergrundbild liegt ausschließlich in diesem Thesis-Template unter
 `template/assets/hcw-thesis-title-background.jpg`. Es enthält bereits das Logo
-und das Linienmotiv und wird nur auf der Titelseite eingesetzt. Die beiden
-unveränderten Word-Vorlagen unter `requirements/` dienen
-Vorlagenbetreuer:innen als visuelle Referenz und werden zum Schreiben der
+und das Linienmotiv und wird nur auf der Titelseite eingesetzt. Die vier
+V1-Word-Vorlagen unter `requirements/` sind die verbindlichen Referenzen für
+Deutsch/Englisch und Bachelor/Master. Sie werden zum Schreiben der
 Quarto-Arbeit nicht benötigt.
 
 ### Vorspann (Front Matter)
 
 Nach der Titelseite folgt dieselbe Grundreihenfolge wie in den
-Referenzvorlagen:
+Referenzvorlagen. In der deutschen Variante lautet sie:
 
 1. `index.qmd`: Danksagung
 2. `frontmatter/01-kurzfassung.qmd`: deutsche Kurzfassung
@@ -353,6 +377,11 @@ Referenzvorlagen:
 4. `frontmatter/03-abkuerzungsverzeichnis.qmd`: optionales
    Abkürzungsverzeichnis
 5. `frontmatter/04-inhaltsverzeichnis.qmd`: Inhaltsverzeichnis
+
+In der englischen Variante werden `Acknowledgements` und `Abstract` zuerst
+ausgegeben; danach folgen die deutsche `Kurzfassung`, `List of Abbreviations`
+und `Table of Contents`. Die Dateinamen bleiben in beiden Varianten gleich,
+damit ein Wechsel keine Kapitelpfade verändert.
 
 Für Kurzfassung und Abstract gilt bewusst eine einfache, saloppe Merkhilfe:
 
@@ -1037,6 +1066,12 @@ Die Vorlage verwendet folgende Werkzeuge:
 ### Verarbeitungskette
 
 ```text
+setup.tex
+      │
+      ├── scripts/thesis.sh
+      └── _quarto-de.yml oder _quarto-en.yml
+               │
+               ▼
 _quarto.yml
       │
       ├── index.qmd
@@ -1061,16 +1096,17 @@ _quarto.yml
   build/abschlussarbeit.pdf
 ```
 
-Beim Rendern führt Quarto sinngemäß diese Aufgaben aus:
+Beim Rendern führt die Toolchain sinngemäß diese Aufgaben aus:
 
-1. `_quarto.yml` und die Metadaten einlesen.
-2. Alle Kapitel in der angegebenen Reihenfolge zusammenführen.
-3. Markdown, Querverweise und Zitationen verarbeiten.
-4. Ein temporäres LaTeX-Dokument erzeugen.
-5. Gemeinsames HCW-Format und `template/preamble.tex` in das LaTeX-Dokument
-   einbinden.
-6. LuaLaTeX so oft ausführen, wie es für Verzeichnisse und Referenzen nötig ist.
-7. Die fertige PDF im Verzeichnis `build/` ablegen.
+1. `scripts/thesis.sh` liest Sprache und Abschlussart aus `setup.tex`.
+2. Das passende Quarto-Sprachprofil `de` oder `en` aktivieren.
+3. `_quarto.yml` und die Metadaten einlesen.
+4. Alle Kapitel in der angegebenen Reihenfolge zusammenführen.
+5. Markdown, Querverweise und Zitationen verarbeiten.
+6. Ein temporäres LaTeX-Dokument erzeugen.
+7. Gemeinsames HCW-Format, `setup.tex` und `template/preamble.tex` einbinden.
+8. LuaLaTeX so oft ausführen, wie es für Verzeichnisse und Referenzen nötig ist.
+9. Die fertige PDF im Verzeichnis `build/` ablegen.
 
 Die temporäre `.tex`-Datei wird standardmäßig nicht behalten. Für die Analyse
 von LaTeX-Problemen kann in `_quarto.yml` vorübergehend Folgendes gesetzt werden:

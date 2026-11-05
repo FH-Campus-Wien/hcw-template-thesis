@@ -9,7 +9,9 @@
         "run", "--rm",
         "--mount", "type=bind,source=${workspaceFolder},target=/work",
         "--workdir", "/work",
-        "ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0", "render"
+        "--entrypoint", "/bin/sh",
+        "ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0",
+        "scripts/thesis.sh", "render"
       ],
       "options": { "cwd": "${workspaceFolder}" },
       "problemMatcher": [],
@@ -25,8 +27,9 @@
         "--mount", "type=bind,source=${workspaceFolder},target=/work",
         "--workdir", "/work",
         "--publish", "127.0.0.1:4242:4242",
-        "--entrypoint", "hcw-preview",
+        "--entrypoint", "/bin/sh",
         "ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0",
+        "scripts/thesis.sh", "preview",
         "--host", "0.0.0.0", "--port", "4242", "--no-browser"
       ],
       "options": { "cwd": "${workspaceFolder}" },

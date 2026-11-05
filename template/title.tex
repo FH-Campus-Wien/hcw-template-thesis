@@ -21,61 +21,73 @@ $if(title)$
     }
 
     \begin{textblock*}{145mm}(43mm,59mm)
-      $if(thesis-type)$
-      {\fontsize{20}{24}\selectfont $thesis-type$\par}
-      $endif$
+      {\fontsize{20}{24}\selectfont \HCWThesisName\par}
 
       \vspace{10mm}
 
-      $if(title-de)$
-      {\fontsize{14}{17}\selectfont\bfseries $title-de$\par}
-      $endif$
-      $if(subtitle-de)$
-      \vspace{2mm}
-      {\fontsize{12}{15}\selectfont $subtitle-de$\par}
-      $endif$
+      \ifHCWEnglish
+        {\fontsize{14}{17}\selectfont\bfseries $title$\par}
+        $if(subtitle)$
+        \vspace{2mm}
+        {\fontsize{12}{15}\selectfont $subtitle$\par}
+        $endif$
 
-      \vspace{8mm}
+        \vspace{8mm}
 
-      {\fontsize{14}{17}\selectfont\bfseries $title$\par}
-      $if(subtitle)$
-      \vspace{2mm}
-      {\fontsize{12}{15}\selectfont $subtitle$\par}
-      $endif$
+        $if(title-de)$
+        {\fontsize{14}{17}\selectfont\bfseries $title-de$\par}
+        $endif$
+        $if(subtitle-de)$
+        \vspace{2mm}
+        {\fontsize{12}{15}\selectfont $subtitle-de$\par}
+        $endif$
+      \else
+        $if(title-de)$
+        {\fontsize{14}{17}\selectfont\bfseries $title-de$\par}
+        $endif$
+        $if(subtitle-de)$
+        \vspace{2mm}
+        {\fontsize{12}{15}\selectfont $subtitle-de$\par}
+        $endif$
+
+        \vspace{8mm}
+
+        {\fontsize{14}{17}\selectfont\bfseries $title$\par}
+        $if(subtitle)$
+        \vspace{2mm}
+        {\fontsize{12}{15}\selectfont $subtitle$\par}
+        $endif$
+      \fi
     \end{textblock*}
 
     \begin{textblock*}{145mm}(43mm,202mm)
       {\fontsize{11}{14}\selectfont
       $if(authors)$
-      Eingereicht von \textbf{%
+      \HCWSubmittedBy{} \textbf{%
         $for(authors)$$it.name.literal$$sep$, $endfor$%
       }\par
       $endif$
 
-      $if(academic-degree)$
       \vspace{5mm}
-      Zur Erlangung des akademischen Grades\par
-      \textbf{$academic-degree$}\par
-      $endif$
+      \HCWDegreeLeadIn\par
+      \textbf{\HCWAcademicDegree}\par
       }
     \end{textblock*}
 
     \begin{textblock*}{150mm}(43mm,252mm)
       {\fontsize{9.5}{12}\selectfont
-      $if(submission-place)$
-      $submission-place$$if(submission-year)$, $submission-year$$endif$\par
+      \HCWSubmissionPlace$if(submission-year)$, $submission-year$$endif$\par
       \vspace{4mm}
-      $endif$
 
       \begin{tabular}{@{}p{50mm}p{94mm}@{}}
         $if(study-program)$
-        Studiengang: & $study-program$ \\[1.5mm]
+        \HCWStudyProgramLabel & $study-program$ \\[1.5mm]
         $endif$
         $if(institution)$
-        Hochschule: & $institution$ \\[1.5mm]
+        \HCWInstitutionLabel & $institution$ \\[1.5mm]
         $endif$
         $if(supervisors)$
-        Betreut von: &
+        \HCWSupervisorsLabel &
         \parbox[t]{94mm}{%
           $for(supervisors)$$supervisors$$sep$\\$endfor$%
         }

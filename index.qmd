@@ -1,4 +1,11 @@
-# Danksagung {.unnumbered}
+# {{< meta hcw-acknowledgements-title >}} {.unnumbered}
 
+::: {.hcw-lang-de}
 Optional: Bedanken Sie sich hier bei Personen und Institutionen, die Sie bei
 der Erstellung der Arbeit unterstützt haben.
+:::
+
+::: {.hcw-lang-en}
+Optional: Thank the people and institutions who supported you while preparing
+the thesis.
+:::

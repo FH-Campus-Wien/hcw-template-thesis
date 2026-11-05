@@ -1,0 +1,73 @@
+% Zentrale Auswahl der Thesis-Variante.
+% Erlaubte Werte:
+%   Sprache:       de oder en
+%   Abschlussart:  ba oder ma
+
+\newcommand{\HCWLanguage}{de}
+\newcommand{\HCWThesisLevel}{ba}
+
+% Die offiziellen Referenzvorlagen verwenden diese akademischen Grade.
+% Falls ein Studiengang einen anderen Grad verleiht, wird nur die betreffende
+% Zeile angepasst; die Auswahl zwischen BA und MA erfolgt weiterhin oben.
+\newcommand{\HCWBachelorDegree}{Bachelor of Science in Engineering}
+\newcommand{\HCWMasterDegree}{Master of Science in Engineering}
+
+% Ab hier sind keine Anpassungen erforderlich.
+\RequirePackage{etoolbox}
+
+\newif\ifHCWEnglish
+\newif\ifHCWMaster
+
+\ifdefstring{\HCWLanguage}{de}{%
+  \HCWEnglishfalse
+}{%
+  \ifdefstring{\HCWLanguage}{en}{%
+    \HCWEnglishtrue
+  }{%
+    \PackageError{hcw-thesis}{Unknown language '\HCWLanguage'}%
+      {Use de or en in setup.tex.}%
+  }%
+}
+
+\ifdefstring{\HCWThesisLevel}{ba}{%
+  \HCWMasterfalse
+}{%
+  \ifdefstring{\HCWThesisLevel}{ma}{%
+    \HCWMastertrue
+  }{%
+    \PackageError{hcw-thesis}{Unknown thesis level '\HCWThesisLevel'}%
+      {Use ba or ma in setup.tex.}%
+  }%
+}
+
+\ifHCWEnglish
+  \newcommand{\HCWSubmittedBy}{submitted by}
+  \newcommand{\HCWDegreeLeadIn}{to obtain the academic degree of}
+  \newcommand{\HCWStudyProgramLabel}{Study program:}
+  \newcommand{\HCWInstitutionLabel}{at:}
+  \newcommand{\HCWSupervisorsLabel}{supervised by:}
+  \newcommand{\HCWSubmissionPlace}{Vienna}
+  \ifHCWMaster
+    \newcommand{\HCWThesisName}{Master's Thesis}
+  \else
+    \newcommand{\HCWThesisName}{Bachelor's Thesis}
+  \fi
+\else
+  \newcommand{\HCWSubmittedBy}{verfasst von}
+  \newcommand{\HCWDegreeLeadIn}{zur Erlangung des akademischen Grades}
+  \newcommand{\HCWStudyProgramLabel}{Studiengang:}
+  \newcommand{\HCWInstitutionLabel}{an:}
+  \newcommand{\HCWSupervisorsLabel}{betreut von:}
+  \newcommand{\HCWSubmissionPlace}{Wien}
+  \ifHCWMaster
+    \newcommand{\HCWThesisName}{Masterarbeit}
+  \else
+    \newcommand{\HCWThesisName}{Bachelorarbeit}
+  \fi
+\fi
+
+\ifHCWMaster
+  \newcommand{\HCWAcademicDegree}{\HCWMasterDegree}
+\else
+  \newcommand{\HCWAcademicDegree}{\HCWBachelorDegree}
+\fi

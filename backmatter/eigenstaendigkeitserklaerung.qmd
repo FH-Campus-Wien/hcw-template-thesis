@@ -1,10 +1,22 @@
-# Eigenständigkeitserklärung {.unnumbered}
+# {{< meta hcw-declaration-title >}} {.unnumbered}
 
+::: {.hcw-lang-de}
 Hier wird die von der Hochschule vorgegebene Eigenständigkeitserklärung
 eingefügt.
+:::
+
+::: {.hcw-lang-en}
+Insert the declaration of academic integrity required by the university here.
+:::
 
 ```{=latex}
 \vspace{2cm}
 ```
 
+::: {.hcw-lang-de}
 Ort, Datum \hfill Unterschrift
+:::
+
+::: {.hcw-lang-en}
+Place, date \hfill Signature
+:::

@@ -23,16 +23,15 @@ book:
     - backmatter/eigenstaendigkeitserklaerung.qmd
 
 bibliography: references.bib
-lang: de
 
-# Titelseite: "Bachelorarbeit" oder "Masterarbeit"
-thesis-type: "Bachelorarbeit"
+filters:
+  - scripts/thesis-setup.lua
+
+# Sprache und Abschlussart werden zentral in setup.tex ausgewählt.
 title-de: "Deutscher Titel der Abschlussarbeit"
 subtitle-de: "Deutscher Untertitel"
-academic-degree: "Bachelor of Science in Engineering (BSc)"
 study-program: "Name des Studiengangs"
 institution: "Hochschule Campus Wien"
-submission-place: "Wien"
 submission-year: "2026"
 supervisors:
   - "Titel Vorname Nachname"
@@ -50,4 +49,5 @@ format:
     template-partials:
       - template/title.tex
     include-in-header:
+      - setup.tex
       - template/preamble.tex
