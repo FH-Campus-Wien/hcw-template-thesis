@@ -1,0 +1,81 @@
+# Methodology {#sec-methodik}
+
+Describe and justify your methodology. These examples from the V1 templates
+show how to integrate, explain, and reference equations.
+
+## Fourier transform and mathematical notation {#sec-fourier}
+
+Equations are part of the text, so punctuation also belongs in displayed
+equations. One example is the Fourier transform
+
+$$
+\underline{U}(\mathrm{j}\omega)
+= \int_{-\infty}^{\infty} u(t)\,\mathrm{e}^{-\mathrm{j}\omega t}\,\mathrm{d}t.
+$$ {#eq-fourier-transformation}
+
+In @eq-fourier-transformation, $\underline{U}(\mathrm{j}\omega)$ denotes the
+Fourier transform of the time-dependent signal $u(t)$. Here, $\omega$ is the
+angular frequency and $\mathrm{j}$ is the imaginary unit. Variables in the
+running text use the same mathematical typesetting as in the equation.
+
+Physical quantities are italicized; units and mathematical constants are set
+upright. In $t = 5\,\mathrm{s}$, $t$ is a quantity and $\mathrm{s}$ is the unit
+second. Euler's number $\mathrm{e}$, the imaginary unit $\mathrm{j}$, and the
+differential $\mathrm{d}t$ are also upright [@austrianstandards2018].
+
+A comma can connect an equation to the following clause, as in the inverse
+Fourier transform
+
+$$
+u(t) = \frac{1}{2\pi}
+\int_{-\infty}^{\infty}
+\underline{U}(\mathrm{j}\omega)\,\mathrm{e}^{\mathrm{j}\omega t}\,\mathrm{d}\omega,
+$$ {#eq-fourier-invers}
+
+which reconstructs the time-domain signal from its Fourier transform.
+Variables that have already been introduced need not be defined again.
+
+## Systems of equations and alignment {#sec-gleichungssysteme}
+
+Several related equations can form one block. @eq-lineares-system shows a
+linear system with inputs $x_1$, $x_2$, outputs $y_1$, $y_2$, and coefficients
+$A_{ij}$.
+
+$$
+\begin{aligned}
+y_1 &= A_{11}x_1 + A_{12}x_2, \\
+y_2 &= A_{21}x_1 + A_{22}x_2.
+\end{aligned}
+$$ {#eq-lineares-system}
+
+Equations of different lengths are aligned at the equals sign. In
+@eq-spannungen, $U_2$ is the voltage across $R_2$, and $U_{\mathrm{ges}}$ is the
+total voltage across the series-connected resistors $R_1$ and $R_2$. The same
+current $I_{\mathrm{ges}}$ flows through both resistors.
+
+$$
+\begin{aligned}
+U_2 &= I_{\mathrm{ges}} R_2, \\
+U_{\mathrm{ges}} &= I_{\mathrm{ges}}(R_1 + R_2).
+\end{aligned}
+$$ {#eq-spannungen}
+
+## Long equations and sums {#sec-lange-formeln}
+
+Long equations are broken at a meaningful point before they collide with the
+equation number or page margin. @eq-logarithmusreihe shows the series
+expansion of the natural logarithm with a sum, powers, and several fractions.
+The domain $0 < x \leq 2$ is part of the mathematical statement.
+
+$$
+\begin{aligned}
+\ln(x)
+&= \sum_{n=1}^{\infty} \frac{(-1)^{n+1}}{n}(x-1)^n \\
+&= (x-1) - \frac{(x-1)^2}{2} + \frac{(x-1)^3}{3} - \cdots, \\
+&\qquad 0 < x \leq 2.
+\end{aligned}
+$$ {#eq-logarithmusreihe}
+
+In Quarto, these examples use LaTeX math. The `aligned` environment
+aligns lines at `&`; `\\` starts a new line. Each
+related block has one number and one label here. References are updated automatically.

@@ -1,0 +1,9 @@
+# Table of Contents {#sec-inhaltsverzeichnis .unnumbered .unlisted}
+
+```{=latex}
+\makeatletter
+\@starttoc{toc}
+\makeatother
+\clearpage
+\pagenumbering{arabic}
+```

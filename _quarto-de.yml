@@ -1,45 +1,18 @@
 lang: de-AT
+acknowledgements-title: Danksagung
 
-hcw-acknowledgements-title: Danksagung
-hcw-primary-summary-title: Kurzfassung
-hcw-secondary-summary-title: Abstract
-hcw-abbreviations-title: Abkürzungsverzeichnis
-hcw-contents-title: Inhaltsverzeichnis
-hcw-bibliography-title: Literaturverzeichnis
-hcw-ai-tools-title: Übersicht eingesetzter KI-Werkzeuge
-hcw-declaration-title: Eigenständigkeitserklärung
-
-hcw-methodology-title: Methodik
-hcw-introduction-title: Einleitung
-hcw-research-question-title: Forschungsfrage
-hcw-structure-title: Aufbau der Arbeit
-hcw-background-title: Theoretische Grundlagen
-hcw-conclusion-title: Fazit und Ausblick
-hcw-fourier-section: Fourier-Transformation und mathematische Schreibweise
-hcw-aligned-section: Gleichungssysteme und Ausrichtung
-hcw-long-equations-section: Lange Formeln und Summen
-hcw-results-title: Ergebnisse
-hcw-sputtering-section: Abbildungen erklären und belegen
-hcw-image-layout-section: Einbindung und Beschriftung
-hcw-subfigures-section: Mehrere Teilabbildungen
-hcw-diagrams-section: Diagramme und Signalparameter
-hcw-contrast-section: Kontrast und Druck
-hcw-tables-section: Tabellen und Querformat
-hcw-magnetron-caption: Schaltschematische Darstellung eines Magnetron-Sputterprozesses.
-hcw-books-caption: Kleines Grafikbeispiel aus der V1-Vorlage.
-hcw-production-caption: Ausschnitt einer Fertigungsstraße
-hcw-support-caption: Stützmaterial eines 3D-Drucks
-hcw-htm-caption: Beispielbilder aus dem Studiengang High Tech Manufacturing.
-hcw-sinus-caption: Verlauf eines cosinusförmigen Signals mit Amplitude, Periodendauer und Nullphasenwinkel.
-hcw-contrast-caption: Gleicher Signalverlauf mit schlechtem Kontrast oben und besserem Druckkontrast unten.
-hcw-table-col1: Titel 1
-hcw-table-col2: Titel 2
-hcw-table-col3: Titel 3
-hcw-example-table-caption: Einfache Beispieltabelle aus der V1-Vorlage.
-hcw-dft-caption: Rechenaufwand einer DFT und FFT anhand komplexwertiger MAC-Operationen.
-hcw-probability-caption: Überblick zu wichtigen Wahrscheinlichkeitsverteilungen.
-hcw-density-label: Wahrscheinlichkeitsdichtefunktion
-hcw-mean-label: Erwartungswert
-hcw-variance-label: Varianz
-hcw-dirac-label: Dirac-Deltafunktion
-hcw-probability-label: Wahrscheinlichkeit
+book:
+  chapters:
+    - index.qmd
+    - frontmatter/kurzfassung.qmd
+    - frontmatter/abstract.qmd
+    - frontmatter/de/abkuerzungsverzeichnis.qmd
+    - frontmatter/de/inhaltsverzeichnis.qmd
+    - chapters/de/01-einleitung.qmd
+    - chapters/de/02-grundlagen.qmd
+    - chapters/de/03-methodik.qmd
+    - chapters/de/04-ergebnisse.qmd
+    - chapters/de/05-fazit.qmd
+    - backmatter/de/literaturverzeichnis.qmd
+    - backmatter/de/ki-werkzeuge.qmd
+    - backmatter/de/eigenstaendigkeitserklaerung.qmd

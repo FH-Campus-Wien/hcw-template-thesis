@@ -19,15 +19,6 @@ if level ~= "ba" and level ~= "ma" then
   error("Invalid HCWThesisLevel in setup.tex: use ba or ma")
 end
 
-local function has_class(element, expected)
-  for _, class_name in ipairs(element.classes) do
-    if class_name == expected then
-      return true
-    end
-  end
-  return false
-end
-
 function Meta(meta)
   local active_language = pandoc.utils.stringify(meta.lang or "")
   local profile_matches =
@@ -44,16 +35,4 @@ function Meta(meta)
   meta["hcw-language"] = pandoc.MetaString(language)
   meta["hcw-thesis-level"] = pandoc.MetaString(level)
   return meta
-end
-
-function Div(element)
-  if has_class(element, "hcw-lang-de") then
-    return language == "de" and element.content or {}
-  end
-
-  if has_class(element, "hcw-lang-en") then
-    return language == "en" and element.content or {}
-  end
-
-  return nil
 end

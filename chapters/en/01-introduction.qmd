@@ -1,0 +1,11 @@
+# Introduction {#sec-einleitung}
+
+Describe the problem, motivation, and objectives of your thesis.
+
+## Research question {#sec-forschungsfrage}
+
+State the central research question here.
+
+## Structure of the thesis {#sec-aufbau}
+
+Give a brief overview of the following chapters.

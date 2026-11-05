@@ -1,6 +1,5 @@
-# {{< meta hcw-ai-tools-title >}} {#sec-ki-werkzeuge .unnumbered}
+# Übersicht eingesetzter KI-Werkzeuge {#sec-ki-werkzeuge .unnumbered}
 
-::: {.hcw-lang-de}
 Dokumentieren Sie hier alle KI-Werkzeuge, die bei der Erstellung der Arbeit
 eingesetzt wurden. Ersetzen Sie die Beispielzeile durch Ihre tatsächlichen
 Angaben. Wurden keine KI-Werkzeuge verwendet, halten Sie dies ausdrücklich
@@ -12,15 +11,3 @@ fest.
 
 Die Verantwortung für sämtliche Inhalte, Quellenangaben und Schlussfolgerungen
 verbleibt bei der Autorin beziehungsweise beim Autor.
-:::
-
-::: {.hcw-lang-en}
-Document all AI tools used in preparing the thesis. Replace the example row
-with your actual information. If no AI tools were used, state this explicitly.
-
-| AI tool and version | Area of use | Type of use | Affected sections |
-|---|---|---|---|
-| Example: Academic AI, model and date | Language revision | Suggested wording; all results were fully reviewed and revised. | Chapters 2 and 3 |
-
-The author remains responsible for all content, references, and conclusions.
-:::

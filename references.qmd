@@ -1,5 +1,0 @@
-# {{< meta hcw-bibliography-title >}} {#sec-literatur .unnumbered}
-
-::: {#refs}
-:::
-

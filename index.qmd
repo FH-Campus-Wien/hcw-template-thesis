@@ -1,11 +1,11 @@
-# {{< meta hcw-acknowledgements-title >}} {#sec-danksagung .unnumbered}
+<!-- Technische Startdatei. Die Danksagung im jeweiligen Sprachordner bearbeiten. -->
 
-::: {.hcw-lang-de}
-Optional: Bedanken Sie sich hier bei Personen und Institutionen, die Sie bei
-der Erstellung der Arbeit unterstützt haben.
+# {{< meta acknowledgements-title >}} {#sec-danksagung .unnumbered}
+
+::: {.content-visible when-profile="de"}
+{{< include frontmatter/de/danksagung.qmd >}}
 :::
 
-::: {.hcw-lang-en}
-Optional: Thank the people and institutions who supported you while preparing
-the thesis.
+::: {.content-visible when-profile="en"}
+{{< include frontmatter/en/acknowledgements.qmd >}}
 :::

@@ -1,0 +1,10 @@
+# Overview of AI Tools Used {#sec-ki-werkzeuge .unnumbered}
+
+Document all AI tools used in preparing the thesis. Replace the example row
+with your actual information. If no AI tools were used, state this explicitly.
+
+| AI tool and version | Area of use | Type of use | Affected sections |
+|---|---|---|---|
+| Example: Academic AI, model and date | Language revision | Suggested wording; all results were fully reviewed and revised. | Chapters 2 and 3 |
+
+The author remains responsible for all content, references, and conclusions.

@@ -1,0 +1,10 @@
+# Abkürzungsverzeichnis {#sec-abkuerzungen .unnumbered}
+
+Optional: Führen Sie hier fachliche Abkürzungen alphabetisch an.
+
+| Abkürzung | Bedeutung |
+|---|---|
+| DFT | Discrete Fourier Transform |
+| FFT | Fast Fourier Transform |
+| HCW | Hochschule Campus Wien |
+| MAC | Multiply-and-Accumulate |

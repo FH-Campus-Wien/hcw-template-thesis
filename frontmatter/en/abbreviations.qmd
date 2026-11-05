@@ -1,0 +1,10 @@
+# List of Abbreviations {#sec-abkuerzungen .unnumbered}
+
+Optional: List technical abbreviations in alphabetical order.
+
+| Abbreviation | Meaning |
+|---|---|
+| DFT | Discrete Fourier Transform |
+| FFT | Fast Fourier Transform |
+| HCW | Hochschule Campus Wien |
+| MAC | Multiply-and-Accumulate |

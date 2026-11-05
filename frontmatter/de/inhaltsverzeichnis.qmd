@@ -1,4 +1,4 @@
-# {{< meta hcw-contents-title >}} {#sec-inhaltsverzeichnis .unnumbered .unlisted}
+# Inhaltsverzeichnis {#sec-inhaltsverzeichnis .unnumbered .unlisted}
 
 ```{=latex}
 \makeatletter

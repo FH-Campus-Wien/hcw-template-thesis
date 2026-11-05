@@ -1,0 +1,4 @@
+# Bibliography {#sec-literatur .unnumbered}
+
+::: {#refs}
+:::

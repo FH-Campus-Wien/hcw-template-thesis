@@ -275,15 +275,22 @@ gelöscht.
 
 ```text
 setup.tex         Auswahl Deutsch/Englisch und Bachelor/Master
-_quarto.yml       Titelseitenangaben, Struktur und PDF-Einstellungen
-_quarto-de.yml    deutsche Beschriftungen und Quarto-Sprachregeln
-_quarto-en.yml    englische Beschriftungen und Quarto-Sprachregeln
-index.qmd         Danksagung beziehungsweise Acknowledgements
-frontmatter/      Zusammenfassungen, Abkürzungen und Inhaltsverzeichnis
-chapters/         Kapitel der Arbeit
-references.bib    Literaturdatenbank im BibTeX-Format
-references.qmd    Position des Literaturverzeichnisses
-backmatter/       KI-Dokumentation und Eigenständigkeitserklärung
+_quarto.yml       gemeinsame Titelseitenangaben und PDF-Einstellungen
+_quarto-de.yml    deutsche Kapiteldateien und Reihenfolge
+_quarto-en.yml    englische Kapiteldateien und Reihenfolge
+index.qmd         technische Startdatei des Quarto-Buchs
+chapters/
+├── de/           ausschließlich deutsche Kapitel
+└── en/           ausschließlich englische Kapitel
+frontmatter/
+├── de/           Danksagung, Abkürzungen und Inhaltsverzeichnis auf Deutsch
+├── en/           Acknowledgements, abbreviations und contents auf Englisch
+├── kurzfassung.qmd
+└── abstract.qmd  beide Zusammenfassungen gehören in jede Variante
+backmatter/
+├── de/           Literaturverzeichnis, KI-Dokumentation und Erklärung
+└── en/           Bibliography, AI documentation und declaration
+references.bib    gemeinsame Literaturdatenbank im BibTeX-Format
 images/           Abbildungen
 _extensions/
 └── FH-Campus-Wien/hcw/
@@ -299,6 +306,29 @@ requirements/      offizielle BA-/MA-Referenzen für Deutsch und Englisch
 scripts/           Werkzeuge für Vorlagenbetreuer:innen
 build/            erzeugte PDF und weitere Ausgaben
 ```
+
+Bearbeiten Sie ausschließlich die Dateien Ihrer Arbeitssprache:
+
+| Auswahl in `setup.tex` | Kapitel bearbeiten | Vorspann und Nachspann |
+|---|---|---|
+| `\HCWLanguage` = `de` | `chapters/de/` | `frontmatter/de/` und `backmatter/de/` |
+| `\HCWLanguage` = `en` | `chapters/en/` | `frontmatter/en/` und `backmatter/en/` |
+
+Jede Kapiteldatei enthält nur eine Sprache. Überschriften, Erläuterungen und
+Bildunterschriften werden direkt in dieser Datei bearbeitet. Die jeweils
+andere Sprachfassung muss für eine eigene Arbeit nicht mitgepflegt werden.
+Gemeinsam bleiben die Bilder unter `images/`, die Literaturdatenbank und die
+zwei ausdrücklich vorgeschriebenen Zusammenfassungen: `frontmatter/kurzfassung.qmd`
+und `frontmatter/abstract.qmd`.
+
+Neue Kapitel werden in der Kapitelliste `book.chapters` des passenden Profils
+`_quarto-de.yml` beziehungsweise `_quarto-en.yml` eingetragen. `index.qmd` im
+Projektstamm bleibt als technische Startdatei bestehen; die Danksagung steht
+in `frontmatter/de/danksagung.qmd` beziehungsweise
+`frontmatter/en/acknowledgements.qmd`.
+Diese beiden Dateien enthalten den Text der Danksagung. Die gemeinsame
+Startdatei setzt die Überschrift aus `acknowledgements-title` im jeweiligen
+Sprachprofil darüber.
 
 ### Titelseite für Bachelor- und Masterarbeiten
 
@@ -324,13 +354,17 @@ Damit ergeben sich vier unterstützte Varianten:
 
 Der Schalter steuert die Abschlussbezeichnung, den akademischen Grad, die
 Reihenfolge der beiden Titel, die festen Beschriftungen der Titelseite, die
-Sprache der Quarto-Querverweise sowie die Bezeichnungen und Reihenfolge im
-Vorspann. Der Build- und Vorschau-Task liest `setup.tex` automatisch; die
+Sprache der Quarto-Querverweise sowie die Auswahl der Sprachordner und die
+Reihenfolge im Vorspann. Der Build- und Vorschau-Task liest `setup.tex` automatisch; die
 internen Profile `_quarto-de.yml` und `_quarto-en.yml` werden nicht manuell
 gestartet.
 
 Nach einer Änderung der Sprache wird eine bereits laufende Vorschau gestoppt
 und neu gestartet, damit sie das passende Sprachprofil lädt.
+
+Für Werkzeuge, die das Projekt ohne Build-Task einlesen, ist Deutsch als
+Standardprofil hinterlegt. Die dokumentierten Build- und Vorschau-Tasks
+wählen ausdrücklich die Sprache aus `setup.tex`.
 
 Die persönlichen und arbeitsspezifischen Angaben bleiben in `_quarto.yml`:
 
@@ -358,9 +392,9 @@ wird die zweite Zeile unter `supervisors` vollständig gelöscht. `book.title`
 und `book.subtitle` sind der englische Titel und Untertitel; `title-de` und
 `subtitle-de` enthalten die deutschen Fassungen.
 
-Die Spracheinstellung übersetzt keine selbst verfassten Kapitel. Studierende
-schreiben den eigentlichen Inhalt in der gewählten Sprache. Sie schaltet die
-von der Vorlage bereitgestellten festen Texte und Bezeichnungen um.
+Die Spracheinstellung lädt die Dateien des gewählten Sprachordners. Eigene
+Änderungen bleiben in diesem Ordner; beim Wechsel wird die separat vorhandene
+andere Fassung geladen und keine automatische Übersetzung erzeugt.
 
 Das Hintergrundbild liegt ausschließlich in diesem Thesis-Template unter
 `template/assets/hcw-thesis-title-background.jpg`. Es enthält bereits das Logo
@@ -379,8 +413,8 @@ dieselben Beispiele mit der passenden Titelseite und Abschlussbezeichnung.
 
 | Datei | Beispiele |
 |---|---|
-| `chapters/03-methodik.qmd` | Fourier-Transformation und inverse Transformation, lineares Gleichungssystem, ausgerichtete Spannungsgleichungen, Logarithmusreihe mit Summen und Brüchen |
-| `chapters/04-ergebnisse.qmd` | Magnetron-Sputtern, kleines Grafikbeispiel, zwei Teilabbildungen, Cosinussignal mit Periodendauer, Kontrastvergleich sowie Tabellen und Querformat |
+| `chapters/de/03-methodik.qmd` oder `chapters/en/03-methodology.qmd` | Fourier-Transformation und inverse Transformation, lineares Gleichungssystem, ausgerichtete Spannungsgleichungen, Logarithmusreihe mit Summen und Brüchen |
+| `chapters/de/04-ergebnisse.qmd` oder `chapters/en/04-results.qmd` | Magnetron-Sputtern, kleines Grafikbeispiel, zwei Teilabbildungen, Cosinussignal mit Periodendauer, Kontrastvergleich sowie Tabellen und Querformat |
 | `images/v1/` | neun gemeinsam verwendete Bilddateien aus den vier Referenzen |
 | `references.bib` | die fünf Quellen der übernommenen V1-Beispiele |
 
@@ -404,16 +438,16 @@ Herkunft und Prüfsummen sind unter `images/v1/README.md` und
 `scripts/import-v1-images.py` ist ein optionales Werkzeug für
 Vorlagenbetreuer:innen; für das Schreiben ist keine Extraktion erforderlich.
 
-Die sprachabhängigen Erklärungen stehen in Blöcken mit `.hcw-lang-de` und
-`.hcw-lang-en`. Bearbeiten Sie den Block Ihrer Arbeitssprache. Formeln und
-Abbildungen stehen außerhalb dieser Blöcke und werden einmal gepflegt.
-Überschriften und kurze Beschriftungen kommen aus `_quarto-de.yml` und
-`_quarto-en.yml`. Labels wie `eq-fourier-transformation` bleiben sprachübergreifend
-gleich; deshalb bleiben auch Querverweise beim Umschalten erhalten.
+Die deutschen und englischen Erklärungen stehen in getrennten Dateien unter
+`chapters/de/` und `chapters/en/`. Formeln und Bildunterschriften werden in der
+jeweiligen Kapiteldatei bearbeitet; die eingebundenen Bilddateien werden
+gemeinsam genutzt. Die Profile legen die Sprache, die zugehörige Kapitelliste
+und die Überschrift der Danksagung fest. Labels wie `eq-fourier-transformation` stimmen in den beiden
+Ausgangsvorlagen überein; es wird immer nur eine Fassung in den Build geladen.
 
-Dynamische Überschriften erhalten zusätzlich ein eindeutiges Abschnittslabel,
-etwa `# {{< meta hcw-methodology-title >}} {#sec-methodik}`. Dadurch kann Quarto
-die Kapitel unabhängig von der gewählten Sprache eindeutig zusammenführen.
+Überschriften verwenden normale Markdown-Syntax, beispielsweise
+`# Methodik {#sec-methodik}`. Das Abschnittslabel bleibt beim Umbenennen der
+Überschrift erhalten und kann für Querverweise verwendet werden.
 Die ergänzte Notiz unter der Verteilungsübersicht kennzeichnet das in der
 Originalgrafik falsch gesetzte Varianzsymbol der Gleichverteilung und nennt
 die korrekte Schreibweise.
@@ -431,17 +465,18 @@ eingebundene LaTeX-Umgebung `landscape`.
 Nach der Titelseite folgt dieselbe Grundreihenfolge wie in den
 Referenzvorlagen. In der deutschen Variante lautet sie:
 
-1. `index.qmd`: Danksagung
-2. `frontmatter/01-kurzfassung.qmd`: deutsche Kurzfassung
-3. `frontmatter/02-abstract-englisch.qmd`: englischer Abstract
-4. `frontmatter/03-abkuerzungsverzeichnis.qmd`: optionales
+1. `frontmatter/de/danksagung.qmd`: Danksagung
+2. `frontmatter/kurzfassung.qmd`: deutsche Kurzfassung
+3. `frontmatter/abstract.qmd`: englischer Abstract
+4. `frontmatter/de/abkuerzungsverzeichnis.qmd`: optionales
    Abkürzungsverzeichnis
-5. `frontmatter/04-inhaltsverzeichnis.qmd`: Inhaltsverzeichnis
+5. `frontmatter/de/inhaltsverzeichnis.qmd`: Inhaltsverzeichnis
 
 In der englischen Variante werden `Acknowledgements` und `Abstract` zuerst
 ausgegeben; danach folgen die deutsche `Kurzfassung`, `List of Abbreviations`
-und `Table of Contents`. Die Dateinamen bleiben in beiden Varianten gleich,
-damit ein Wechsel keine Kapitelpfade verändert.
+und `Table of Contents`. Die englischen Dateien liegen unter
+`frontmatter/en/`; Kurzfassung und Abstract werden von beiden Varianten
+verwendet und müssen jeweils nur einmal geschrieben werden.
 
 Für Kurzfassung und Abstract gilt bewusst eine einfache, saloppe Merkhilfe:
 
@@ -450,23 +485,25 @@ Für Kurzfassung und Abstract gilt bewusst eine einfache, saloppe Merkhilfe:
 
 Jeder Eintrag beginnt auf einer eigenen Seite. Der Vorspann verwendet römische
 Seitenzahlen; mit dem ersten Fachkapitel beginnt die arabische
-Nummerierung bei 1. Die Reihenfolge wird in `_quarto.yml` unter
-`book.chapters` festgelegt. Dateien sollten dort nur nach einer bewussten
+Nummerierung bei 1. Die Reihenfolge wird im aktiven Sprachprofil
+`_quarto-de.yml` oder `_quarto-en.yml` unter `book.chapters` festgelegt.
+Dateien sollten dort nur nach einer bewussten
 Anpassung der geforderten Hochschulstruktur verschoben oder entfernt werden.
 
 Die Eigenständigkeitserklärung gehört nicht in den Vorspann. Die
 HCW-Prüfungsordnung nennt sie für Bachelor- und Masterarbeiten nach dem
 Quellenverzeichnis als letzten verpflichtenden Bestandteil. Sie liegt daher
-unter `backmatter/eigenstaendigkeitserklaerung.qmd` und steht in
-`_quarto.yml` nach `references.qmd`. Ein allfälliger Anhang wird ebenfalls vor
-der Eigenständigkeitserklärung eingereiht.
+unter `backmatter/de/eigenstaendigkeitserklaerung.qmd` beziehungsweise
+`backmatter/en/declaration.qmd` und steht am Ende der jeweiligen Kapitelliste.
+Ein allfälliger Anhang wird ebenfalls vor der Eigenständigkeitserklärung eingereiht.
 
 ### Dokumentation eingesetzter KI-Werkzeuge
 
 Die Nutzung von KI-Werkzeugen ist kein Bestandteil des Vorspanns und keine
 Gestaltungsregel des gemeinsamen Quarto-Formats. Sie wird als inhaltlicher
 Bestandteil der jeweiligen Arbeit unter
-`backmatter/ki-werkzeuge.qmd` dokumentiert. Im Thesis-Template steht diese
+`backmatter/de/ki-werkzeuge.qmd` beziehungsweise `backmatter/en/ai-tools.qmd`
+dokumentiert. Im Thesis-Template steht diese
 Übersicht nach dem Literaturverzeichnis und vor der abschließenden
 Eigenständigkeitserklärung:
 
@@ -504,7 +541,8 @@ format:
 
 `toc: false` deaktiviert nur Quartos automatische Platzierung direkt nach der
 Titelseite. Das Inhaltsverzeichnis selbst wird bewusst später über
-`frontmatter/04-inhaltsverzeichnis.qmd` eingefügt, damit zuvor Danksagung,
+`frontmatter/de/inhaltsverzeichnis.qmd` beziehungsweise
+`frontmatter/en/table-of-contents.qmd` eingefügt, damit zuvor Danksagung,
 Kurzfassung und englischer Abstract erscheinen.
 
 Die zentrale Quelle ist das öffentliche Repository
@@ -660,8 +698,8 @@ Das ist ein normaler Absatz. Ein neuer Absatz beginnt nach einer Leerzeile.
 ### Auswahl der Stichprobe
 ```
 
-Kapitel sollten nur in den Dateien beginnen, die in `_quarto.yml` unter
-`book.chapters` eingetragen sind.
+Kapitel sollten nur in den Dateien beginnen, die im gewählten Sprachprofil
+`_quarto-de.yml` oder `_quarto-en.yml` unter `book.chapters` eingetragen sind.
 
 ### Hervorhebungen, Listen und Links
 
@@ -751,7 +789,8 @@ $$ {#eq-fourier-approximation}
 
 Diese zusätzlichen Syntaxbeispiele ergänzen die Formeln aus den offiziellen
 V1-Vorlagen. Deren gerenderte Beispiele mit deutschen und englischen
-Erklärungen stehen in `chapters/03-methodik.qmd`.
+Erklärungen stehen in `chapters/de/03-methodik.qmd` beziehungsweise
+`chapters/en/03-methodology.qmd`.
 
 ### Tabellen
 
@@ -786,17 +825,17 @@ anderem PNG, JPEG und PDF. Für Fotos und Rastergrafiken eignet sich PNG oder
 JPEG; Diagramme und andere Vektorgrafiken sollten nach Möglichkeit als PDF
 eingebunden werden.
 
-Vom Projektstamm beziehungsweise aus `index.qmd` wird ein Bild so eingebunden:
+Vom Projektstamm wird ein Bild so eingebunden:
 
 ```markdown
 ![Generisches Microcontroller-Entwicklungsboard](images/microcontroller.png){#fig-microcontroller width=75% fig-alt="Grüne Leiterplatte mit einem zentralen Microcontroller und elektronischen Bauteilen"}
 ```
 
-Aus einer Datei im Unterverzeichnis `chapters/` führt der relative Pfad eine
-Ebene nach oben:
+Aus einer Datei in `chapters/de/` oder `chapters/en/` führt der relative Pfad
+zwei Ebenen nach oben:
 
 ```markdown
-![Generisches Microcontroller-Entwicklungsboard](../images/microcontroller.png){#fig-microcontroller width=75% fig-alt="Grüne Leiterplatte mit einem zentralen Microcontroller und elektronischen Bauteilen"}
+![Generisches Microcontroller-Entwicklungsboard](../../images/microcontroller.png){#fig-microcontroller width=75% fig-alt="Grüne Leiterplatte mit einem zentralen Microcontroller und elektronischen Bauteilen"}
 ```
 
 Die Bestandteile sind:
@@ -815,14 +854,17 @@ Der verwendete Aufbau ist in @fig-microcontroller dargestellt.
 
 Das zusätzliche Beispielbild liegt unter `images/microcontroller.png` und
 kann mit dem gezeigten Code eingebunden werden. Die tatsächlich gerenderten
-V1-Bildbeispiele in `chapters/04-ergebnisse.qmd` verwenden `images/v1/`.
+V1-Bildbeispiele in `chapters/de/04-ergebnisse.qmd` und
+`chapters/en/04-results.qmd` verwenden `images/v1/`.
 Bilddateien sollten aussagekräftige Namen ohne Leerzeichen besitzen. Groß-
 und Kleinschreibung muss mit dem Pfad im Markdown exakt übereinstimmen.
 
 ### Querverweise
 
-Labels müssen innerhalb des gesamten Projekts eindeutig sein. Die Präfixe
-bestimmen den Typ des referenzierten Elements:
+Labels müssen innerhalb der ausgewählten Sprachfassung eindeutig sein. Die
+parallele deutsche und englische Vorlage dürfen dieselben Labels verwenden,
+weil immer nur eine Fassung geladen wird. Die Präfixe bestimmen den Typ des
+referenzierten Elements:
 
 ```text
 fig-   Abbildungen
@@ -880,9 +922,10 @@ Die Datei ist in `_quarto.yml` eingebunden:
 bibliography: references.bib
 ```
 
-Das Literaturverzeichnis wird automatisch in `references.qmd` erzeugt. Diese
-Datei sollte in der Kapitelliste von `_quarto.yml` an der gewünschten Position
-stehen.
+Das Literaturverzeichnis wird automatisch in
+`backmatter/de/literaturverzeichnis.qmd` beziehungsweise
+`backmatter/en/bibliography.qmd` erzeugt. Die Datei steht in der Kapitelliste
+des jeweiligen Sprachprofils an der gewünschten Position.
 
 ### BibTeX-Einträge anlegen
 
@@ -971,7 +1014,8 @@ beibehalten werden.
 
 ### Literaturverzeichnis
 
-Die Datei `references.qmd` enthält den Platzhalter für alle im Text verwendeten
+Die Datei `backmatter/de/literaturverzeichnis.qmd` beziehungsweise
+`backmatter/en/bibliography.qmd` enthält den Platzhalter für alle im Text verwendeten
 Quellen:
 
 ```markdown
@@ -1114,8 +1158,8 @@ Die Vorlage verwendet folgende Werkzeuge:
 
 - **Visual Studio Code** ist ausschließlich der Editor. Die Arbeit kann auch mit
   jedem anderen UTF-8-fähigen Texteditor bearbeitet werden.
-- **Quarto** liest `_quarto.yml`, verbindet die Kapitel in der festgelegten
-  Reihenfolge und steuert die Konvertierung.
+- **Quarto** liest `_quarto.yml` und das gewählte Sprachprofil, verbindet die
+  Kapitel in der festgelegten Reihenfolge und steuert die Konvertierung.
 - **Pandoc** wandelt Quarto-Markdown in LaTeX um.
 - **Pandoc Citeproc** liest `references.bib`, löst Zitationsschlüssel auf und
   formatiert Zitate sowie das Literaturverzeichnis.
@@ -1136,8 +1180,9 @@ setup.tex
                ▼
 _quarto.yml
       │
-      ├── index.qmd
-      ├── chapters/*.qmd
+      ├── index.qmd (technische Startdatei)
+      ├── chapters/de/*.qmd oder chapters/en/*.qmd
+      ├── frontmatter/ und backmatter/ der gewählten Sprache
       ├── references.bib
       ├── _extensions/FH-Campus-Wien/hcw/
       └── template/preamble.tex
@@ -1160,9 +1205,9 @@ _quarto.yml
 
 Beim Rendern führt die Toolchain sinngemäß diese Aufgaben aus:
 
-1. `scripts/thesis.sh` liest Sprache und Abschlussart aus `setup.tex`.
+1. `scripts/thesis.sh` liest die Arbeitssprache aus `setup.tex`.
 2. Das passende Quarto-Sprachprofil `de` oder `en` aktivieren.
-3. `_quarto.yml` und die Metadaten einlesen.
+3. `_quarto.yml` und die Kapitelliste des aktiven Sprachprofils einlesen.
 4. Alle Kapitel in der angegebenen Reihenfolge zusammenführen.
 5. Markdown, Querverweise und Zitationen verarbeiten.
 6. Ein temporäres LaTeX-Dokument erzeugen.

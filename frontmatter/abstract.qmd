@@ -1,0 +1,4 @@
+# Abstract {#sec-zusammenfassung-zweitsprache .unnumbered}
+
+A simple rule for the abstract: Describe the problem and why it is a problem.
+Then present your solution and explain why it is a solution.

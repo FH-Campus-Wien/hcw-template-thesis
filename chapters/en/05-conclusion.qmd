@@ -1,0 +1,4 @@
+# Conclusions and outlook {#sec-fazit}
+
+Summarize your results, answer the research question, and identify possible
+directions for further work.

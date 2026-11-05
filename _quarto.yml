@@ -2,25 +2,14 @@ project:
   type: book
   output-dir: build
 
+profile:
+  default: de
+
 book:
   title: "English title of the thesis"
   subtitle: "English subtitle"
   output-file: abschlussarbeit
   author: "Vorname Nachname"
-  chapters:
-    - index.qmd
-    - frontmatter/01-kurzfassung.qmd
-    - frontmatter/02-abstract-englisch.qmd
-    - frontmatter/03-abkuerzungsverzeichnis.qmd
-    - frontmatter/04-inhaltsverzeichnis.qmd
-    - chapters/01-einleitung.qmd
-    - chapters/02-grundlagen.qmd
-    - chapters/03-methodik.qmd
-    - chapters/04-ergebnisse.qmd
-    - chapters/05-fazit.qmd
-    - references.qmd
-    - backmatter/ki-werkzeuge.qmd
-    - backmatter/eigenstaendigkeitserklaerung.qmd
 
 bibliography: references.bib
 
