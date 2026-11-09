@@ -92,7 +92,7 @@ Die Grundeinstellungen werden am Anfang von `setup.tex` gewählt:
 ```latex
 \newcommand{\HCWLanguage}{de}    % de oder en
 \newcommand{\HCWThesisLevel}{ba} % ba oder ma
-\newcommand{\HCWTextAlignment}{blocksatz} % blocksatz oder flattersatz
+\newcommand{\HCWTextAlignment}{flattersatz} % Voreinstellung; alternativ blocksatz
 ```
 
 Damit ergeben sich vier unterstützte Varianten:
@@ -160,13 +160,13 @@ Quarto-Arbeit nicht benötigt.
 Der Schalter `HCWTextAlignment` in `setup.tex` steuert die Ausrichtung des
 Fließtexts, unabhängig von Sprache und Abschlussart:
 
-- `blocksatz`: links und rechts bündige Zeilen; das ist die Voreinstellung.
-- `flattersatz`: linksbündige Zeilen mit offenem rechten Rand.
+- `flattersatz`: linksbündige Zeilen mit offenem rechten Rand; das ist die Voreinstellung.
+- `blocksatz`: links und rechts bündige Zeilen.
 
-Für Flattersatz wird die vorhandene Zeile so geändert:
+Für Blocksatz wird die vorhandene Zeile so geändert:
 
 ```latex
-\newcommand{\HCWTextAlignment}{flattersatz}
+\newcommand{\HCWTextAlignment}{blocksatz}
 ```
 
 Die Silbentrennung bleibt auch im Flattersatz möglich. Dafür wird das im

@@ -26,7 +26,7 @@ beziehungsweise Docker Engine (Linux). Unter Windows Linux-Container verwenden.
    ```latex
    \newcommand{\HCWLanguage}{de}             % de oder en
    \newcommand{\HCWThesisLevel}{ba}          % ba oder ma
-   \newcommand{\HCWTextAlignment}{blocksatz} % blocksatz oder flattersatz
+   \newcommand{\HCWTextAlignment}{flattersatz} % Voreinstellung; alternativ blocksatz
    ```
 
    Titel, Name, Studiengang und Betreuung in `_quarto.yml` eintragen.
