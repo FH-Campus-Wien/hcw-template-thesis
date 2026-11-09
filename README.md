@@ -3,6 +3,8 @@
 In Markdown schreiben, mit Docker als PDF bauen. Quarto und LaTeX müssen nicht
 lokal installiert werden.
 
+Vorab-Release: `v0.3.0-alpha.1` – [Änderungen und offene Punkte](internal/docs/CHANGELOG.md).
+
 ## Quick Start
 
 Voraussetzungen: Git, VS Code und gestartetes Docker Desktop (Windows/macOS)

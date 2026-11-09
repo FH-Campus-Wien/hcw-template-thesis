@@ -16,7 +16,7 @@ Die folgenden VS-Code-Tasks sind vorkonfiguriert:
 Ein separater Task zum Erstellen der Umgebung ist nicht mehr erforderlich.
 Beim ersten Start von `PDF erstellen` oder `Vorschau starten` lädt Docker
 automatisch das öffentliche Image
-`ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0`. Dafür ist keine
+`ghcr.io/fh-campus-wien/hcw-document-builder:1.4.0`. Dafür ist keine
 GitHub-Anmeldung notwendig. Danach liegt das Image lokal in Docker und wird bei
 weiteren Starts wiederverwendet.
 
@@ -53,11 +53,11 @@ nicht vorhanden ist. Wer den Download bewusst vor dem ersten Build ausführen
 möchte, verwendet auf allen Betriebssystemen:
 
 ```shell
-docker pull ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0
+docker pull ghcr.io/fh-campus-wien/hcw-document-builder:1.4.0
 ```
 
 Das Image ist öffentlich; `docker login` ist nicht erforderlich. Die konkrete
-Version `1.3.0` ist absichtlich festgelegt, damit alle Studierenden mit
+Version `1.4.0` ist absichtlich festgelegt, damit alle Studierenden mit
 derselben Toolchain arbeiten.
 
 ### Windows PowerShell
@@ -69,7 +69,7 @@ docker run --rm `
   --mount "type=bind,source=$PWD,target=/work" `
   --workdir /work `
   --entrypoint /bin/sh `
-  ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0 `
+  ghcr.io/fh-campus-wien/hcw-document-builder:1.4.0 `
   internal/scripts/thesis.sh render
 ```
 
@@ -82,7 +82,7 @@ docker run --rm --init `
   --workdir /work `
   --publish 127.0.0.1:4242:4242 `
   --entrypoint /bin/sh `
-  ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0 `
+  ghcr.io/fh-campus-wien/hcw-document-builder:1.4.0 `
   internal/scripts/thesis.sh preview --host 0.0.0.0 --port 4242 --no-browser
 ```
 
@@ -91,13 +91,13 @@ docker run --rm --init `
 PDF erstellen:
 
 ```bat
-docker run --rm --mount "type=bind,source=%cd%,target=/work" --workdir /work --entrypoint /bin/sh ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0 internal/scripts/thesis.sh render
+docker run --rm --mount "type=bind,source=%cd%,target=/work" --workdir /work --entrypoint /bin/sh ghcr.io/fh-campus-wien/hcw-document-builder:1.4.0 internal/scripts/thesis.sh render
 ```
 
 Vorschau starten:
 
 ```bat
-docker run --rm --init --name thesis-preview --mount "type=bind,source=%cd%,target=/work" --workdir /work --publish 127.0.0.1:4242:4242 --entrypoint /bin/sh ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0 internal/scripts/thesis.sh preview --host 0.0.0.0 --port 4242 --no-browser
+docker run --rm --init --name thesis-preview --mount "type=bind,source=%cd%,target=/work" --workdir /work --publish 127.0.0.1:4242:4242 --entrypoint /bin/sh ghcr.io/fh-campus-wien/hcw-document-builder:1.4.0 internal/scripts/thesis.sh preview --host 0.0.0.0 --port 4242 --no-browser
 ```
 
 ### macOS und Linux
@@ -109,7 +109,7 @@ docker run --rm \
   --mount "type=bind,source=$PWD,target=/work" \
   --workdir /work \
   --entrypoint /bin/sh \
-  ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0 \
+  ghcr.io/fh-campus-wien/hcw-document-builder:1.4.0 \
   internal/scripts/thesis.sh render
 ```
 
@@ -122,7 +122,7 @@ docker run --rm --init \
   --workdir /work \
   --publish 127.0.0.1:4242:4242 \
   --entrypoint /bin/sh \
-  ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0 \
+  ghcr.io/fh-campus-wien/hcw-document-builder:1.4.0 \
   internal/scripts/thesis.sh preview --host 0.0.0.0 --port 4242 --no-browser
 ```
 

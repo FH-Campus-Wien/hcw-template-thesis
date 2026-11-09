@@ -2,7 +2,31 @@
 
 [← Quick Start und Inhaltsverzeichnis](../../README.md)
 
-Aktueller veröffentlichter Stand: `v0.2.1`
+Aktueller Vorab-Release: `v0.3.0-alpha.1`.
+
+Die V1-Word-Vorgaben sind technisch weitgehend integriert. Dieser Stand ist
+noch kein Release Candidate und keine formale Freigabe durch die Hochschule.
+Die Versionsnummern sind Meilensteine, keine Prozentangaben zum Fortschritt.
+
+## Stand dieses Vorab-Releases
+
+Bereits umgesetzt und technisch geprüft:
+
+- Bachelor/Master und Deutsch/Englisch zentral in `setup.tex` auswählen.
+- Getrennte Sprachdateien, vollständige Struktur für Vor- und Nachspann.
+- Titelseite mit Logo und Linienmotiv sowie Beispiele aus den vier V1-Vorlagen.
+- 12 pt Fließtext, 1,25-facher Zeilenabstand, 8 pt Absatzabstand und
+  abschnittsabhängige Seitenränder entsprechend den V1-Word-Dateien.
+- Flattersatz als Voreinstellung; Blocksatz bleibt wählbar.
+- Aufgeräumte Verzeichnisse, kurzer Quick Start und ausführliche Themenseiten.
+
+Vor `v0.9.0` bleiben insbesondere die verbindlichen Pflichttexte, akademischen
+Bezeichnungen und weitere Gestaltungsdetails abzustimmen. Die vollständigen
+Endanwender-Tests unter Windows und Linux sowie der Test durch eine neue Person
+sind ebenfalls noch offen. Automatisierte Container-Tests auf AMD64 und ARM64
+ersetzen diese Betriebssystem- und Bedienungstests nicht.
+
+Die Änderungen dieses Stands stehen in den [Release Notes](CHANGELOG.md).
 
 Das Thesis-Template erreicht `v1.0.0`, sobald es für eine reale Bachelor- oder
 Masterarbeit ohne grundlegende Änderungen an Aufbau, Bedienung oder
@@ -18,7 +42,7 @@ Struktur als verlässliche Schnittstelle für Studierende und Betreuende.
 - Bachelor- und Masterkonfiguration getrennt prüfen
 - Beispiele und Dokumentation vervollständigen
 
-### `v0.3.0` - Hochschulvorgaben
+### `v0.3.0` - Hochschulvorgaben (in Arbeit)
 
 - endgültige Pflichtbestandteile mit den zuständigen Stellen abstimmen
 - freigegebenen Wortlaut der Eigenständigkeitserklärung übernehmen

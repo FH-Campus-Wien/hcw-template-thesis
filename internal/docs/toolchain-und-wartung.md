@@ -172,7 +172,7 @@ Kapitel.
 Freigegebene Versionen werden als öffentliches Container-Image auf GitHub
 Container Registry veröffentlicht. Dieses Template verwendet bewusst die
 vollständige Version
-`ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0` und nicht `latest`. Ein
+`ghcr.io/fh-campus-wien/hcw-document-builder:1.4.0` und nicht `latest`. Ein
 Update der zentralen Toolchain verändert bestehende Arbeiten daher nicht
 unbemerkt.
 
@@ -194,7 +194,7 @@ fertige Builder-Image herunterzuladen. Danach befinden sich alle Programme und
 Pakete im lokalen Image. `docker run` verwendet diese lokale Kopie und benötigt
 für normale PDF-Builds keine Netzwerkverbindung.
 
-Die Reproduzierbarkeit entsteht durch den fest angegebenen Image-Tag `1.3.0`.
+Die Reproduzierbarkeit entsteht durch den fest angegebenen Image-Tag `1.4.0`.
 Eine neue Quarto-Version oder geänderte LaTeX-Pakete werden zuerst im separaten
 Builder-Repository getestet und als neue Version veröffentlicht. Erst danach
 wird ein Template bewusst auf diese neue Version umgestellt und erneut als PDF

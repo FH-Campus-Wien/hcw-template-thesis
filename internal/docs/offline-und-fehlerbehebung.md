@@ -14,13 +14,13 @@ Ein vorbereitetes Image lässt sich für vollständig offline arbeitende Rechner
 exportieren:
 
 ```shell
-docker save --output hcw-document-builder-1.3.0.tar ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0
+docker save --output hcw-document-builder-1.4.0.tar ghcr.io/fh-campus-wien/hcw-document-builder:1.4.0
 ```
 
 Import auf dem Zielrechner:
 
 ```shell
-docker load --input hcw-document-builder-1.3.0.tar
+docker load --input hcw-document-builder-1.4.0.tar
 ```
 
 Das geladene Image behält seinen vollständigen Namen und Versions-Tag. Die
@@ -45,7 +45,7 @@ Links vom Doppelpunkt einen anderen Port verwenden, beispielsweise
 ### Builder-Image erneut laden
 
 ```shell
-docker pull ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0
+docker pull ghcr.io/fh-campus-wien/hcw-document-builder:1.4.0
 ```
 
 Der Befehl ist normalerweise nicht nötig. Er prüft, ob das gepinnte Image lokal
