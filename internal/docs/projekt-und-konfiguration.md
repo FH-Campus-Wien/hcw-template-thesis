@@ -82,6 +82,39 @@ Diese beiden Dateien enthalten den Text der Danksagung. Die gemeinsame
 Startdatei setzt die Überschrift aus `acknowledgements-title` im jeweiligen
 Sprachprofil darüber.
 
+## Seitenränder und Fließtext nach den V1-Vorlagen
+
+Die vier verbindlichen V1-Word-Vorlagen unter `internal/requirements/`
+verwenden dieselben Einstellungen. Die Titelseite hat ein eigenes Layout;
+für die folgenden Seiten gilt:
+
+| Abschnitt | Oben | Rechts | Unten | Links |
+|---|---:|---:|---:|---:|
+| Vorspann, einschließlich Inhaltsverzeichnis | 25 mm | 25 mm | 20 mm | 25 mm |
+| Haupttext mit nummerierten Kapiteln | 25 mm | 25 mm | 25 mm | 25 mm |
+| Nachspann ab Literaturverzeichnis | 25 mm | 25 mm | 20 mm | 25 mm |
+
+Der normale Fließtext übernimmt die Word-Formatvorlage `Standard`:
+
+- Schriftgröße: 12 pt, weiterhin mit TeX Gyre Heros als freier Schriftalternative.
+- Zeilenabstand: 1,25-fach (`w:spacing`, `line="300"`, `lineRule="auto"`).
+- Absatzabstand danach: 8 pt (`after="160"`); kein Erstzeileneinzug.
+
+Einzelne erste oder letzte Absatzzeilen werden nicht allein auf einer Seite
+platziert.
+
+Kopf- und Fußzeilen liegen außerhalb des Textrandes. Der Randwechsel wird
+automatisch vor den nummerierten Hauptkapiteln und vor den anschließenden
+unnummerierten Nachspannkapiteln gesetzt. Kapitel beginnen ohne zusätzlichen
+Vorabstand am oberen Textrand. Überschriften, Bildbeschriftungen, Tabellen,
+Formeln und Code behalten ihre jeweiligen gesonderten Formatierungen.
+
+Die Schriftgröße wird nur für die Thesis in `_quarto.yml` überschrieben.
+Satzspiegel und Abstände stehen in `internal/latex/preamble.tex`; die
+Abschnittswechsel setzt `internal/scripts/thesis-setup.lua`. Diese Werte sind
+thesis-spezifisch und verändern das gemeinsame HCW-Format anderer Templates
+nicht. Die Titelseite bleibt von den Fließtexteinstellungen ausgenommen.
+
 ## Titelseite für Bachelor- und Masterarbeiten
 
 Die Titelseite folgt den offiziellen Word-Vorlagen für Bachelor- und

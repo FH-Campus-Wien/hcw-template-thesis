@@ -29,6 +29,7 @@ supervisors:
 format:
   hcw-pdf:
     documentclass: scrreprt
+    fontsize: 12pt
     number-sections: true
     toc: false
     lof: false

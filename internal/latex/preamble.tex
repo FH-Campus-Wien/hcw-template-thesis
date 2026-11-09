@@ -4,7 +4,37 @@
 \usepackage{scrlayer-scrpage}
 \usepackage{ragged2e}
 
-\onehalfspacing
+% Die Satzspiegel der vier V1-Word-Vorlagen sind abschnittsabhängig.
+% Kopf- und Fußzeilen liegen außerhalb der hier definierten Textränder.
+\newcommand{\HCWTextArea}[2]{%
+  \newgeometry{%
+    top=25mm,bottom=#1,left=25mm,right=25mm,%
+    includehead=false,includefoot=false,%
+    headheight=18pt,headsep=\dimexpr 12.5mm-18pt\relax,%
+    footskip=#2%
+  }%
+}
+\newcommand{\HCWFrontMatterLayout}{\HCWTextArea{20mm}{7.5mm}}
+\newcommand{\HCWMainMatterLayout}{\HCWTextArea{25mm}{12.5mm}}
+\newcommand{\HCWBackMatterLayout}{\HCWTextArea{20mm}{7.5mm}}
+
+\newcommand{\HCWBodyTypography}{%
+  % Word: Standard, line=300/240 (1,25-fach), after=160/20 (8 pt).
+  \setstretch{1.25}%
+  \KOMAoptions{parskip=false}%
+  \setlength{\parindent}{0pt}%
+  \setlength{\parskip}{8pt}%
+  \clubpenalty=10000%
+  \widowpenalty=10000%
+  \displaywidowpenalty=10000%
+}
+% Vor Dokumentbeginn setzen, damit auch KOMA-Schriftgrößen den richtigen
+% Grundlinienabstand übernehmen. Das Titelblatt überschreibt dies lokal.
+\HCWBodyTypography
+
+% Kapitel beginnen am oberen Textrand, ohne KOMA-Vorabstand.
+\RedeclareSectionCommand[beforeskip=0pt,afterskip=8pt]{chapter}
+
 \AtBeginDocument{%
   \ifHCWJustified
     \justifying

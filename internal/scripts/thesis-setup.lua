@@ -1,4 +1,6 @@
 local setup_path = "setup.tex"
+local main_matter_started = false
+local text_layout = "front"
 
 local handle = io.open(setup_path, "r")
 if not handle then
@@ -35,4 +37,30 @@ function Meta(meta)
   meta["hcw-language"] = pandoc.MetaString(language)
   meta["hcw-thesis-level"] = pandoc.MetaString(level)
   return meta
+end
+
+-- Nummerierte Kapitel gehören zum Haupttext, nachfolgende unnummerierte
+-- Kapitel zum Nachspann. Dadurch bleibt der Randwechsel unabhängig von
+-- Dateinamen und bearbeitbaren Kapitelüberschriften.
+function Header(header)
+  if not quarto.doc.is_format("pdf") or header.level ~= 1 then
+    return nil
+  end
+
+  local unnumbered = header.classes:includes("unnumbered")
+  local next_layout = text_layout
+  if not unnumbered then
+    main_matter_started = true
+    next_layout = "main"
+  elseif main_matter_started then
+    next_layout = "back"
+  end
+
+  if next_layout == text_layout then
+    return nil
+  end
+
+  text_layout = next_layout
+  local command = next_layout == "main" and "\\HCWMainMatterLayout" or "\\HCWBackMatterLayout"
+  return { pandoc.RawBlock("latex", command), header }
 end

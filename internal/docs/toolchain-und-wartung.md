@@ -60,7 +60,8 @@ Das gemeinsame Format liefert derzeit:
 - gemeinsame Kopfzeilen- und PDF-Grundeinstellungen
 
 Thesis-spezifisch bleiben `scrreprt`, Kapitelstruktur, Verzeichnisse,
-eineinhalbfacher Zeilenabstand, die für Abschlussarbeiten angepasste Kopfzeile
+12 pt Fließtext mit 1,25-fachem Zeilenabstand und abschnittsabhängigen Rändern,
+die für Abschlussarbeiten angepasste Kopfzeile
 und die offizielle BA-/MA-Titelseite. `internal/latex/title.tex` überschreibt deshalb
 nur in diesem Repository die allgemeine Titelseite des gemeinsamen Formats.
 Diese Ergänzungen stehen in `_quarto.yml` und unter `internal/latex/`. Damit bleibt

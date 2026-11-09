@@ -12,6 +12,10 @@ $if(title)$
 \renewcommand{\maketitle}{%
   \begin{titlepage}
     \thispagestyle{empty}
+    % Bisherigen Titelsatz unabhängig von der neuen Fließtextgröße erhalten.
+    \setstretch{1.213}
+    \fontsize{10.95}{13.6}\selectfont
+    \setlength{\parskip}{8.24838pt plus 8.24838pt}
     \sffamily
     \raggedright
 
@@ -99,6 +103,8 @@ $if(title)$
 
     \null
   \end{titlepage}
+  \HCWBodyTypography
+  \HCWFrontMatterLayout
   \pagenumbering{roman}
 }
 \makeatother
