@@ -2,7 +2,7 @@
 
 set -eu
 
-version_file="hcw-format-version.txt"
+version_file="internal/hcw-format-version.txt"
 extension_id="FH-Campus-Wien/hcw"
 extension_source="FH-Campus-Wien/hcw-quarto-format"
 extension_dir="_extensions/FH-Campus-Wien/hcw"

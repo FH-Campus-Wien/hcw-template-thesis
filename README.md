@@ -18,7 +18,7 @@ thesis-spezifisch. Das Format wird beim Schreiben weder aus GitHub nachgeladen
 noch automatisch aktualisiert.
 
 Die geplanten Schritte bis zur stabilen Version `v1.0.0` stehen in der
-[Roadmap](ROADMAP.md).
+[Roadmap](internal/docs/ROADMAP.md).
 
 ## Voraussetzungen
 
@@ -160,7 +160,7 @@ docker run --rm `
   --workdir /work `
   --entrypoint /bin/sh `
   ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0 `
-  scripts/thesis.sh render
+  internal/scripts/thesis.sh render
 ```
 
 Vorschau starten:
@@ -173,7 +173,7 @@ docker run --rm --init `
   --publish 127.0.0.1:4242:4242 `
   --entrypoint /bin/sh `
   ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0 `
-  scripts/thesis.sh preview --host 0.0.0.0 --port 4242 --no-browser
+  internal/scripts/thesis.sh preview --host 0.0.0.0 --port 4242 --no-browser
 ```
 
 ### Windows-Eingabeaufforderung (cmd.exe)
@@ -181,13 +181,13 @@ docker run --rm --init `
 PDF erstellen:
 
 ```bat
-docker run --rm --mount "type=bind,source=%cd%,target=/work" --workdir /work --entrypoint /bin/sh ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0 scripts/thesis.sh render
+docker run --rm --mount "type=bind,source=%cd%,target=/work" --workdir /work --entrypoint /bin/sh ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0 internal/scripts/thesis.sh render
 ```
 
 Vorschau starten:
 
 ```bat
-docker run --rm --init --name thesis-preview --mount "type=bind,source=%cd%,target=/work" --workdir /work --publish 127.0.0.1:4242:4242 --entrypoint /bin/sh ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0 scripts/thesis.sh preview --host 0.0.0.0 --port 4242 --no-browser
+docker run --rm --init --name thesis-preview --mount "type=bind,source=%cd%,target=/work" --workdir /work --publish 127.0.0.1:4242:4242 --entrypoint /bin/sh ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0 internal/scripts/thesis.sh preview --host 0.0.0.0 --port 4242 --no-browser
 ```
 
 ### macOS und Linux
@@ -200,7 +200,7 @@ docker run --rm \
   --workdir /work \
   --entrypoint /bin/sh \
   ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0 \
-  scripts/thesis.sh render
+  internal/scripts/thesis.sh render
 ```
 
 Vorschau starten:
@@ -213,7 +213,7 @@ docker run --rm --init \
   --publish 127.0.0.1:4242:4242 \
   --entrypoint /bin/sh \
   ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0 \
-  scripts/thesis.sh preview --host 0.0.0.0 --port 4242 --no-browser
+  internal/scripts/thesis.sh preview --host 0.0.0.0 --port 4242 --no-browser
 ```
 
 Die Vorschau wird mit `Ctrl+C` beendet. Falls das aktuelle Terminal keine
@@ -273,59 +273,78 @@ gelöscht.
 
 ## Projekt bearbeiten
 
+Die Arbeitsdateien und die interne Technik sind bewusst getrennt. Zum Schreiben
+werden hauptsächlich `content/`, `setup.tex` und die persönlichen Angaben in
+`_quarto.yml` benötigt. Die Dateien unter `internal/` werden normalerweise
+nicht bearbeitet; einige davon werden aber bei jedem Build benötigt und dürfen
+deshalb nicht gelöscht werden.
+
 ```text
-setup.tex         Sprache, Bachelor/Master und Flattersatz/Blocksatz
-_quarto.yml       gemeinsame Titelseitenangaben und PDF-Einstellungen
-_quarto-de.yml    deutsche Kapiteldateien und Reihenfolge
-_quarto-en.yml    englische Kapiteldateien und Reihenfolge
-index.qmd         technische Startdatei des Quarto-Buchs
-chapters/
-├── de/           ausschließlich deutsche Kapitel
-└── en/           ausschließlich englische Kapitel
-frontmatter/
-├── de/           Danksagung, Abkürzungen und Inhaltsverzeichnis auf Deutsch
-├── en/           Acknowledgements, abbreviations und contents auf Englisch
-├── kurzfassung.qmd
-└── abstract.qmd  beide Zusammenfassungen gehören in jede Variante
-backmatter/
-├── de/           Literaturverzeichnis, KI-Dokumentation und Erklärung
-└── en/           Bibliography, AI documentation und declaration
-references.bib    gemeinsame Literaturdatenbank im BibTeX-Format
-images/           Abbildungen
-_extensions/
-└── FH-Campus-Wien/hcw/
-                   lokale Kopie des gemeinsamen HCW-Formats
-hcw-format-version.txt
-                   übernommener Release-Tag des HCW-Formats
-ROADMAP.md         geplante Schritte bis zum stabilen Template v1.0.0
-template/
-├── title.tex      thesis-spezifische Titelseite
-├── preamble.tex   thesis-spezifische LaTeX-Ergänzungen
-└── assets/        Hintergrund der Titelseite
-requirements/      offizielle BA-/MA-Referenzen für Deutsch und Englisch
-scripts/           Werkzeuge für Vorlagenbetreuer:innen
-build/            erzeugte PDF und weitere Ausgaben
+hcw-template-thesis/
+├── README.md
+├── setup.tex                   Sprache, Abschlussart und Textausrichtung
+├── content/                    eigene Inhalte
+│   ├── chapters/
+│   │   ├── de/                 deutsche Kapitel
+│   │   └── en/                 englische Kapitel
+│   ├── frontmatter/
+│   │   ├── de/                 deutscher Vorspann
+│   │   ├── en/                 englischer Vorspann
+│   │   ├── kurzfassung.qmd     deutsche Zusammenfassung
+│   │   └── abstract.qmd        englische Zusammenfassung
+│   ├── backmatter/
+│   │   ├── de/                 deutscher Nachspann
+│   │   └── en/                 englischer Nachspann
+│   ├── images/                 Abbildungen beider Sprachfassungen
+│   └── references.bib          gemeinsame BibTeX-Literaturdatenbank
+├── internal/                   interne Technik und Referenzen
+│   ├── README.md               Überblick für Vorlagenbetreuer:innen
+│   ├── scripts/                Build, Vorschau und Wartungswerkzeuge
+│   ├── latex/                  Titelseite, Präambel und Hintergrundbild
+│   ├── requirements/           offizielle Word-Referenzvorlagen
+│   ├── docs/ROADMAP.md          Schritte bis zum stabilen Template v1.0.0
+│   └── hcw-format-version.txt  übernommener Release-Tag des HCW-Formats
+├── build/                      erzeugte PDF und weitere Ausgaben
+├── _quarto.yml                 Titelseitenangaben und PDF-Einstellungen
+├── _quarto-de.yml              deutsche Kapiteldateien und Reihenfolge
+├── _quarto-en.yml              englische Kapiteldateien und Reihenfolge
+├── index.qmd                   technische Startdatei des Quarto-Buchs
+├── _extensions/                lokale Kopie des gemeinsamen HCW-Formats
+├── .vscode/                    Editor-Einstellungen und Docker-Tasks
+├── .gitattributes              einheitliche Zeilenenden für Git
+└── .gitignore                  nicht zu versionierende generierte Dateien
 ```
+
+Die Quarto-Konfigurationen, `index.qmd` und `_extensions/` bleiben an den
+vorgesehenen Stellen im Projektstamm. Der versteckte Ordner `.quarto/` wird von
+Quarto automatisch als Arbeitsverzeichnis angelegt; `build/` enthält die
+fertigen Ausgaben. Beide gehören nicht in Git.
+
+`.gitattributes` bleibt ebenfalls im Projektstamm: Sie sorgt insbesondere
+dafür, dass Shell-Skripte auch nach einem Checkout unter Windows die für den
+Linux-Container passenden `LF`-Zeilenenden haben. `.gitignore` hat eine andere
+Aufgabe: Sie hält zum Beispiel generierte PDFs und Quarto-Zwischendateien aus
+der Versionsverwaltung heraus.
 
 Bearbeiten Sie ausschließlich die Dateien Ihrer Arbeitssprache:
 
 | Auswahl in `setup.tex` | Kapitel bearbeiten | Vorspann und Nachspann |
 |---|---|---|
-| `\HCWLanguage` = `de` | `chapters/de/` | `frontmatter/de/` und `backmatter/de/` |
-| `\HCWLanguage` = `en` | `chapters/en/` | `frontmatter/en/` und `backmatter/en/` |
+| `\HCWLanguage` = `de` | `content/chapters/de/` | `content/frontmatter/de/` und `content/backmatter/de/` |
+| `\HCWLanguage` = `en` | `content/chapters/en/` | `content/frontmatter/en/` und `content/backmatter/en/` |
 
 Jede Kapiteldatei enthält nur eine Sprache. Überschriften, Erläuterungen und
 Bildunterschriften werden direkt in dieser Datei bearbeitet. Die jeweils
 andere Sprachfassung muss für eine eigene Arbeit nicht mitgepflegt werden.
-Gemeinsam bleiben die Bilder unter `images/`, die Literaturdatenbank und die
-zwei ausdrücklich vorgeschriebenen Zusammenfassungen: `frontmatter/kurzfassung.qmd`
-und `frontmatter/abstract.qmd`.
+Gemeinsam bleiben die Bilder unter `content/images/`, die Literaturdatenbank und die
+zwei ausdrücklich vorgeschriebenen Zusammenfassungen: `content/frontmatter/kurzfassung.qmd`
+und `content/frontmatter/abstract.qmd`.
 
 Neue Kapitel werden in der Kapitelliste `book.chapters` des passenden Profils
 `_quarto-de.yml` beziehungsweise `_quarto-en.yml` eingetragen. `index.qmd` im
 Projektstamm bleibt als technische Startdatei bestehen; die Danksagung steht
-in `frontmatter/de/danksagung.qmd` beziehungsweise
-`frontmatter/en/acknowledgements.qmd`.
+in `content/frontmatter/de/danksagung.qmd` beziehungsweise
+`content/frontmatter/en/acknowledgements.qmd`.
 Diese beiden Dateien enthalten den Text der Danksagung. Die gemeinsame
 Startdatei setzt die Überschrift aus `acknowledgements-title` im jeweiligen
 Sprachprofil darüber.
@@ -397,9 +416,9 @@ Die Spracheinstellung lädt die Dateien des gewählten Sprachordners. Eigene
 andere Fassung geladen und keine automatische Übersetzung erzeugt.
 
 Das Hintergrundbild liegt ausschließlich in diesem Thesis-Template unter
-`template/assets/hcw-thesis-title-background.jpg`. Es enthält bereits das Logo
+`internal/latex/assets/hcw-thesis-title-background.jpg`. Es enthält bereits das Logo
 und das Linienmotiv und wird nur auf der Titelseite eingesetzt. Die vier
-V1-Word-Vorlagen unter `requirements/` sind die verbindlichen Referenzen für
+V1-Word-Vorlagen unter `internal/requirements/` sind die verbindlichen Referenzen für
 Deutsch/Englisch und Bachelor/Master. Sie werden zum Schreiben der
 Quarto-Arbeit nicht benötigt.
 
@@ -436,10 +455,10 @@ dieselben Beispiele mit der passenden Titelseite und Abschlussbezeichnung.
 
 | Datei | Beispiele |
 |---|---|
-| `chapters/de/03-methodik.qmd` oder `chapters/en/03-methodology.qmd` | Fourier-Transformation und inverse Transformation, lineares Gleichungssystem, ausgerichtete Spannungsgleichungen, Logarithmusreihe mit Summen und Brüchen |
-| `chapters/de/04-ergebnisse.qmd` oder `chapters/en/04-results.qmd` | Magnetron-Sputtern, kleines Grafikbeispiel, zwei Teilabbildungen, Cosinussignal mit Periodendauer, Kontrastvergleich sowie Tabellen und Querformat |
-| `images/v1/` | neun gemeinsam verwendete Bilddateien aus den vier Referenzen |
-| `references.bib` | die fünf Quellen der übernommenen V1-Beispiele |
+| `content/chapters/de/03-methodik.qmd` oder `content/chapters/en/03-methodology.qmd` | Fourier-Transformation und inverse Transformation, lineares Gleichungssystem, ausgerichtete Spannungsgleichungen, Logarithmusreihe mit Summen und Brüchen |
+| `content/chapters/de/04-ergebnisse.qmd` oder `content/chapters/en/04-results.qmd` | Magnetron-Sputtern, kleines Grafikbeispiel, zwei Teilabbildungen, Cosinussignal mit Periodendauer, Kontrastvergleich sowie Tabellen und Querformat |
+| `content/images/v1/` | neun gemeinsam verwendete Bilddateien aus den vier Referenzen |
+| `content/references.bib` | die fünf Quellen der übernommenen V1-Beispiele |
 
 Die Formeln bleiben editierbarer LaTeX-Mathematikcode. Zusammengehörende
 Gleichungen werden mit `aligned` am Gleichheitszeichen ausgerichtet und hier
@@ -456,13 +475,13 @@ Querformatseite. Die ursprünglichen Beschriftungen innerhalb der Grafiken
 bleiben erhalten; Bildunterschriften und begleitende Erklärungen sind
 zweisprachig.
 
-Herkunft und Prüfsummen sind unter `images/v1/README.md` und
-`images/v1/manifest.json` dokumentiert. Das dort beschriebene
-`scripts/import-v1-images.py` ist ein optionales Werkzeug für
+Herkunft und Prüfsummen sind unter `content/images/v1/README.md` und
+`content/images/v1/manifest.json` dokumentiert. Das dort beschriebene
+`internal/scripts/import-v1-images.py` ist ein optionales Werkzeug für
 Vorlagenbetreuer:innen; für das Schreiben ist keine Extraktion erforderlich.
 
 Die deutschen und englischen Erklärungen stehen in getrennten Dateien unter
-`chapters/de/` und `chapters/en/`. Formeln und Bildunterschriften werden in der
+`content/chapters/de/` und `content/chapters/en/`. Formeln und Bildunterschriften werden in der
 jeweiligen Kapiteldatei bearbeitet; die eingebundenen Bilddateien werden
 gemeinsam genutzt. Die Profile legen die Sprache, die zugehörige Kapitelliste
 und die Überschrift der Danksagung fest. Labels wie `eq-fourier-transformation` stimmen in den beiden
@@ -488,17 +507,17 @@ eingebundene LaTeX-Umgebung `landscape`.
 Nach der Titelseite folgt dieselbe Grundreihenfolge wie in den
 Referenzvorlagen. In der deutschen Variante lautet sie:
 
-1. `frontmatter/de/danksagung.qmd`: Danksagung
-2. `frontmatter/kurzfassung.qmd`: deutsche Kurzfassung
-3. `frontmatter/abstract.qmd`: englischer Abstract
-4. `frontmatter/de/abkuerzungsverzeichnis.qmd`: optionales
+1. `content/frontmatter/de/danksagung.qmd`: Danksagung
+2. `content/frontmatter/kurzfassung.qmd`: deutsche Kurzfassung
+3. `content/frontmatter/abstract.qmd`: englischer Abstract
+4. `content/frontmatter/de/abkuerzungsverzeichnis.qmd`: optionales
    Abkürzungsverzeichnis
-5. `frontmatter/de/inhaltsverzeichnis.qmd`: Inhaltsverzeichnis
+5. `content/frontmatter/de/inhaltsverzeichnis.qmd`: Inhaltsverzeichnis
 
 In der englischen Variante werden `Acknowledgements` und `Abstract` zuerst
 ausgegeben; danach folgen die deutsche `Kurzfassung`, `List of Abbreviations`
 und `Table of Contents`. Die englischen Dateien liegen unter
-`frontmatter/en/`; Kurzfassung und Abstract werden von beiden Varianten
+`content/frontmatter/en/`; Kurzfassung und Abstract werden von beiden Varianten
 verwendet und müssen jeweils nur einmal geschrieben werden.
 
 Für Kurzfassung und Abstract gilt bewusst eine einfache, saloppe Merkhilfe:
@@ -516,8 +535,8 @@ Anpassung der geforderten Hochschulstruktur verschoben oder entfernt werden.
 Die Eigenständigkeitserklärung gehört nicht in den Vorspann. Die
 HCW-Prüfungsordnung nennt sie für Bachelor- und Masterarbeiten nach dem
 Quellenverzeichnis als letzten verpflichtenden Bestandteil. Sie liegt daher
-unter `backmatter/de/eigenstaendigkeitserklaerung.qmd` beziehungsweise
-`backmatter/en/declaration.qmd` und steht am Ende der jeweiligen Kapitelliste.
+unter `content/backmatter/de/eigenstaendigkeitserklaerung.qmd` beziehungsweise
+`content/backmatter/en/declaration.qmd` und steht am Ende der jeweiligen Kapitelliste.
 Ein allfälliger Anhang wird ebenfalls vor der Eigenständigkeitserklärung eingereiht.
 
 ### Dokumentation eingesetzter KI-Werkzeuge
@@ -525,7 +544,7 @@ Ein allfälliger Anhang wird ebenfalls vor der Eigenständigkeitserklärung eing
 Die Nutzung von KI-Werkzeugen ist kein Bestandteil des Vorspanns und keine
 Gestaltungsregel des gemeinsamen Quarto-Formats. Sie wird als inhaltlicher
 Bestandteil der jeweiligen Arbeit unter
-`backmatter/de/ki-werkzeuge.qmd` beziehungsweise `backmatter/en/ai-tools.qmd`
+`content/backmatter/de/ki-werkzeuge.qmd` beziehungsweise `content/backmatter/en/ai-tools.qmd`
 dokumentiert. Im Thesis-Template steht diese
 Übersicht nach dem Literaturverzeichnis und vor der abschließenden
 Eigenständigkeitserklärung:
@@ -564,8 +583,8 @@ format:
 
 `toc: false` deaktiviert nur Quartos automatische Platzierung direkt nach der
 Titelseite. Das Inhaltsverzeichnis selbst wird bewusst später über
-`frontmatter/de/inhaltsverzeichnis.qmd` beziehungsweise
-`frontmatter/en/table-of-contents.qmd` eingefügt, damit zuvor Danksagung,
+`content/frontmatter/de/inhaltsverzeichnis.qmd` beziehungsweise
+`content/frontmatter/en/table-of-contents.qmd` eingefügt, damit zuvor Danksagung,
 Kurzfassung und englischer Abstract erscheinen.
 
 Die zentrale Quelle ist das öffentliche Repository
@@ -584,9 +603,9 @@ Das gemeinsame Format liefert derzeit:
 
 Thesis-spezifisch bleiben `scrreprt`, Kapitelstruktur, Verzeichnisse,
 eineinhalbfacher Zeilenabstand, die für Abschlussarbeiten angepasste Kopfzeile
-und die offizielle BA-/MA-Titelseite. `template/title.tex` überschreibt deshalb
+und die offizielle BA-/MA-Titelseite. `internal/latex/title.tex` überschreibt deshalb
 nur in diesem Repository die allgemeine Titelseite des gemeinsamen Formats.
-Diese Ergänzungen stehen in `_quarto.yml` und unter `template/`. Damit bleibt
+Diese Ergänzungen stehen in `_quarto.yml` und unter `internal/latex/`. Damit bleibt
 die Trennung klar: allgemeines Hochschuldesign im Format-Repository,
 inhaltsspezifische Regeln im Thesis-Template.
 
@@ -658,7 +677,7 @@ Auch ein erzwungener Seitenumbruch kann so geschrieben werden:
 
 Zusätzliche Pakete werden nicht in einer `.qmd`-Datei und nicht unter
 `_extensions/` eingetragen. Thesis-spezifische Pakete gehören in
-`template/preamble.tex`:
+`internal/latex/preamble.tex`:
 
 ```latex
 \usepackage{pdflscape}
@@ -812,8 +831,8 @@ $$ {#eq-fourier-approximation}
 
 Diese zusätzlichen Syntaxbeispiele ergänzen die Formeln aus den offiziellen
 V1-Vorlagen. Deren gerenderte Beispiele mit deutschen und englischen
-Erklärungen stehen in `chapters/de/03-methodik.qmd` beziehungsweise
-`chapters/en/03-methodology.qmd`.
+Erklärungen stehen in `content/chapters/de/03-methodik.qmd` beziehungsweise
+`content/chapters/en/03-methodology.qmd`.
 
 ### Tabellen
 
@@ -843,7 +862,7 @@ erstellt werden. Für normale Datentabellen sollte Markdown bevorzugt werden.
 
 ### Bilder und Abbildungen
 
-Bilder werden im Verzeichnis `images/` gespeichert. Unterstützt werden unter
+Bilder werden im Verzeichnis `content/images/` gespeichert. Unterstützt werden unter
 anderem PNG, JPEG und PDF. Für Fotos und Rastergrafiken eignet sich PNG oder
 JPEG; Diagramme und andere Vektorgrafiken sollten nach Möglichkeit als PDF
 eingebunden werden.
@@ -851,11 +870,11 @@ eingebunden werden.
 Vom Projektstamm wird ein Bild so eingebunden:
 
 ```markdown
-![Generisches Microcontroller-Entwicklungsboard](images/microcontroller.png){#fig-microcontroller width=75% fig-alt="Grüne Leiterplatte mit einem zentralen Microcontroller und elektronischen Bauteilen"}
+![Generisches Microcontroller-Entwicklungsboard](content/images/microcontroller.png){#fig-microcontroller width=75% fig-alt="Grüne Leiterplatte mit einem zentralen Microcontroller und elektronischen Bauteilen"}
 ```
 
-Aus einer Datei in `chapters/de/` oder `chapters/en/` führt der relative Pfad
-zwei Ebenen nach oben:
+Aus einer Datei in `content/chapters/de/` oder `content/chapters/en/` führt der
+relative Pfad zwei Ebenen nach oben nach `content/` und von dort nach `images/`:
 
 ```markdown
 ![Generisches Microcontroller-Entwicklungsboard](../../images/microcontroller.png){#fig-microcontroller width=75% fig-alt="Grüne Leiterplatte mit einem zentralen Microcontroller und elektronischen Bauteilen"}
@@ -875,10 +894,10 @@ Im Text kann anschließend automatisch auf die Abbildung verwiesen werden:
 Der verwendete Aufbau ist in @fig-microcontroller dargestellt.
 ```
 
-Das zusätzliche Beispielbild liegt unter `images/microcontroller.png` und
+Das zusätzliche Beispielbild liegt unter `content/images/microcontroller.png` und
 kann mit dem gezeigten Code eingebunden werden. Die tatsächlich gerenderten
-V1-Bildbeispiele in `chapters/de/04-ergebnisse.qmd` und
-`chapters/en/04-results.qmd` verwenden `images/v1/`.
+V1-Bildbeispiele in `content/chapters/de/04-ergebnisse.qmd` und
+`content/chapters/en/04-results.qmd` verwenden `content/images/v1/`.
 Bilddateien sollten aussagekräftige Namen ohne Leerzeichen besitzen. Groß-
 und Kleinschreibung muss mit dem Pfad im Markdown exakt übereinstimmen.
 
@@ -935,19 +954,19 @@ Position.
 
 ## Literatur und Zitate mit BibTeX
 
-Alle Literaturangaben werden zentral in `references.bib` gespeichert. Die Datei
+Alle Literaturangaben werden zentral in `content/references.bib` gespeichert. Die Datei
 verwendet das BibTeX-Format und kann manuell bearbeitet oder aus einer
 Literaturverwaltung wie Zotero exportiert werden.
 
 Die Datei ist in `_quarto.yml` eingebunden:
 
 ```yaml
-bibliography: references.bib
+bibliography: content/references.bib
 ```
 
 Das Literaturverzeichnis wird automatisch in
-`backmatter/de/literaturverzeichnis.qmd` beziehungsweise
-`backmatter/en/bibliography.qmd` erzeugt. Die Datei steht in der Kapitelliste
+`content/backmatter/de/literaturverzeichnis.qmd` beziehungsweise
+`content/backmatter/en/bibliography.qmd` erzeugt. Die Datei steht in der Kapitelliste
 des jeweiligen Sprachprofils an der gewünschten Position.
 
 ### BibTeX-Einträge anlegen
@@ -1032,13 +1051,13 @@ Mustermann [-@mustermann2025] beschreibt diese Methode ausführlich.
 ```
 
 Der Zitationsschlüssel nach `@` muss exakt mit dem Schlüssel in
-`references.bib` übereinstimmen. Groß- und Kleinschreibung sollte ebenfalls
+`content/references.bib` übereinstimmen. Groß- und Kleinschreibung sollte ebenfalls
 beibehalten werden.
 
 ### Literaturverzeichnis
 
-Die Datei `backmatter/de/literaturverzeichnis.qmd` beziehungsweise
-`backmatter/en/bibliography.qmd` enthält den Platzhalter für alle im Text verwendeten
+Die Datei `content/backmatter/de/literaturverzeichnis.qmd` beziehungsweise
+`content/backmatter/en/bibliography.qmd` enthält den Platzhalter für alle im Text verwendeten
 Quellen:
 
 ```markdown
@@ -1059,7 +1078,7 @@ nocite: |
 ---
 ```
 
-Mit `@*` werden alle Einträge aus `references.bib` aufgenommen:
+Mit `@*` werden alle Einträge aus `content/references.bib` aufgenommen:
 
 ```yaml
 ---
@@ -1070,7 +1089,7 @@ nocite: |
 
 ### Verarbeitung und Zitierstil
 
-`references.bib` ist eine normale BibTeX-Datei. Die Zitate werden in dieser
+`content/references.bib` ist eine normale BibTeX-Datei. Die Zitate werden in dieser
 Vorlage von Pandoc Citeproc verarbeitet; Studierende müssen `bibtex` oder
 `biber` nicht selbst aufrufen. Die komplette Verarbeitung erfolgt beim normalen
 Docker-Build.
@@ -1079,7 +1098,7 @@ Ein verbindlicher Zitierstil kann später als CSL-Datei in das Projekt gelegt
 und in `_quarto.yml` aktiviert werden:
 
 ```yaml
-bibliography: references.bib
+bibliography: content/references.bib
 csl: citation-style.csl
 ```
 
@@ -1089,7 +1108,7 @@ Ohne CSL-Datei verwendet Quarto den voreingestellten Zitierstil.
 
 In Zotero können ausgewählte Quellen oder eine ganze Sammlung über
 **Exportieren → BibTeX** ausgegeben werden. Die exportierte Datei wird als
-`references.bib` im Projekt gespeichert. Bereits vorhandene manuelle Einträge
+`content/references.bib` im Projekt gespeichert. Bereits vorhandene manuelle Einträge
 sollten vor dem Ersetzen gesichert oder in Zotero übernommen werden.
 
 Nach Änderungen wird die PDF wie gewohnt mit `Ctrl+Shift+B` in VS Code oder mit
@@ -1097,13 +1116,13 @@ dem dokumentierten `docker run`-Befehl neu erstellt.
 
 ### Häufige Fehler
 
-- `citeproc: citation ... not found`: Der Schlüssel fehlt in `references.bib`
+- `citeproc: citation ... not found`: Der Schlüssel fehlt in `content/references.bib`
   oder ist anders geschrieben.
 - Eine Quelle fehlt im Literaturverzeichnis: Sie wurde nicht zitiert und nicht
   über `nocite` aufgenommen.
 - Namen werden falsch dargestellt: Personen mit `and` trennen; Institutionen
   in doppelte geschweifte Klammern setzen.
-- Sonderzeichen sind beschädigt: `references.bib` als UTF-8 speichern.
+- Sonderzeichen sind beschädigt: `content/references.bib` als UTF-8 speichern.
 - Änderungen erscheinen nicht: PDF erneut bauen und die Ausgabe im Ordner
   `build/` kontrollieren.
 
@@ -1184,7 +1203,7 @@ Die Vorlage verwendet folgende Werkzeuge:
 - **Quarto** liest `_quarto.yml` und das gewählte Sprachprofil, verbindet die
   Kapitel in der festgelegten Reihenfolge und steuert die Konvertierung.
 - **Pandoc** wandelt Quarto-Markdown in LaTeX um.
-- **Pandoc Citeproc** liest `references.bib`, löst Zitationsschlüssel auf und
+- **Pandoc Citeproc** liest `content/references.bib`, löst Zitationsschlüssel auf und
   formatiert Zitate sowie das Literaturverzeichnis.
 - **LaTeX** übernimmt den professionellen Textsatz, darunter Seitenaufteilung,
   Überschriften, Verzeichnisse, Tabellen und Formeln.
@@ -1197,18 +1216,18 @@ Die Vorlage verwendet folgende Werkzeuge:
 ```text
 setup.tex
       │
-      ├── scripts/thesis.sh
+      ├── internal/scripts/thesis.sh
       └── _quarto-de.yml oder _quarto-en.yml
                │
                ▼
 _quarto.yml
       │
       ├── index.qmd (technische Startdatei)
-      ├── chapters/de/*.qmd oder chapters/en/*.qmd
-      ├── frontmatter/ und backmatter/ der gewählten Sprache
-      ├── references.bib
+      ├── content/chapters/de/*.qmd oder content/chapters/en/*.qmd
+      ├── content/frontmatter/ und content/backmatter/ der gewählten Sprache
+      ├── content/references.bib
       ├── _extensions/FH-Campus-Wien/hcw/
-      └── template/preamble.tex
+      └── internal/latex/preamble.tex
                │
                ▼
              Quarto
@@ -1228,13 +1247,13 @@ _quarto.yml
 
 Beim Rendern führt die Toolchain sinngemäß diese Aufgaben aus:
 
-1. `scripts/thesis.sh` liest die Arbeitssprache aus `setup.tex`.
+1. `internal/scripts/thesis.sh` liest die Arbeitssprache aus `setup.tex`.
 2. Das passende Quarto-Sprachprofil `de` oder `en` aktivieren.
 3. `_quarto.yml` und die Kapitelliste des aktiven Sprachprofils einlesen.
 4. Alle Kapitel in der angegebenen Reihenfolge zusammenführen.
 5. Markdown, Querverweise und Zitationen verarbeiten.
 6. Ein temporäres LaTeX-Dokument erzeugen.
-7. Gemeinsames HCW-Format, `setup.tex` und `template/preamble.tex` einbinden.
+7. Gemeinsames HCW-Format, `setup.tex` und `internal/latex/preamble.tex` einbinden.
 8. LuaLaTeX so oft ausführen, wie es für Verzeichnisse und Referenzen nötig ist.
 9. Die fertige PDF im Verzeichnis `build/` ablegen.
 
@@ -1303,12 +1322,12 @@ Update sind folgende Schritte erforderlich:
 ### HCW-Format im Template aktualisieren
 
 Auch das gemeinsame Quarto-Format wird nicht automatisch übernommen. Der
-aktuell eingebundene Release-Tag steht in `hcw-format-version.txt`. Ein Update
+aktuell eingebundene Release-Tag steht in `internal/hcw-format-version.txt`. Ein Update
 ist ausschließlich für Vorlagenbetreuer:innen vorgesehen:
 
 1. Im Repository `hcw-quarto-format` eine neue Version testen und mit einem Tag
    wie `v0.2.0` veröffentlichen.
-2. In `hcw-format-version.txt` denselben Tag eintragen.
+2. In `internal/hcw-format-version.txt` denselben Tag eintragen.
 3. In VS Code den Task `Maintainer: HCW-Format aktualisieren` ausführen.
 4. Die Änderungen unter `_extensions/FH-Campus-Wien/hcw/` mit `git diff`
    kontrollieren.
@@ -1316,7 +1335,7 @@ ist ausschließlich für Vorlagenbetreuer:innen vorgesehen:
 6. Versionsdatei und aktualisierte Extension gemeinsam committen.
 
 Der Maintainer-Task ruft im Builder-Container das Skript
-`scripts/update-hcw-format.sh` auf. Dieses installiert den angegebenen
+`internal/scripts/update-hcw-format.sh` auf. Dieses installiert den angegebenen
 Release, prüft Manifest, Version, Logo und LaTeX-Partials und bricht bei einer
 unvollständigen Extension ab. Nur dieser bewusste Aktualisierungsschritt
 benötigt Netzwerkzugriff; Schreiben, PDF-Erstellung und Vorschau bleiben

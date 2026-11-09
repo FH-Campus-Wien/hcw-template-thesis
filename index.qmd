@@ -3,9 +3,9 @@
 # {{< meta acknowledgements-title >}} {#sec-danksagung .unnumbered}
 
 ::: {.content-visible when-profile="de"}
-{{< include frontmatter/de/danksagung.qmd >}}
+{{< include content/frontmatter/de/danksagung.qmd >}}
 :::
 
 ::: {.content-visible when-profile="en"}
-{{< include frontmatter/en/acknowledgements.qmd >}}
+{{< include content/frontmatter/en/acknowledgements.qmd >}}
 :::

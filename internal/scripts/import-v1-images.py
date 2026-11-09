@@ -35,11 +35,11 @@ def main():
     parser.add_argument("--soffice", default="soffice")
     parser.add_argument("--pdftoppm", default="pdftoppm")
     args = parser.parse_args()
-    root = Path(__file__).resolve().parents[1]
-    sources = sorted((root / "requirements").glob("*V1.dotx"))
+    root = Path(__file__).resolve().parents[2]
+    sources = sorted((root / "internal/requirements").glob("*V1.dotx"))
     if len(sources) != 4:
         raise RuntimeError("Expected the four BA/MA DE/EN V1 reference files")
-    destination = root / "images/v1"
+    destination = root / "content/images/v1"
     destination.mkdir(parents=True, exist_ok=True)
     manifest = {"sources": [], "assets": []}
     with tempfile.TemporaryDirectory(prefix="hcw-v1-images-") as directory:
@@ -49,7 +49,7 @@ def main():
             for path in sources:
                 archives.append(ZipFile(path))
                 manifest["sources"].append({
-                    "file": f"requirements/{path.name}",
+                    "file": f"internal/requirements/{path.name}",
                     "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
                 })
             for source_name, output_name in ASSETS.items():
@@ -102,7 +102,7 @@ def main():
                 manifest["assets"].append({
                     "source_part": part,
                     "source_sha256": hashlib.sha256(data).hexdigest(),
-                    "file": f"images/v1/{output_name}",
+                    "file": f"content/images/v1/{output_name}",
                     "sha256": hashlib.sha256(target.read_bytes()).hexdigest(),
                     "conversion": conversion,
                 })

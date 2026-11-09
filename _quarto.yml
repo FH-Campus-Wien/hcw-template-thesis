@@ -11,10 +11,10 @@ book:
   output-file: abschlussarbeit
   author: "Vorname Nachname"
 
-bibliography: references.bib
+bibliography: content/references.bib
 
 filters:
-  - scripts/thesis-setup.lua
+  - internal/scripts/thesis-setup.lua
 
 # Sprache und Abschlussart werden zentral in setup.tex ausgewählt.
 title-de: "Deutscher Titel der Abschlussarbeit"
@@ -36,7 +36,7 @@ format:
     colorlinks: false
     keep-tex: false
     template-partials:
-      - template/title.tex
+      - internal/latex/title.tex
     include-in-header:
       - setup.tex
-      - template/preamble.tex
+      - internal/latex/preamble.tex

@@ -28,7 +28,7 @@ function Meta(meta)
   if not profile_matches then
     error(
       "The active Quarto language profile does not match setup.tex. " ..
-      "Use scripts/thesis.sh to build or preview the thesis."
+      "Use internal/scripts/thesis.sh to build or preview the thesis."
     )
   end
 

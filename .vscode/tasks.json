@@ -11,7 +11,7 @@
         "--workdir", "/work",
         "--entrypoint", "/bin/sh",
         "ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0",
-        "scripts/thesis.sh", "render"
+        "internal/scripts/thesis.sh", "render"
       ],
       "options": { "cwd": "${workspaceFolder}" },
       "problemMatcher": [],
@@ -29,7 +29,7 @@
         "--publish", "127.0.0.1:4242:4242",
         "--entrypoint", "/bin/sh",
         "ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0",
-        "scripts/thesis.sh", "preview",
+        "internal/scripts/thesis.sh", "preview",
         "--host", "0.0.0.0", "--port", "4242", "--no-browser"
       ],
       "options": { "cwd": "${workspaceFolder}" },
@@ -58,7 +58,7 @@
         "--workdir", "/work",
         "--entrypoint", "/bin/sh",
         "ghcr.io/fh-campus-wien/hcw-document-builder:1.3.0",
-        "scripts/update-hcw-format.sh"
+        "internal/scripts/update-hcw-format.sh"
       ],
       "options": { "cwd": "${workspaceFolder}" },
       "problemMatcher": [],

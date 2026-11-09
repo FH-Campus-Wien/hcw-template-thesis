@@ -4,15 +4,15 @@ acknowledgements-title: Acknowledgements
 book:
   chapters:
     - index.qmd
-    - frontmatter/abstract.qmd
-    - frontmatter/kurzfassung.qmd
-    - frontmatter/en/abbreviations.qmd
-    - frontmatter/en/table-of-contents.qmd
-    - chapters/en/01-introduction.qmd
-    - chapters/en/02-background.qmd
-    - chapters/en/03-methodology.qmd
-    - chapters/en/04-results.qmd
-    - chapters/en/05-conclusion.qmd
-    - backmatter/en/bibliography.qmd
-    - backmatter/en/ai-tools.qmd
-    - backmatter/en/declaration.qmd
+    - content/frontmatter/abstract.qmd
+    - content/frontmatter/kurzfassung.qmd
+    - content/frontmatter/en/abbreviations.qmd
+    - content/frontmatter/en/table-of-contents.qmd
+    - content/chapters/en/01-introduction.qmd
+    - content/chapters/en/02-background.qmd
+    - content/chapters/en/03-methodology.qmd
+    - content/chapters/en/04-results.qmd
+    - content/chapters/en/05-conclusion.qmd
+    - content/backmatter/en/bibliography.qmd
+    - content/backmatter/en/ai-tools.qmd
+    - content/backmatter/en/declaration.qmd

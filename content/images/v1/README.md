@@ -1,6 +1,6 @@
 # Abbildungen aus den offiziellen V1-Vorlagen
 
-Die vier BA-/MA-Vorlagen für Deutsch und Englisch unter `requirements/`
+Die vier BA-/MA-Vorlagen für Deutsch und Englisch unter `internal/requirements/`
 enthalten dieselben neun Bilddateien für die Inhaltsbeispiele. Sie werden hier
 gemeinsam gepflegt. `manifest.json` dokumentiert die Quelldateien,
 OOXML-Paketpfade und SHA-256-Prüfsummen.
@@ -33,7 +33,7 @@ Die Originalgrafik bleibt erhalten; Kapitel 4 erläutert die korrekte
 Schreibweise direkt unter der Grafik in beiden Sprachen.
 
 Vorlagenbetreuer:innen können die Extraktion mit
-`scripts/import-v1-images.py` wiederholen. Dafür werden Python mit Pillow und
+`internal/scripts/import-v1-images.py` wiederholen. Dafür werden Python mit Pillow und
 pypdf sowie LibreOffice und Poppler benötigt; die Pfade können mit
 `--soffice` und `--pdftoppm` angegeben werden. Diese Programme werden für
 normale Docker-Builds nicht zusätzlich benötigt.

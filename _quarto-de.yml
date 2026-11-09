@@ -4,15 +4,15 @@ acknowledgements-title: Danksagung
 book:
   chapters:
     - index.qmd
-    - frontmatter/kurzfassung.qmd
-    - frontmatter/abstract.qmd
-    - frontmatter/de/abkuerzungsverzeichnis.qmd
-    - frontmatter/de/inhaltsverzeichnis.qmd
-    - chapters/de/01-einleitung.qmd
-    - chapters/de/02-grundlagen.qmd
-    - chapters/de/03-methodik.qmd
-    - chapters/de/04-ergebnisse.qmd
-    - chapters/de/05-fazit.qmd
-    - backmatter/de/literaturverzeichnis.qmd
-    - backmatter/de/ki-werkzeuge.qmd
-    - backmatter/de/eigenstaendigkeitserklaerung.qmd
+    - content/frontmatter/kurzfassung.qmd
+    - content/frontmatter/abstract.qmd
+    - content/frontmatter/de/abkuerzungsverzeichnis.qmd
+    - content/frontmatter/de/inhaltsverzeichnis.qmd
+    - content/chapters/de/01-einleitung.qmd
+    - content/chapters/de/02-grundlagen.qmd
+    - content/chapters/de/03-methodik.qmd
+    - content/chapters/de/04-ergebnisse.qmd
+    - content/chapters/de/05-fazit.qmd
+    - content/backmatter/de/literaturverzeichnis.qmd
+    - content/backmatter/de/ki-werkzeuge.qmd
+    - content/backmatter/de/eigenstaendigkeitserklaerung.qmd
