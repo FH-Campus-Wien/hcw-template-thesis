@@ -1,5 +1,7 @@
 # Roadmap zum stabilen Thesis-Template
 
+[← Quick Start und Inhaltsverzeichnis](../../README.md)
+
 Aktueller veröffentlichter Stand: `v0.2.1`
 
 Das Thesis-Template erreicht `v1.0.0`, sobald es für eine reale Bachelor- oder
@@ -48,7 +50,8 @@ Für die erste stabile Version müssen folgende Bedingungen erfüllt sein:
 - Ein neues Repository kann ohne zusätzliche persönliche Einführung verwendet
   werden.
 - Builder- und Format-Versionen sind festgelegt und reproduzierbar.
-- README, Beispiele und Fehlerbehebung decken den normalen Arbeitsablauf ab.
+- Quick Start, Detailanleitungen, Beispiele und Fehlerbehebung decken den
+  normalen Arbeitsablauf ab.
 - Mindestens eine vollständige Testarbeit wurde erfolgreich erstellt.
 
 Ab `v1.0.0` sollen Änderungen innerhalb der Hauptversion abwärtskompatibel

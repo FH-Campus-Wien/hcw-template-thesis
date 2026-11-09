@@ -19,8 +19,10 @@ Auch die Docker-Tasks führen ihre Befehle dort aus.
 | `internal/docs/ROADMAP.md` | Entwicklungsschritte bis zu einer stabilen Veröffentlichung. | Nein. |
 | `internal/hcw-format-version.txt` | Festgelegter Release-Tag für ein bewusstes Format-Update. | Nur beim Format-Update. |
 
-Die vollständigen Anleitungen zum Schreiben, Bauen und Aktualisieren stehen in
-der [Projekt-README](../README.md). Das gemeinsame Format selbst bleibt unter
+Der Quick Start und das Inhaltsverzeichnis stehen in der
+[Projekt-README](../README.md). Die ausführlichen Anleitungen zum Schreiben,
+Bauen und Aktualisieren sind dort verlinkt und liegen unter `internal/docs/`.
+Das gemeinsame Format selbst bleibt unter
 `_extensions/FH-Campus-Wien/hcw/`, wo Quarto es findet. Editor-Tasks und
 Git-Konfiguration bleiben ebenfalls an ihren üblichen Stellen im Projektstamm.
 
