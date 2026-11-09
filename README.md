@@ -56,4 +56,4 @@ Vorschau auch offline. Ein separater Task zum Erstellen der Umgebung ist nicht n
 - [Toolchain und Wartung (Advanced)](internal/docs/toolchain-und-wartung.md) – Quarto, Pandoc, LaTeX, gemeinsames Format und Updates
 - [Roadmap](internal/docs/ROADMAP.md) – nächste Schritte bis Version 1.0.0
 
-Mit Unterstützung von ChatGPT SOL 5.6 erstellt und weiterentwickelt.
+Mit Unterstützung von ChatGPT SOL 5.6 und ChatGPT SOL 6.1 erstellt und weiterentwickelt.
