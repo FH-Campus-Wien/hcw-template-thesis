@@ -1,10 +1,12 @@
-% Zentrale Auswahl der Thesis-Variante.
+% Zentrale Auswahl der Thesis-Variante und des Textsatzes.
 % Erlaubte Werte:
 %   Sprache:       de oder en
 %   Abschlussart:  ba oder ma
+%   Textausrichtung: blocksatz oder flattersatz
 
 \newcommand{\HCWLanguage}{en}
 \newcommand{\HCWThesisLevel}{ma}
+\newcommand{\HCWTextAlignment}{blocksatz}
 
 % Die offiziellen Referenzvorlagen verwenden diese akademischen Grade.
 % Falls ein Studiengang einen anderen Grad verleiht, wird nur die betreffende
@@ -17,6 +19,7 @@
 
 \newif\ifHCWEnglish
 \newif\ifHCWMaster
+\newif\ifHCWJustified
 
 \ifdefstring{\HCWLanguage}{de}{%
   \HCWEnglishfalse
@@ -37,6 +40,17 @@
   }{%
     \PackageError{hcw-thesis}{Unknown thesis level '\HCWThesisLevel'}%
       {Use ba or ma in setup.tex.}%
+  }%
+}
+
+\ifdefstring{\HCWTextAlignment}{blocksatz}{%
+  \HCWJustifiedtrue
+}{%
+  \ifdefstring{\HCWTextAlignment}{flattersatz}{%
+    \HCWJustifiedfalse
+  }{%
+    \PackageError{hcw-thesis}{Unknown text alignment '\HCWTextAlignment'}%
+      {Use blocksatz or flattersatz in setup.tex.}%
   }%
 }
 

@@ -2,8 +2,17 @@
 \usepackage{pdflscape}
 \usepackage{setspace}
 \usepackage{scrlayer-scrpage}
+\usepackage{ragged2e}
 
 \onehalfspacing
+\AtBeginDocument{%
+  \ifHCWJustified
+    \justifying
+  \else
+    \RaggedRight
+  \fi
+}
+
 \newcommand{\HCWRunningTitle}{\HCWThesisName}
 
 \clearpairofpagestyles

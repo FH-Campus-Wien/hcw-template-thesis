@@ -274,7 +274,7 @@ gelöscht.
 ## Projekt bearbeiten
 
 ```text
-setup.tex         Auswahl Deutsch/Englisch und Bachelor/Master
+setup.tex         Sprache, Bachelor/Master und Flattersatz/Blocksatz
 _quarto.yml       gemeinsame Titelseitenangaben und PDF-Einstellungen
 _quarto-de.yml    deutsche Kapiteldateien und Reihenfolge
 _quarto-en.yml    englische Kapiteldateien und Reihenfolge
@@ -335,12 +335,12 @@ Sprachprofil darüber.
 Die Titelseite folgt den offiziellen Word-Vorlagen für Bachelor- und
 Masterarbeiten. Sie enthält das HCW-Logo, das helle Linienmotiv, den deutschen
 und englischen Titel, Autor:in, akademischen Grad, Studiengang und Betreuung.
-Die Sprache und die Abschlussart werden ausschließlich am Anfang von
-`setup.tex` gewählt:
+Die Grundeinstellungen werden am Anfang von `setup.tex` gewählt:
 
 ```latex
 \newcommand{\HCWLanguage}{de}    % de oder en
 \newcommand{\HCWThesisLevel}{ba} % ba oder ma
+\newcommand{\HCWTextAlignment}{blocksatz} % blocksatz oder flattersatz
 ```
 
 Damit ergeben sich vier unterstützte Varianten:
@@ -402,6 +402,29 @@ und das Linienmotiv und wird nur auf der Titelseite eingesetzt. Die vier
 V1-Word-Vorlagen unter `requirements/` sind die verbindlichen Referenzen für
 Deutsch/Englisch und Bachelor/Master. Sie werden zum Schreiben der
 Quarto-Arbeit nicht benötigt.
+
+### Textausrichtung: Flattersatz oder Blocksatz
+
+Der Schalter `HCWTextAlignment` in `setup.tex` steuert die Ausrichtung des
+Fließtexts, unabhängig von Sprache und Abschlussart:
+
+- `blocksatz`: links und rechts bündige Zeilen; das ist die Voreinstellung.
+- `flattersatz`: linksbündige Zeilen mit offenem rechten Rand.
+
+Für Flattersatz wird die vorhandene Zeile so geändert:
+
+```latex
+\newcommand{\HCWTextAlignment}{flattersatz}
+```
+
+Die Silbentrennung bleibt auch im Flattersatz möglich. Dafür wird das im
+Builder bereits vorhandene LaTeX-Paket `ragged2e` verwendet. Die Titelseite
+bleibt linksbündig; Tabellen, Formeln und Bild-/Tabellenbeschriftungen behalten
+ihre gesonderten Ausrichtungseinstellungen.
+
+Nach der Änderung die PDF mit `Thesis: PDF erstellen` neu bauen oder die
+laufende Vorschau stoppen und neu starten. Änderungen an `setup.tex` lösen
+derzeit noch keinen automatischen Neubau der Vorschau aus.
 
 ### Bilder, Formeln und Erklärungen aus den V1-Vorlagen
 
