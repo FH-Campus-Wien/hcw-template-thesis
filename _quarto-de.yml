@@ -8,11 +8,11 @@ book:
     - content/frontmatter/abstract.qmd
     - content/frontmatter/de/abkuerzungsverzeichnis.qmd
     - content/frontmatter/de/inhaltsverzeichnis.qmd
-    - content/chapters/de/01-einleitung.qmd
-    - content/chapters/de/02-grundlagen.qmd
-    - content/chapters/de/03-methodik.qmd
-    - content/chapters/de/04-ergebnisse.qmd
-    - content/chapters/de/05-fazit.qmd
+    - content/chapters/de/01-kapitel.qmd
+    - content/chapters/de/02-kapitel.qmd
     - content/backmatter/de/literaturverzeichnis.qmd
+    - content/backmatter/de/abbildungsverzeichnis.qmd
+    - content/backmatter/de/tabellenverzeichnis.qmd
+    - content/backmatter/de/listingverzeichnis.qmd
     - content/backmatter/de/ki-werkzeuge.qmd
-    - content/backmatter/de/eigenstaendigkeitserklaerung.qmd
+    - content/backmatter/de/anhang.qmd

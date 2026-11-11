@@ -1,4 +1,9 @@
-# Abstract {#sec-zusammenfassung-zweitsprache .unnumbered}
+# Abstract {#sec-abstract .unnumbered}
 
-A simple rule for the abstract: Describe the problem and why it is a problem.
-Then present your solution and explain why it is a solution.
+::: {.content-visible when-profile="de"}
+Kompakte Inhaltsangabe der Arbeit in Englisch.
+:::
+
+::: {.content-visible when-profile="en"}
+Concise summary of the thesis in English.
+:::

@@ -211,127 +211,97 @@ Nach der Änderung die PDF mit `Thesis: PDF erstellen` neu bauen oder die
 laufende Vorschau stoppen und neu starten. Änderungen an `setup.tex` lösen
 derzeit noch keinen automatischen Neubau der Vorschau aus.
 
-## Bilder, Formeln und Erklärungen aus den V1-Vorlagen
+## Inhalte und Kapitelstruktur aus den V1-Vorlagen
 
-Die Inhaltsbeispiele wurden mit allen vier V1-Dateien verglichen. Bachelor-
-und Mastervorlage verwenden dieselben mathematischen Beispiele und Bilder.
-Die Erläuterungen und Bildunterschriften erscheinen passend zu
-`HCWLanguage` auf Deutsch oder Englisch. Die Auswahl `ba`/`ma` verwendet
-dieselben Beispiele mit der passenden Titelseite und Abschlussbezeichnung.
+Der Originalwortlaut und die Kapitelstruktur der vier gültigen Word-Dateien
+werden übernommen. Die generischen Kapitelüberschriften sind absichtliche
+Platzhalter. Sie werden nicht mehr durch unsere eigene Gliederung ersetzt.
+Die bisherige Aufteilung in Einleitung, Grundlagen, Methodik, Ergebnisse und
+Fazit steht als Vorschlag in [Mögliche Kapitelaufteilung](../../content/chapters/README.md).
 
-| Datei | Beispiele |
+| Datei | Inhalt der offiziellen Vorlage |
 |---|---|
-| `content/chapters/de/03-methodik.qmd` oder `content/chapters/en/03-methodology.qmd` | Fourier-Transformation und inverse Transformation, lineares Gleichungssystem, ausgerichtete Spannungsgleichungen, Logarithmusreihe mit Summen und Brüchen |
-| `content/chapters/de/04-ergebnisse.qmd` oder `content/chapters/en/04-results.qmd` | Magnetron-Sputtern, kleines Grafikbeispiel, zwei Teilabbildungen, Cosinussignal mit Periodendauer, Kontrastvergleich sowie Tabellen und Querformat |
-| `content/images/v1/` | neun gemeinsam verwendete Bilddateien aus den vier Referenzen |
-| `content/references.bib` | die fünf Quellen der übernommenen V1-Beispiele |
+| `content/chapters/de/01-kapitel.qmd` oder `content/chapters/en/01-chapter.qmd` | Sieben Gleichungsnummern, Zitieren und Fußnoten, Sputtern, Bilder und Teilabbildungen, Diagramme, Tabellen und Querformat |
+| `content/chapters/de/02-kapitel.qmd` oder `content/chapters/en/02-chapter.qmd` | Kapitelaufteilung, Fibonacci-Programm, Kontrastvergleich und Unterabschnitte |
+| `content/images/v1/` | Unveränderte Rasterbilder und in Vektor-PDFs konvertierte EMF-Grafiken |
+| `content/references.bib` | Strukturierte Daten zu den fünf Originalquellen und ein zusätzliches, nicht zitiertes Syntaxbeispiel |
 
-Die Formeln bleiben editierbarer LaTeX-Mathematikcode. Zusammengehörende
-Gleichungen werden mit `aligned` am Gleichheitszeichen ausgerichtet und hier
-als gemeinsamer Block nummeriert. Die Vorlage erläutert außerdem Satzzeichen
-an Formeln, die Definition von Variablen und aufrecht gesetzte Einheiten und
-Konstanten, beispielsweise `$t = 5\,\mathrm{s}$`.
+Die deutsche BA- und MA-Vorlage unterscheiden sich im Haupttext nur durch
+„zu sehen.“ beziehungsweise „zu sehen ist.“ nach der langen Formel. Die
+Blöcke `.hcw-ba` und `.hcw-ma` in der ersten deutschen Kapiteldatei werden
+über den vorhandenen Schalter `HCWThesisLevel` gefiltert. Die englischen
+Haupttexte sind identisch. Persönliche Titelseitenangaben bleiben editierbar.
 
-Die Rasterbilder sind unverändert aus den Word-Dateien extrahiert. Die drei
-eingebetteten EMF-Grafiken liegen als Vektor-PDFs vor, damit sie im
-plattformunabhängigen Docker-Build ohne zusätzliche Programme funktionieren.
-Auch die beiden als Grafik vorliegenden Tabellen bleiben Tabellen mit
-`tbl-`-Labels. Die große Verteilungsübersicht demonstriert eine eigene
-Querformatseite. Die ursprünglichen Beschriftungen innerhalb der Grafiken
-bleiben erhalten; Bildunterschriften und begleitende Erklärungen sind
-zweisprachig.
+Originale Word-Anweisungen bleiben stehen, auch wenn sie sich auf Word-Add-ins,
+Tabellenrahmen oder Tastaturbefehle beziehen. Zusätzliche Hinweise zu unserer
+Umsetzung folgen ausschließlich am Ende des betreffenden Kapitels unter
+**Hinweise zu Latex**. Bei Bedarf stehen darunter weitere Unterabschnitte.
+Auch die englische Fassung verwendet diese einheitliche Überschrift. Diese
+Hinweise und die Beispielinhalte werden vor der Abgabe entfernt oder durch
+eigene Inhalte ersetzt.
 
-Herkunft und Prüfsummen sind unter `content/images/v1/README.md` und
-`content/images/v1/manifest.json` dokumentiert. Das dort beschriebene
-`internal/scripts/import-v1-images.py` ist ein optionales Werkzeug für
-Vorlagenbetreuer:innen; für das Schreiben ist keine Extraktion erforderlich.
+Für das aktuelle PDF sind Abbildungen und Tabellen wie in Word durchgehend
+nummeriert; Gleichungen und Listings werden je Kapitel nummeriert. Die sieben
+Gleichungsnummern werden mit LaTeX `equation` und `align` gesetzt. Das
+Fibonacci-Beispiel verwendet `lstlisting` und TeX Gyre Cursor als freie
+Courier-Alternative. Der Fließtext verwendet unverändert TeX Gyre Heros.
+Die Einstellung `crossref.chapters: false` steht im Formatblock von
+`_quarto.yml`; die LaTeX-Zähler werden in `internal/latex/preamble.tex` angepasst.
 
-Die deutschen und englischen Erklärungen stehen in getrennten Dateien unter
-`content/chapters/de/` und `content/chapters/en/`. Formeln und Bildunterschriften werden in der
-jeweiligen Kapiteldatei bearbeitet; die eingebundenen Bilddateien werden
-gemeinsam genutzt. Die Profile legen die Sprache, die zugehörige Kapitelliste
-und die Überschrift der Danksagung fest. Labels wie `eq-fourier-transformation` stimmen in den beiden
-Ausgangsvorlagen überein; es wird immer nur eine Fassung in den Build geladen.
+Verzeichnisse, Querverweise und Seitenzahlen werden neu erzeugt. Sie werden
+nicht mit den zwischengespeicherten Zahlen aus Word gefüllt. Die Quellen
+bleiben BibTeX-Einträge und werden mit `internal/csl/ieee.csl` numerisch
+formatiert. Die Darstellung des Literaturverzeichnisses kann deshalb von
+den gespeicherten Word-Zeilen abweichen. Dies ist keine inhaltliche Neufassung
+der Vorlagentexte und keine Festlegung auf IEEE als einzig erlaubten Stil.
 
-Überschriften verwenden normale Markdown-Syntax, beispielsweise
-`# Methodik {#sec-methodik}`. Das Abschnittslabel bleibt beim Umbenennen der
-Überschrift erhalten und kann für Querverweise verwendet werden.
-Die ergänzte Notiz unter der Verteilungsübersicht kennzeichnet das in der
-Originalgrafik falsch gesetzte Varianzsymbol der Gleichverteilung und nennt
-die korrekte Schreibweise.
+Die Herkunft der Grafiken ist unter `content/images/v1/README.md` und
+`content/images/v1/manifest.json` dokumentiert. Die Quellen und technischen
+Abweichungen der Inhaltsübernahme stehen in `internal/requirements/README.md`.
 
-Die Teilabbildungen in Kapitel 4 verwenden einen gemeinsamen Div-Block mit
-`#fig-htm` und `layout-ncol=2`. Jedes Teilbild hat zusätzlich ein eigenes
-`fig-`-Label; so können die Gesamtgrafik und einzelne Teile referenziert
-werden. `layout-ncol=1` stellt die beiden Kontrastbeispiele untereinander dar.
-Grafisch importierte Tabellen stehen analog in einem `tbl-`-Div mit einer
-Tabellenbeschriftung. Das Beispiel im Querformat verwendet die bereits
-eingebundene LaTeX-Umgebung `landscape`.
+## Vorspann
 
-## Vorspann (Front Matter)
+Nach der Titelseite folgt in der deutschen Variante:
 
-Nach der Titelseite folgt dieselbe Grundreihenfolge wie in den
-Referenzvorlagen. In der deutschen Variante lautet sie:
+1. Danksagung (`content/frontmatter/de/danksagung.qmd`)
+2. Kurzfassung (`content/frontmatter/kurzfassung.qmd`)
+3. Abstract (`content/frontmatter/abstract.qmd`)
+4. Abkürzungsverzeichnis (`content/frontmatter/de/abkuerzungsverzeichnis.qmd`)
+5. Inhaltsverzeichnis (`content/frontmatter/de/inhaltsverzeichnis.qmd`)
 
-1. `content/frontmatter/de/danksagung.qmd`: Danksagung
-2. `content/frontmatter/kurzfassung.qmd`: deutsche Kurzfassung
-3. `content/frontmatter/abstract.qmd`: englischer Abstract
-4. `content/frontmatter/de/abkuerzungsverzeichnis.qmd`: optionales
-   Abkürzungsverzeichnis
-5. `content/frontmatter/de/inhaltsverzeichnis.qmd`: Inhaltsverzeichnis
+In der englischen Variante stehen Acknowledgements und Abstract zuerst,
+danach Kurzfassung, List of Abbreviations und Table of Contents. Die englischen
+Dateien liegen unter `content/frontmatter/en/`. Kurzfassung und Abstract
+werden gemeinsam genutzt; der englische Abstract-Platzhalter übernimmt den
+passenden Originalwortlaut der deutschen beziehungsweise englischen Vorlage.
 
-In der englischen Variante werden `Acknowledgements` und `Abstract` zuerst
-ausgegeben; danach folgen die deutsche `Kurzfassung`, `List of Abbreviations`
-und `Table of Contents`. Die englischen Dateien liegen unter
-`content/frontmatter/en/`; Kurzfassung und Abstract werden von beiden Varianten
-verwendet und müssen jeweils nur einmal geschrieben werden.
+Die bisherigen freien Hinweise zum Schreiben eines Abstracts stehen nun in
+der [Kapitel-README](../../content/chapters/README.md), nicht im Originaltext.
+Der Vorspann verwendet römische Seitenzahlen. Mit dem ersten nummerierten
+Kapitel beginnt die arabische Nummerierung bei 1.
 
-Für Kurzfassung und Abstract gilt bewusst eine einfache, saloppe Merkhilfe:
+## Nachspann
 
-> Erst das Problem und warum es ein Problem ist. Dann die Lösung und warum sie
-> eine Lösung ist.
-
-Jeder Eintrag beginnt auf einer eigenen Seite. Der Vorspann verwendet römische
-Seitenzahlen; mit dem ersten Fachkapitel beginnt die arabische
-Nummerierung bei 1. Die Reihenfolge wird im aktiven Sprachprofil
-`_quarto-de.yml` oder `_quarto-en.yml` unter `book.chapters` festgelegt.
-Dateien sollten dort nur nach einer bewussten
-Anpassung der geforderten Hochschulstruktur verschoben oder entfernt werden.
-
-Die Eigenständigkeitserklärung gehört nicht in den Vorspann. Die
-HCW-Prüfungsordnung nennt sie für Bachelor- und Masterarbeiten nach dem
-Quellenverzeichnis als letzten verpflichtenden Bestandteil. Sie liegt daher
-unter `content/backmatter/de/eigenstaendigkeitserklaerung.qmd` beziehungsweise
-`content/backmatter/en/declaration.qmd` und steht am Ende der jeweiligen Kapitelliste.
-Ein allfälliger Anhang wird ebenfalls vor der Eigenständigkeitserklärung eingereiht.
-
-## Dokumentation eingesetzter KI-Werkzeuge
-
-Die Nutzung von KI-Werkzeugen ist kein Bestandteil des Vorspanns und keine
-Gestaltungsregel des gemeinsamen Quarto-Formats. Sie wird als inhaltlicher
-Bestandteil der jeweiligen Arbeit unter
-`content/backmatter/de/ki-werkzeuge.qmd` beziehungsweise `content/backmatter/en/ai-tools.qmd`
-dokumentiert. Im Thesis-Template steht diese
-Übersicht nach dem Literaturverzeichnis und vor der abschließenden
-Eigenständigkeitserklärung:
+Die Reihenfolge entspricht den vier V1-Dateien:
 
 ```text
-Literaturverzeichnis
-Übersicht eingesetzter KI-Werkzeuge
-gegebenenfalls Anhang
-Eigenständigkeitserklärung
+Literaturverzeichnis / Bibliography
+Abbildungsverzeichnis / List of Figures
+Tabellenverzeichnis / List of Tables
+Listingverzeichnis / List of Listings
+Übersicht verwendeter KI-Technologien / Overview of used AI Technologies
+Anhang / Appendix (optional)
 ```
 
-Die mitgelieferte Markdown-Tabelle erfasst Werkzeug, Anbieter beziehungsweise
-Version, Einsatzbereich, Art der Nutzung und betroffene Teile der Arbeit. Die
-Beispielzeile muss durch die tatsächlichen Angaben ersetzt werden. Wurde keine
-KI verwendet, wird dies ausdrücklich vermerkt.
+Die Dateien liegen im aktiven Sprachordner unter `content/backmatter/`.
+Die Kapitellisten in `_quarto-de.yml` und `_quarto-en.yml` bestimmen ihre
+Reihenfolge. Die KI-Übersicht übernimmt den Originaltext und die Beispieltabelle
+aus Word. Die Beispielangaben werden durch die tatsächliche Verwendung ersetzt.
 
-Die HCW-Leitlinien verlangen eine transparente Kennzeichnung und
-zusammenfassende Auflistung eingesetzter KI-Werkzeuge. Das konkrete Format ist
-mit den Vorgaben des jeweiligen Studiengangs abzugleichen. Maßgeblich sind der
-[Leitfaden für wissenschaftliche Arbeiten](https://portal.hcw.ac.at/webservices/portaltoenabler/enablergetdocument.aspx?id=1982)
-und der
-[Leitfaden zum Einsatz von KI in der Lehre](https://portal.hcw.ac.at/webservices/portaltoenabler/enablergetdocument.aspx?id=2486).
+Eine Eigenständigkeitserklärung ist in keiner der vier V1-Word-Dateien
+enthalten. Unser zusätzlicher Platzhalter ist deshalb aus der Vorlage entfernt.
+Ob der Studiengang oder der Abgabeprozess eine gesonderte Erklärung verlangt,
+muss unabhängig davon geklärt werden. Aus dem Fehlen in den Word-Dateien wird
+keine Aussage über andere Abgabevorgaben abgeleitet.
 
 [Zurück zum Inhaltsverzeichnis](../../README.md#inhaltsverzeichnis)

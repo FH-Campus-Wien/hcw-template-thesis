@@ -144,15 +144,25 @@ Vorlage von Pandoc Citeproc verarbeitet; Studierende müssen `bibtex` oder
 `biber` nicht selbst aufrufen. Die komplette Verarbeitung erfolgt beim normalen
 Docker-Build.
 
-Ein verbindlicher Zitierstil kann später als CSL-Datei in das Projekt gelegt
-und in `_quarto.yml` aktiviert werden:
+Die Vorlage liefert den IEEE-Stil lokal unter `internal/csl/ieee.csl` mit und
+aktiviert ihn in `_quarto.yml`. Damit erscheinen die Zitate numerisch wie in
+den Word-Beispielen:
 
 ```yaml
 bibliography: content/references.bib
-csl: citation-style.csl
+csl: internal/csl/ieee.csl
 ```
 
-Ohne CSL-Datei verwendet Quarto den voreingestellten Zitierstil.
+Die IEEE-Datei stammt vom Citation Style Language-Projekt; Herkunft und
+Lizenz sind in `internal/requirements/README.md` dokumentiert. Sie wird beim
+Build nicht aus dem Internet geladen. Ein anderer mit der Betreuung
+abgestimmter Zitierstil kann durch Austausch der CSL-Datei und Anpassung
+dieses Pfads gewählt werden. Ohne CSL-Datei greift der Quarto-Standardstil.
+
+Das Literaturverzeichnis wird aus den strukturierten BibTeX-Daten neu erzeugt.
+Es kann deshalb typografisch und bei Autorenangaben von den in Word
+zwischengespeicherten Quellenzeilen abweichen; diese sind kein fest
+eingefügter Textblock im PDF.
 
 ## Export aus Zotero
 

@@ -1,0 +1,11 @@
+# List of Listings {#sec-listingverzeichnis .unnumbered}
+
+```{=latex}
+\makeatletter
+\@starttoc{lol}
+\makeatother
+```
+
+Complete list of all program listings from the text.
+
+All listings must have a consistent label, a source citation, and consecutive numbering in the text.

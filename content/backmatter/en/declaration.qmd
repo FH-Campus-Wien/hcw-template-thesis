@@ -1,9 +1,0 @@
-# Declaration of Academic Integrity {#sec-eigenstaendigkeit .unnumbered}
-
-Insert the declaration of academic integrity required by the university here.
-
-```{=latex}
-\vspace{2cm}
-```
-
-Place, date \hfill Signature

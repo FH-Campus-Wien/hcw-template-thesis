@@ -29,8 +29,8 @@ Herkunft ist hier deshalb ausdrücklich die bereitgestellte V1-Vorlage.
 
 In der Verteilungsübersicht fehlt beim Varianzsymbol der Gleichverteilung
 das Quadrat.
-Die Originalgrafik bleibt erhalten; Kapitel 4 erläutert die korrekte
-Schreibweise direkt unter der Grafik in beiden Sprachen.
+Die Originalgrafik bleibt erhalten; „Hinweise zu Latex“ am Ende des ersten
+Kapitels erläutert die korrekte Schreibweise in beiden Sprachen.
 
 Vorlagenbetreuer:innen können die Extraktion mit
 `internal/scripts/import-v1-images.py` wiederholen. Dafür werden Python mit Pillow und

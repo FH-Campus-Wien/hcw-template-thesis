@@ -1,10 +1,14 @@
-# Overview of AI Tools Used {#sec-ki-werkzeuge .unnumbered}
+# Overview of used AI Technologies {#sec-ki-werkzeuge .unnumbered}
 
-Document all AI tools used in preparing the thesis. Replace the example row
-with your actual information. If no AI tools were used, state this explicitly.
+Complete list of all AI technologies used in the preparation of this thesis.
 
-| AI tool and version | Area of use | Type of use | Affected sections |
+Example from the University of Basel for tabular documentation of AI software use as an appendix to a written thesis:
+
+| **AI-based tool** | **Type of use** | **Affected parts of thesis** | **Remark** |
 |---|---|---|---|
-| Example: Academic AI, model and date | Language revision | Suggested wording; all results were fully reviewed and revised. | Chapters 2 and 3 |
-
-The author remains responsible for all content, references, and conclusions.
+| DeepL Translator | Translation of text passages | Whole thesis |  |
+| ChatGPT (OpenAI) or similar | Drafting text suggestions, indicated in the text or in footnotes | Chapter 1, p. 3, Section 2 |  |
+|  | ChatGPT was consulted on the thesis topic; the results were compared with the author's own research | Chapter 2, pp. 5-7; complete chat log in the appendix |  |
+| Dream (Wombo) | Creation of visualizations | Fig.2, p. 7\newline Fig.9, p. 15 | Fig. 2, p. 7 significantly revised; only the visualization concept from Dream |
+|  |  |  |  |
+|  |  |  |  |

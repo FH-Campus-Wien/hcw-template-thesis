@@ -1,0 +1,207 @@
+<!-- Wortlaut und Gliederung: HCW_BA/MA_Abschlussarbeit_deutsch_V1.dotx. Technische Ergänzungen ausschließlich am Kapitelende. -->
+
+# Kapitel Überschrift {#sec-kapitel1}
+
+Gleichungen sind in den Text zu integrieren, d. h. Satzzeichen sind entsprechend zu setzen, wie z. B. bei
+
+```{=latex}
+\begin{equation}\label{eq-fourier-transformation}
+\underline{U}(\mathrm{j}\omega)=\int_{-\infty}^{\infty}u(t)\,\mathrm{e}^{-\mathrm{j}\omega t}\,\mathrm{d}t\,.
+\end{equation}
+```
+
+In dieser Gleichung bezeichnet $\underline{U}(j\omega)$ die Fourier-Transformierte des zeitabhängigen Signals $u(t)$, wobei $\omega$ die Kreisfrequenz und $\mathrm{j}$ die imaginäre Einheit bedeuten. Wichtig ist, dass alle Variablen im Fließtext in derselben Schriftart und Formatierung dargestellt werden wie in der zugehörigen Formel, also kursiv und mathematisch gesetzt!
+
+Einheiten und mathematische Konstanten werden grundsätzlich in der gleichen Schriftart aber aufrecht (nicht kursiv) gesetzt, sowohl im Fließtext als auch in mathematischen Ausdrücken. Dies dient der klaren Unterscheidung zwischen physikalischen Größen (kursiv) und deren Einheiten bzw. mathematischen Konstanten (jeweils aufrecht). Beispielsweise wird in der Schreibweise $t = 5\,\mathrm{s}$ die Variable (physikalische Größe) $t$ kursiv und die Einheit „Sekunde" ($\mathrm{s}$) -- ebenso wie die Eulersche Zahl $\mathrm{e}$ und die imaginäre Einheit $\mathrm{j}$ in Gleichung \eqref{eq-fourier-transformation} -- aufrecht geschrieben [@austrianstandards2018].
+
+Auch Beistriche, wie bei
+
+```{=latex}
+\begin{equation}\label{eq-fourier-invers}
+u(t)=\frac{1}{2\pi}\int_{-\infty}^{\infty}\underline{U}(\mathrm{j}\omega)\,\mathrm{e}^{\mathrm{j}\omega t}\,\mathrm{d}\omega\,,
+\end{equation}
+```
+
+sind bei Gleichungen richtig zu setzen. Eine erneute Definition der verwendeten Variablen ist an dieser Stelle nicht erforderlich, da diese bereits im Zusammenhang mit Gleichung \eqref{eq-fourier-transformation} eingeführt wurden.
+
+Gleichungen werden zur besseren Ausrichtung und Formatierung in Tabellen eingefügt, wobei die Rahmen standardmäßig ausgeblendet werden. In Gleichung \eqref{eq-fourier-invers} ist der Tabellenrahmen exemplarisch zur besseren Veranschaulichung noch sichtbar.
+
+Mehrere zusammengehörende Gleichungen, wie zum Beispiel bei dem Gleichungssystem
+
+```{=latex}
+\begin{align}
+y_1 &= A_{11}x_1+A_{12}x_2 \label{eq-lineares-system-1} \\
+y_2 &= A_{21}x_1+A_{22}x_2\,, \label{eq-lineares-system-2}
+\end{align}
+```
+
+kann man in einem Block zusammenfassen.
+
+Wenn die einzelnen Gleichungen unterschiedliche Länge aufweisen, so sind diese am Gleichheitszeichen auszurichten, wie in
+
+```{=latex}
+\begin{align}
+U_2 &= I_{\mathrm{ges}} R_2 \label{eq-spannungen-1} \\
+U_{\mathrm{ges}} &= I_{\mathrm{ges}}(R_1+R_2) \label{eq-spannungen-2}
+\end{align}
+```
+
+dargestellt.
+
+Bei langen Gleichungen erfolgt ein „Zeilenumbruch" an geeigneter Stelle rechtzeitig vor der Gleichungsnummer, wie in
+
+```{=latex}
+\begin{equation}\label{eq-logarithmusreihe}
+\begin{aligned}
+\ln(x)&=\sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{n}(x-1)^n=\\
+&=(x-1)-\frac{(x-1)^2}{2}+\frac{(x-1)^3}{3}-\cdots\quad\text{für }0<x\leq2
+\end{aligned}
+\end{equation}
+```
+
+::: {.hcw-ba}
+
+zu sehen.
+
+:::
+
+::: {.hcw-ma}
+
+zu sehen ist.
+
+:::
+
+## Abschnitt Überschrift {#sec-kapitel1-abschnitt1}
+
+Für das Einfügen von Quellenangaben und das Erstellen des Literaturverzeichnisses kann die integrierte Zitierfunktion von Microsoft Word verwendet werden. Diese ermöglicht das automatische Einfügen von Quellen im gewünschten Zitierstil (z. B. IEEE, APA, ISO 690) sowie das automatische Generieren des Literaturverzeichnisses.
+
+Alternativ empfiehlt sich die Verwendung eines Literaturverwaltungsprogramms wie Citavi, das sich über ein Add-In direkt in Word integrieren lässt. Mit dem Citavi Add-In für Word können Literaturangaben und Zitate komfortabel eingefügt und konsistent verwaltet werden.
+
+Die Nutzung von Citavi[^1] ist für Hochschulangehörige über die Bibliothek kostenfrei möglich.
+
+Die Nutzung solcher Werkzeuge ist nicht verpflichtend, wird jedoch ausdrücklich empfohlen, da sie Formatierungsfehler minimieren und die Pflege des Literaturverzeichnisses erheblich erleichtern -- insbesondere bei umfangreicheren Arbeiten.
+
+In technischen und naturwissenschaftlichen Arbeiten sollen die in diesen Fachbereichen üblichen Zitierstile verwendet werden, z. B. der numerische IEEE-Stil, Harvard-Stil oder der Kurzbelegstil nach DIN ISO 690.
+
+Fußnoten dienen in wissenschaftlichen Arbeiten der Ergänzung des Fließtexts um zusätzliche Informationen, Quellenhinweise oder begriffsbezogene Erläuterungen, ohne den Lesefluss zu stören. Sie sollten sparsam und gezielt eingesetzt werden, insbesondere in technischen und naturwissenschaftlichen Arbeiten, wo der Fokus auf Klarheit und Struktur liegt.
+
+Quellenangaben erfolgen in der Regel direkt im Text mittels Kurzbeleg oder numerischer Referenz. Fußnoten sollten daher nicht als Ersatz für formale Zitate verwendet werden, sondern ausschließlich für erklärende Anmerkungen, Abkürzungserläuterungen (bei späterem Erstauftreten) oder Hinweise, die nicht unmittelbar in den Textfluss integriert werden sollen.
+
+Die Fußnotenzahl wird ohne Leerzeichen direkt hinter dem betreffenden Wort oder Satzzeichen eingefügt[^2] und am Seitenende automatisch fortlaufend nummeriert.
+
+### Unterabschnitt Überschrift {#sec-kapitel1-unterabschnitt1}
+
+Sputtern, oder auch Kathodenzerstäubung genannt, ist ein physikalisches Verfahren, bei dem Ionen auf einen Festkörper (Target) beschleunigt werden. Durch den Beschuss des Targets mit energiereichen Ionen ($\mathrm{eV}$ bis $\mathrm{keV}$) werden Atome, Atomcluster sowie Moleküle herausgeschlagen. Die freien Atome befinden sich in der Gasphase. Dies geschieht hier mithilfe von Impulsübertragung und nicht über thermische Anregung. Dadurch ist das Verfahren genauso bei hochschmelzenden sowie temperaturempfindlichen Materialien einsetzbar.
+
+Bei dem Sputter-Beschichtungsverfahren befinden sich ein Target und ein Substrat in einer Hochvakuumkammer. Ein geringer Druck in der Kammer ist notwendig, um Verunreinigungen zu beseitigen. Es sollten nur Stöße mit dem Arbeitsgas, welches in diesem Fall Argon ist, stattfinden. Als Substrat bezeichnet man jenes Material, auf dem das in die Gasphase überführte Material kondensiert und eine feste Schicht bildet. In Abbildung \ref{fig-magnetron} ist ein schematischer Aufbau mit den möglichen Prozessen dargestellt, die bei einem Sputter-Prozess auftreten können. Zwischen Target, welches als Kathode, und dem Substrat, welches als Anode konzipiert ist, findet eine anomale Glimmentladung statt [@kelly2000].
+
+Wird eine Spannung an das Substrat angelegt, kann Material von dessen Oberfläche entfernt werden. Dieses Verfahren eignet sich zur Reinigung und Strukturierung von Oberflächen. Durch den Einsatz von Masken lassen sich gezielt komplexe Nano- und Mikrostrukturen auf der Substratoberfläche erzeugen.
+
+![Schaltschematische Darstellung eines Magnetron-Sputterprozesses [@hishimone2020]. Alle (relevanten) Textteile in einer Abbildung müssen klar lesbar sein!](../../images/v1/magnetron-sputtern.png){#fig-magnetron width=67% fig-pos="H" fig-scap="Schaltschematische Darstellung eines Magnetron-Sputterprozesses" fig-alt="Magnetron sputtering process"}
+
+Aufgrund ihrer vergleichsweise hohen kinetischen Energie (etwa $10\,\mathrm{eV}$) weisen die beim Sputterprozess abgeschiedenen Schichten eine amorphe Mikrostruktur und eine hohe Packungsdichte auf, nahezu vergleichbar mit der eines Festkörpers. Zudem ist die thermische Belastung des Substrats während der Beschichtung geringer als bei konventionellen Verdampfungsverfahren [@hossain2023].
+
+### Unterabschnitt Überschrift {#sec-kapitel1-unterabschnitt2}
+
+Überschriften stehen nie allein am Ende einer Seite. Sie werden nie vom unmittelbar folgenden Absatz getrennt und folglich zusammen auf die nächste Seite verschoben.
+
+Abbildungen sind integraler Bestandteil des Textes und müssen entsprechend beschrieben sowie eindeutig referenziert werden. Die Darstellung erfolgt in der Regel zentriert; bei Bedarf kann zusätzlich Blocksatz verwendet werden.
+
+Das in Abbildung \ref{fig-buecher} gewählte Layout „Mit Text in Zeile" und „Zentriert" sorgt für eine saubere und lesbare Integration grafischer Elemente.
+
+![Grafiklayout „Mit Text in Zeile" und „Zentriert" (optional „Blocksatz").](../../images/v1/buecher.png){#fig-buecher width=37% fig-pos="H" fig-scap="Grafiklayout" fig-alt="Books"}
+
+Werden Abbildungen verwendet, die nicht selbst erstellt wurden, so ist in der Bildunterschrift ein eindeutiger Quellenverweis anzugeben. Dieser erfolgt stets im gleichen Zitierstil, der auch für andere Zitate verwendet wird (z. B. durch [@austrianstandards2018]). Die Quellenangabe ist ein integraler Bestandteil der wissenschaftlichen Dokumentation und darf nicht weggelassen werden. In Abbildung \ref{fig-htm} ist exemplarisch dargestellt, wie ein Verweis bei Bildern realisiert wird.
+
+Abbildungen und ihre zugehörigen Bildunterschriften sollen inhaltlich so gestaltet sein, dass sie auch ohne direkten Rückgriff auf den Fließtext verständlich sind. Das bedeutet, dass die wesentlichen Informationen zur Abbildung bereits in der Beschriftung enthalten sein müssen. Dadurch können Bildunterschriften, wie im Fall von Abbildung \ref{fig-htm} durchaus etwas ausführlicher ausfallen. Diese Vorgehensweise unterstützt die Lesbarkeit und Nachvollziehbarkeit, insbesondere beim späteren Querlesen oder bei der isolierten Betrachtung von Abbildungen.
+
+::: {#fig-htm layout-ncol=2 fig-pos="H" fig-scap="Exemplarische Bilder"}
+
+![ ](../../images/v1/fertigungsstrasse.jpeg){#fig-fertigungsstrasse width=100%}
+
+![ ](../../images/v1/3d-druck-stuetzmaterial.jpeg){#fig-stuetzmaterial width=100%}
+
+Exemplarische Bilder von der Homepage des Studienganges High Tech Manufacturing zur Visualisierung, wie mehrere Abbildungen nebeneinander dargestellt werden. (a) zeigt einen Ausschnitt einer im Studiengang verwendeten Fertigungsstraße und (b) das Stützmaterial eines 3D-Drucks [@hcwhtm2025].
+
+:::
+
+Zusammengesetzte Abbildungen, die aus mehreren Teilabbildungen bestehen (z. B. Bild a, Bild b usw.), werden, wie exemplarisch in Abbildung \ref{fig-htm} dargestellt, zu einer einzigen nummerierten Abbildung zusammengeführt. Jede Teilabbildung ist dabei eindeutig zu beschriften (z. B. (a), (b), \...) und im Fließtext zu erläutern.
+
+Zur einfacheren Formatierung werden Abbildungen in Tabellen eingefügt, wobei der Tabellenrahmen ausgeblendet wird. In Abbildung \ref{fig-htm} ist der Rahmen zur besseren Veranschaulichung noch sichtbar.
+
+Bei Diagrammen müssen, wie z. B. in Abbildung \ref{fig-sinussignal}, alle Achsen beschriftet sein, d. h. inklusive Skalierung sowie allfälliger Einheiten, und die Bedeutung der Parameter kurz erläutert werden.
+
+![Verlauf eines (co)sinusförmigen Signals $v(t) = \widehat{V}\ cos(\omega t + \varphi_{0})$ mit Amplitude $\widehat{V}$, Kreisfrequenz $\omega$ und Nullphasenwinkel $\varphi_{0}$. Für die Periodendauer gilt $T = \frac{2\pi}{\omega}$.](../../images/v1/sinussignal.pdf){#fig-sinussignal width=51% fig-pos="H" fig-scap="Verlauf eines (co)sinusförmigen Signals" fig-alt="Cosine signal"}
+
+### Unterabschnitt Überschrift {#sec-kapitel1-unterabschnitt3}
+
+Tabellen sind stets in den Fließtext zu integrieren, d. h., es muss ein expliziter Verweis auf die jeweilige Tabelle erfolgen, begleitet von einer kurzen inhaltlichen Erläuterung. Eine isolierte Platzierung ohne Bezug im Text ist zu vermeiden. Sofern die in der Tabelle enthaltenen Daten nicht selbst erhoben wurden, ist die jeweilige Quelle, analog zur Handhabung bei Abbildungen, direkt in der Tabellenbeschriftung oder als Fußnote zur Tabelle anzugeben. Dadurch wird die Nachvollziehbarkeit der Angaben gewährleistet und die wissenschaftliche Integrität sichergestellt. Tabelle \ref{tbl-v1-beispiel} zeigt eine exemplarische Vorgehensweise für die Umsetzung einer Tabelle.
+
+```{=latex}
+\Needspace{9\baselineskip}
+```
+
+| Titel 1 | Titel 2 | Titel 3 |
+|---|---|---|
+| Eintrag 11 | Eintrag 12 | Eintrag 13 |
+| Eintrag 21 | Eintrag 22 | Eintrag 23 |
+| Eintrag 31 | Eintrag 32 | Eintrag 33 |
+
+: Beispiel für eine Tabelle. {#tbl-v1-beispiel}
+
+Wird eine Tabelle nicht selbst erstellt, sondern als „Grafik" importiert, so ist diese dennoch als Tabelle zu kategorisieren, siehe Tabelle \ref{tbl-dft-fft}.
+
+::: {#tbl-dft-fft tbl-pos="H" tbl-scap="Aufwand für die Berechnung einer $N$-Punkte DFT und FFT"}
+
+![](../../images/v1/dft-fft-aufwand.pdf){width=55%}
+
+Aufwand für die Berechnung einer $N$-Punkte DFT und FFT anhand der Anzahl von erforderlichen komplexwertigen MAC-Operationen.
+
+:::
+
+Große Tabellen oder Grafiken, wie z. B. Tabelle \ref{tbl-wahrscheinlichkeiten}, sollten zur besseren Lesbarkeit auf einer eigenen Seite -- gegebenenfalls im Querformat -- dargestellt werden. Grafiken bzw. Tabellen im Querformat sollen einheitlich vom rechten Seitenrand lesbar sein, damit dies auch bei einem allfälligen Ausdruck in gebundener Form vollständig und einfach möglich ist.
+
+## Abschnitt Überschrift {#sec-kapitel1-abschnitt2}
+
+Eine Gliederung mit nur einem einzelnen Abschnitt ist zu vermeiden. Es muss mindestens einen zweiten Abschnitt auf der gleichen Gliederungsebene geben.
+
+```{=latex}
+\clearpage
+\begin{landscape}
+```
+
+::: {#tbl-wahrscheinlichkeiten tbl-pos="H" tbl-scap="Überblick zu wichtigen Wahrscheinlichkeitsverteilungen."}
+
+![](../../images/v1/wahrscheinlichkeitsverteilungen.pdf){width=100%}
+
+Überblick zu wichtigen Wahrscheinlichkeitsverteilungen. $p_{\text{x}}(x)$ ... Wahrscheinlichkeitsdichtefunktion, $\mu_{\text{x}}$ ... Erwartungswert, $\sigma_{\text{x}}^{2}$ ... Varianz, $\delta(x)$ ... Dirac-Deltafunktion, $P$ ... Wahrscheinlichkeit
+
+:::
+
+```{=latex}
+\end{landscape}
+```
+
+## Hinweise zu Latex {#sec-kapitel1-hinweise}
+
+Die vorhergehenden Inhalte stammen aus der Word-Vorlage. Anweisungen zu Word-Tabellen oder Add-ins beschreiben daher Word, nicht Quarto. In diesem Template werden Formeln, Abbildungen, Tabellen und Literaturverweise wie folgt umgesetzt.
+
+### Formeln
+
+Die sieben Gleichungsnummern der Vorlage bleiben erhalten. LaTeX-Umgebungen `equation` und `align` nummerieren einzelne Gleichungen beziehungsweise mehrere ausgerichtete Zeilen. `aligned` ist dagegen für mehrere Zeilen mit einer gemeinsamen Nummer geeignet. `&` legt die Ausrichtung fest, `\\` beginnt die nächste Zeile. Mit `\label{...}` und `\eqref{...}` bleiben Verweise aktuell.
+
+Einheiten und mathematische Konstanten werden mit `\mathrm{...}` aufrecht gesetzt; `\,` fügt einen schmalen Abstand ein, zum Beispiel `$t = 5\,\mathrm{s}$`. Die Formeln bleiben als Text editierbar.
+
+### Abbildungen, Tabellen und Quellen
+
+Bilder werden mit Markdown eingebunden; `fig-`- und `tbl-`-Labels ermöglichen automatische Querverweise. Die Bilddateien aus Word liegen unter `content/images/v1/`. Die eingebetteten EMF-Grafiken wurden ohne inhaltliche Bearbeitung in Vektor-PDFs umgewandelt. Quarto übernimmt Platzierung und Beschriftung; unsichtbare Word-Tabellen sind dafür nicht nötig.
+
+`layout-ncol=2` stellt Teilabbildungen nebeneinander. Die Tabelle im Querformat verwendet `landscape`. Lange Bild- oder Tabellenbeschriftungen können über `fig-scap` beziehungsweise `tbl-scap` einen kürzeren Verzeichniseintrag erhalten.
+
+Quellen werden aus `content/references.bib` mit `[@quellenschluessel]` zitiert. Fußnoten werden mit `^[Text der Fußnote]` oder benannten Markdown-Fußnoten eingefügt. Word-Add-ins werden für diesen Build nicht benötigt.
+
+Hinweis zur unverändert übernommenen Verteilungsgrafik: Bei der Gleichverteilung ist $(b-a)^2/12$ die Varianz $\sigma_{\mathrm{x}}^2$, nicht die Standardabweichung. In der Originalgrafik fehlt dort das Quadrat am Varianzsymbol.
+
+[^1]: <https://www.hcw.ac.at/studium-weiterbildung/bibliothek-und-mediathek>
+
+[^2]: Beispielhafte Platzierung einer Fußnote.

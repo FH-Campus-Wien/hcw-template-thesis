@@ -3,6 +3,26 @@
 \usepackage{setspace}
 \usepackage{scrlayer-scrpage}
 \usepackage{ragged2e}
+\usepackage{listings}
+\usepackage{needspace}
+
+% Offizielle Beispiele: jede Gleichung nummeriert, Programmcode in Courier.
+\numberwithin{equation}{chapter}
+\newfontfamily\HCWCodeFont{TeX Gyre Cursor}
+\lstset{%
+  basicstyle=\HCWCodeFont\small,%
+  breaklines=true,%
+  columns=fullflexible,%
+  keepspaces=true,%
+  showstringspaces=false,%
+  captionpos=b%
+}
+\renewcommand{\lstlistingname}{Listing}
+\ifHCWEnglish
+  \renewcommand{\lstlistlistingname}{List of Listings}
+\else
+  \renewcommand{\lstlistlistingname}{Listingverzeichnis}
+\fi
 
 % Die Satzspiegel der vier V1-Word-Vorlagen sind abschnittsabhängig.
 % Kopf- und Fußzeilen liegen außerhalb der hier definierten Textränder.
@@ -36,6 +56,9 @@
 \RedeclareSectionCommand[beforeskip=0pt,afterskip=8pt]{chapter}
 
 \AtBeginDocument{%
+  % Quarto-Bücher und scrreprt zählen sonst automatisch je Kapitel.
+  \counterwithout{figure}{chapter}%
+  \counterwithout{table}{chapter}%
   \ifHCWJustified
     \justifying
   \else

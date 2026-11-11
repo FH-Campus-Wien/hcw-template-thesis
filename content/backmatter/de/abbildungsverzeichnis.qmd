@@ -1,0 +1,23 @@
+# Abbildungsverzeichnis {#sec-abbildungsverzeichnis .unnumbered}
+
+```{=latex}
+\makeatletter
+\@starttoc{lof}
+\makeatother
+```
+
+Vollständige Liste aller Abbildungen und Grafiken aus dem Text.
+
+Alle Abbildungen und Grafiken benötigen im Text eine einheitliche Beschriftung, eine Quellenangabe und eine durchgehende Nummerierung.
+
+***Hinweis zur Darstellung im Abbildungs- bzw. Tabellenverzeichnis:***
+
+Wenn Bild- oder Tabellenunterschriften sehr lang sind, können sie im automatischen Abbildungs- bzw. Tabellenverzeichnis unübersichtlich wirken. In solchen Fällen ist es möglich, die angezeigte Beschriftung im Verzeichnis gezielt zu kürzen, ohne die vollständige Unterschrift unter der Abbildung bzw. Tabelle selbst zu verändern.
+
+Bei Abbildung \ref{fig-magnetron} bis Abbildung \ref{fig-sinussignal} sowie Tabelle \ref{tbl-dft-fft} und Tabelle \ref{tbl-wahrscheinlichkeiten} wurde dies exemplarisch umgesetzt.
+
+Dazu wird in der Bild- oder Tabellenunterschrift an der gewünschten Trennstelle ein normaler Zeilenumbruch eingefügt (Enter-Taste). Dieser Zeilenumbruch wird anschließend markiert und durch Drücken von **Strg + Alt + Enter** in einen sogenannten „bedingten Trennumbruch" umgewandelt. Word erkennt dann, dass nur der Text vor dieser Marke im Verzeichnis verwendet werden soll, während der komplette Text weiterhin als Unterschrift angezeigt wird. Diese Technik verbessert die Übersichtlichkeit der Verzeichnisse, ohne auf aussagekräftige Bildunterschriften verzichten zu müssen.
+
+## Hinweise zu Latex {.unnumbered}
+
+Der Word-Tastaturbefehl gilt nur für Word. In Quarto werden Kurzbeschriftungen mit `fig-scap` beziehungsweise `tbl-scap` festgelegt. Die vollständige Beschriftung bleibt an der Abbildung oder Tabelle erhalten. Seitenzahlen und Einträge werden automatisch neu erzeugt.

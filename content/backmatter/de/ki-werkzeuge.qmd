@@ -1,13 +1,14 @@
-# Übersicht eingesetzter KI-Werkzeuge {#sec-ki-werkzeuge .unnumbered}
+# Übersicht verwendeter KI-Technologien {#sec-ki-werkzeuge .unnumbered}
 
-Dokumentieren Sie hier alle KI-Werkzeuge, die bei der Erstellung der Arbeit
-eingesetzt wurden. Ersetzen Sie die Beispielzeile durch Ihre tatsächlichen
-Angaben. Wurden keine KI-Werkzeuge verwendet, halten Sie dies ausdrücklich
-fest.
+Vollständige Liste aller beim Verfassen der Arbeit verwendeten KI-Technologien.
 
-| KI-Werkzeug und Version | Einsatzbereich | Nutzungsart | Betroffene Abschnitte |
+Beispiel der Universität Basel zur tabellarischen Kennzeichnung der Nutzung von KI-Software als Anhang zu einer schriftlichen Abschlussarbeit:
+
+| **KI-basiertes Hilfsmittel** | **Einsatzform** | **Betroffene Teile der Arbeit** | **Bemerkung** |
 |---|---|---|---|
-| Beispiel: Academic AI, Modell und Datum | Sprachliche Überarbeitung | Formulierungsvorschläge; Ergebnisse wurden vollständig geprüft und überarbeitet. | Kapitel 2 und 3 |
-
-Die Verantwortung für sämtliche Inhalte, Quellenangaben und Schlussfolgerungen
-verbleibt bei der Autorin beziehungsweise beim Autor.
+| DeepL Translator | Übersetzung von Textpassagen | Ganze Arbeit |  |
+| ChatGPT (OpenAI) oder ähnliches | Erstellung von Textvorschlägen, im Text bzw. in Fußnoten gekennzeichnet | Kapitel 1, S. 3, Abschnitt 2 |  |
+|  | ChatGPT wurde zum Thema der Arbeit befragt, die Ergebnisse mit eigener Recherche verglichen | Kapitel 2, S. 5-7; kompletter Chat-Verlauf im Anhang |  |
+| Dream (Wombo) | Erstellung von Visualisierungen | Abb.2, S. 7\newline Abb.9, S. 15 | Abb. 2, S. 7 stark überarbeitet, nur Visualisierungsidee von Dream |
+|  |  |  |  |
+|  |  |  |  |

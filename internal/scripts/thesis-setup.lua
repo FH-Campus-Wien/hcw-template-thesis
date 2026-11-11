@@ -39,6 +39,35 @@ function Meta(meta)
   return meta
 end
 
+-- Die deutsche BA/MA-V1 unterscheidet sich an einer Stelle im Wortlaut.
+-- Beide Fassungen bleiben im Markdown sichtbar; gerendert wird nur die Auswahl.
+function Div(block)
+  if (block.classes:includes("hcw-ba") and level ~= "ba") or
+     (block.classes:includes("hcw-ma") and level ~= "ma") then
+    return {}
+  end
+  return nil
+end
+
+-- Kurzbeschriftungen auch bei Teilabbildungen und als Grafik eingefügten
+-- Tabellen in die PDF-Verzeichnisse übernehmen, nicht nur bei Einzelbildern.
+function FloatRefTarget(float)
+  local short = float.attributes["tbl-scap"] or float.attributes["fig-scap"]
+  if not short then
+    return nil
+  end
+  local parsed = pandoc.read(short, "markdown")
+  if #parsed.blocks > 0 and parsed.blocks[1].content then
+    -- Quarto erwartet hier ein einzelnes Inline-Element, keine verschachtelte
+    -- Inlines-Liste; Span erhält auch Mathematik in der Kurzbeschriftung.
+    float.caption_short = pandoc.Span(parsed.blocks[1].content)
+    -- Der LaTeX-Renderer verwendet für alle Float-Typen diesen Schlüssel.
+    float.attributes["fig-scap"] = short
+    return float
+  end
+  return nil
+end
+
 -- Nummerierte Kapitel gehören zum Haupttext, nachfolgende unnummerierte
 -- Kapitel zum Nachspann. Dadurch bleibt der Randwechsel unabhängig von
 -- Dateinamen und bearbeitbaren Kapitelüberschriften.

@@ -1,4 +1,0 @@
-# Theoretical background {#sec-grundlagen}
-
-Introduce the concepts and theories relevant to your thesis. Cite sources
-using `[@mustermann2025]` [@mustermann2025].

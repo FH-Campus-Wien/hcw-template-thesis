@@ -2,3 +2,9 @@
 
 ::: {#refs}
 :::
+
+Complete list of sources used.
+
+## Hinweise zu Latex {.unnumbered}
+
+The bibliography is generated from the cited BibTeX entries using the included IEEE CSL style. Bibliographic fields remain structured, so the output can differ from the cached Word entries. Word-specific author-name formatting errors are not deliberately copied into the BibTeX records.

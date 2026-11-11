@@ -1,0 +1,11 @@
+# Listingverzeichnis {#sec-listingverzeichnis .unnumbered}
+
+```{=latex}
+\makeatletter
+\@starttoc{lol}
+\makeatother
+```
+
+Vollständige Liste aller Listings aus dem Text.
+
+Alle Listings benötigen im Text eine einheitliche Beschriftung, eine Quellenangabe und eine durchgehende Nummerierung.

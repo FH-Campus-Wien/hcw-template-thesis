@@ -1,0 +1,23 @@
+# List of Figures {#sec-abbildungsverzeichnis .unnumbered}
+
+```{=latex}
+\makeatletter
+\@starttoc{lof}
+\makeatother
+```
+
+Complete list of all figures and graphs from the text.
+
+All figures and graphs must have consistent captions, source citations, and consecutive numbering in the text.
+
+***Note on representation in the List of Figures and Tables:***
+
+If figure or table captions are very long, they may appear cluttered in the automatically generated list of figures or tables. In such cases, it is possible to selectively shorten the caption displayed in the list without changing the full caption below the figure or table itself.
+
+This has been demonstrated in Figure \ref{fig-magnetron} through Figure \ref{fig-sinussignal}, as well as in Table \ref{tbl-dft-fft} and Table \ref{tbl-wahrscheinlichkeiten}.
+
+To do this, insert a normal line break (by pressing the Enter key) at the desired break point in the figure or table caption. Then select this line break and press **Strg + Alt + Enter** to convert it into a so-called "conditional break." Microsoft Word then recognizes that only the text before this marker should be used in the list of figures/tables, while the complete text continues to be displayed as the caption. This technique improves the clarity of the list of figures/tables without having to sacrifice informative captions.
+
+## Hinweise zu Latex {.unnumbered}
+
+The Word keyboard shortcut applies only to Word. In Quarto, short captions use `fig-scap` or `tbl-scap`; the complete caption remains below the figure or table. List entries and page numbers are regenerated automatically.

@@ -3,7 +3,7 @@
 In Markdown schreiben, mit Docker als PDF bauen. Quarto und LaTeX müssen nicht
 lokal installiert werden.
 
-Vorab-Release: `v0.3.0-alpha.1` – [Änderungen und offene Punkte](internal/docs/CHANGELOG.md).
+Release Candidate: `v0.9.0` – [Änderungen und offene Punkte](internal/docs/CHANGELOG.md).
 
 ## Quick Start
 
@@ -49,6 +49,7 @@ Vorschau auch offline. Ein separater Task zum Erstellen der Umgebung ist nicht n
 
 ## Inhaltsverzeichnis
 
+- [Mögliche Kapitelaufteilung](content/chapters/README.md) – bisherige Beispielgliederung als Vorschlag; im PDF steht die Struktur der V1-Word-Vorlagen
 - [Installation und Einrichtung](internal/docs/installation.md) – Voraussetzungen, eigenes Repository, VS-Code-Erweiterungen
 - [Build und Vorschau](internal/docs/build-und-vorschau.md) – Tasks, Terminalbefehle für Windows/macOS/Linux, Vorschau stoppen
 - [Projekt und Konfiguration](internal/docs/projekt-und-konfiguration.md) – Ordner, BA/MA, Deutsch/Englisch, Textausrichtung, Vor- und Nachspann

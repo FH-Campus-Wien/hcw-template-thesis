@@ -5,5 +5,7 @@
 *.aux
 *.log
 *.out
+*.lol
+/abschlussarbeit.tex
 
 **/*.quarto_ipynb

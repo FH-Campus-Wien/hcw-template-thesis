@@ -1,0 +1,11 @@
+# List of Tables {#sec-tabellenverzeichnis .unnumbered}
+
+```{=latex}
+\makeatletter
+\@starttoc{lot}
+\makeatother
+```
+
+Complete list of all tables in the text.
+
+All tables must have a consistent label, a source citation, and consecutive numbering in the text.

@@ -1,10 +1,11 @@
 # Abkürzungsverzeichnis {#sec-abkuerzungen .unnumbered}
 
-Optional: Führen Sie hier fachliche Abkürzungen alphabetisch an.
+```{=latex}
+\begin{tabular}{@{}ll@{}}
+DFT & Discrete Fourier Transform \\
+FFT & Fast Fourier Transform \\
+MAC & Multiply-and-Accumulate
+\end{tabular}
+```
 
-| Abkürzung | Bedeutung |
-|---|---|
-| DFT | Discrete Fourier Transform |
-| FFT | Fast Fourier Transform |
-| HCW | Hochschule Campus Wien |
-| MAC | Multiply-and-Accumulate |
+(Abkürzungen alphabetisch sortieren)

@@ -115,8 +115,10 @@ $$ {#eq-fourier-approximation}
 
 Diese zusätzlichen Syntaxbeispiele ergänzen die Formeln aus den offiziellen
 V1-Vorlagen. Deren gerenderte Beispiele mit deutschen und englischen
-Erklärungen stehen in `content/chapters/de/03-methodik.qmd` beziehungsweise
-`content/chapters/en/03-methodology.qmd`.
+Erklärungen stehen in `content/chapters/de/01-kapitel.qmd` beziehungsweise
+`content/chapters/en/01-chapter.qmd`. Die sieben Einzelnummern der Word-Vorlage
+werden dort mit `equation` und `align` umgesetzt. Ergänzende technische
+Erklärungen stehen am Kapitelende unter „Hinweise zu Latex“.
 
 ## Tabellen
 
@@ -180,8 +182,8 @@ Der verwendete Aufbau ist in @fig-microcontroller dargestellt.
 
 Das zusätzliche Beispielbild liegt unter `content/images/microcontroller.png` und
 kann mit dem gezeigten Code eingebunden werden. Die tatsächlich gerenderten
-V1-Bildbeispiele in `content/chapters/de/04-ergebnisse.qmd` und
-`content/chapters/en/04-results.qmd` verwenden `content/images/v1/`.
+V1-Bildbeispiele in den beiden Kapiteldateien unter `content/chapters/de/` und
+`content/chapters/en/` verwenden `content/images/v1/`.
 Bilddateien sollten aussagekräftige Namen ohne Leerzeichen besitzen. Groß-
 und Kleinschreibung muss mit dem Pfad im Markdown exakt übereinstimmen.
 

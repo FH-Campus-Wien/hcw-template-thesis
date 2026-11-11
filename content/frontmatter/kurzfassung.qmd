@@ -1,5 +1,3 @@
-# Kurzfassung {#sec-zusammenfassung .unnumbered}
+# Kurzfassung {#sec-kurzfassung .unnumbered}
 
-Eine einfache Merkhilfe für die Kurzfassung: Beschreiben Sie das Problem und
-warum es ein Problem ist. Stellen Sie dann Ihre Lösung vor und erklären Sie,
-warum sie eine Lösung ist.
+Kompakte Inhaltsangabe der Arbeit in Deutsch.

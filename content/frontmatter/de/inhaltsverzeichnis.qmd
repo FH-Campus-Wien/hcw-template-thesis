@@ -1,4 +1,4 @@
-# Inhaltsverzeichnis {#sec-inhaltsverzeichnis .unnumbered .unlisted}
+# Inhaltsverzeichnis {#sec-inhaltsverzeichnis .unnumbered}
 
 ```{=latex}
 \makeatletter

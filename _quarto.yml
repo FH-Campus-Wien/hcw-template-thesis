@@ -12,6 +12,7 @@ book:
   author: "Vorname Nachname"
 
 bibliography: content/references.bib
+csl: internal/csl/ieee.csl
 
 filters:
   - internal/scripts/thesis-setup.lua
@@ -28,6 +29,9 @@ supervisors:
 
 format:
   hcw-pdf:
+    # Wie in Word: Abbildungen/Tabellen durchgehend; Listings je Kapitel.
+    crossref:
+      chapters: false
     documentclass: scrreprt
     fontsize: 12pt
     number-sections: true
@@ -36,6 +40,8 @@ format:
     lot: false
     colorlinks: false
     keep-tex: false
+    tbl-pos: H
+    tbl-cap-location: bottom
     template-partials:
       - internal/latex/title.tex
     include-in-header:

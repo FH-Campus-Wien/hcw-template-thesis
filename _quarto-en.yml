@@ -8,11 +8,11 @@ book:
     - content/frontmatter/kurzfassung.qmd
     - content/frontmatter/en/abbreviations.qmd
     - content/frontmatter/en/table-of-contents.qmd
-    - content/chapters/en/01-introduction.qmd
-    - content/chapters/en/02-background.qmd
-    - content/chapters/en/03-methodology.qmd
-    - content/chapters/en/04-results.qmd
-    - content/chapters/en/05-conclusion.qmd
+    - content/chapters/en/01-chapter.qmd
+    - content/chapters/en/02-chapter.qmd
     - content/backmatter/en/bibliography.qmd
+    - content/backmatter/en/list-of-figures.qmd
+    - content/backmatter/en/list-of-tables.qmd
+    - content/backmatter/en/list-of-listings.qmd
     - content/backmatter/en/ai-tools.qmd
-    - content/backmatter/en/declaration.qmd
+    - content/backmatter/en/appendix.qmd

@@ -1,4 +1,0 @@
-# Theoretische Grundlagen {#sec-grundlagen}
-
-Stellen Sie die für die Arbeit relevanten Begriffe und Theorien vor. Quellen
-werden mit `[@mustermann2025]` zitiert [@mustermann2025].

@@ -11,10 +11,11 @@ Auch die Docker-Tasks führen ihre Befehle dort aus.
 | Pfad | Aufgabe | Beim normalen Schreiben benötigt? |
 |---|---|---|
 | `internal/scripts/thesis.sh` | Liest die Sprache aus `setup.tex` und startet PDF-Build oder Vorschau. | Ja, automatisch durch die Tasks. |
-| `internal/scripts/thesis-setup.lua` | Prüft Sprache und Abschlussart und vergleicht sie mit dem aktiven Quarto-Profil. | Ja, automatisch beim Build. |
+| `internal/scripts/thesis-setup.lua` | Prüft Sprache und Abschlussart, wählt BA/MA-Textvarianten und übernimmt Kurzbeschriftungen in die Verzeichnisse. | Ja, automatisch beim Build. |
 | `internal/scripts/update-hcw-format.sh` | Übernimmt gezielt die festgelegte Version des gemeinsamen HCW-Formats. | Nein, nur für Wartung. |
 | `internal/scripts/import-v1-images.py` | Extrahiert die bereits übernommenen Bildbeispiele aus den Word-Vorlagen. | Nein, optionales Maintainer-Werkzeug. |
 | `internal/latex/` | Thesis-spezifische Titelseite, Präambel und Hintergrundbild. | Ja, automatisch beim Build. |
+| `internal/csl/ieee.csl` | Lokal mitgelieferter IEEE-Stil für numerische BibTeX-Zitate; eigene Lizenz im Dateikopf. | Ja, automatisch beim Build. |
 | `internal/requirements/` | Offizielle Word-Referenzvorlagen für BA/MA in Deutsch und Englisch. | Nein, dienen als Referenz. |
 | `internal/docs/ROADMAP.md` | Entwicklungsschritte bis zu einer stabilen Veröffentlichung. | Nein. |
 | `internal/hcw-format-version.txt` | Festgelegter Release-Tag für ein bewusstes Format-Update. | Nur beim Format-Update. |

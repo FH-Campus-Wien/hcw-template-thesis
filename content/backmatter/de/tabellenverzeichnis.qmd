@@ -1,0 +1,11 @@
+# Tabellenverzeichnis {#sec-tabellenverzeichnis .unnumbered}
+
+```{=latex}
+\makeatletter
+\@starttoc{lot}
+\makeatother
+```
+
+Vollständige Liste aller Tabellen aus dem Text.
+
+Alle Tabellen benötigen im Text eine einheitliche Beschriftung, eine Quellenangabe und eine durchgehende Nummerierung.

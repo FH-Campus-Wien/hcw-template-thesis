@@ -1,4 +1,0 @@
-# Fazit und Ausblick {#sec-fazit}
-
-Fassen Sie die Ergebnisse zusammen, beantworten Sie die Forschungsfrage und
-zeigen Sie mögliche weiterführende Arbeiten auf.

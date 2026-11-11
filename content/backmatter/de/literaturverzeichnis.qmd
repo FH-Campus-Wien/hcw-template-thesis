@@ -2,3 +2,9 @@
 
 ::: {#refs}
 :::
+
+Vollständige Liste der verwendeten Quellen.
+
+## Hinweise zu Latex {.unnumbered}
+
+Das Verzeichnis wird aus den zitierten BibTeX-Einträgen mit der lokal mitgelieferten IEEE-CSL-Datei erzeugt. Die bibliografischen Felder bleiben strukturiert; die Darstellung kann deshalb von den zwischengespeicherten Word-Einträgen abweichen. Word-spezifische Schreibfehler in Autorennamen werden nicht künstlich in die BibTeX-Daten übertragen.
