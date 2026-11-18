@@ -220,18 +220,30 @@ ist ausschließlich für Vorlagenbetreuer:innen vorgesehen:
 1. Im Repository `hcw-quarto-format` eine neue Version testen und mit einem Tag
    wie `v0.2.0` veröffentlichen.
 2. In `internal/hcw-format-version.txt` denselben Tag eintragen.
-3. In VS Code den Task `Maintainer: HCW-Format aktualisieren` ausführen.
+3. Den gewünschten Release mit `quarto add` im Builder-Container übernehmen
+   (Beispiel für den aktuell festgelegten Tag; bei einem Update den Tag im
+   Befehl entsprechend der Versionsdatei ersetzen):
+
+   ```shell
+   docker run --rm --mount "type=bind,source=${PWD},target=/work" --workdir /work ghcr.io/fh-campus-wien/hcw-document-builder:1.4.0 add FH-Campus-Wien/hcw-quarto-format@v0.1.1 --no-prompt
+   ```
+
+   Der Einzeiler funktioniert aus dem Projektstamm in Bash/zsh oder PowerShell.
 4. Die Änderungen unter `_extensions/FH-Campus-Wien/hcw/` mit `git diff`
    kontrollieren.
 5. `Thesis: PDF erstellen` ausführen und die vollständige PDF visuell prüfen.
 6. Versionsdatei und aktualisierte Extension gemeinsam committen.
 
-Der Maintainer-Task ruft im Builder-Container das Skript
-`internal/scripts/update-hcw-format.sh` auf. Dieses installiert den angegebenen
-Release, prüft Manifest, Version, Logo und LaTeX-Partials und bricht bei einer
-unvollständigen Extension ab. Nur dieser bewusste Aktualisierungsschritt
-benötigt Netzwerkzugriff; Schreiben, PDF-Erstellung und Vorschau bleiben
-offlinefähig.
+Vor dem Commit müssen Manifest und Versionsnummer, Logo, `header.tex` und
+`title.tex` unter `_extensions/FH-Campus-Wien/hcw/` vollständig vorhanden und
+mit dem ausgewählten Release konsistent sein. Nur dieser bewusste
+Aktualisierungsschritt benötigt Netzwerkzugriff; Schreiben, PDF-Erstellung und
+Vorschau bleiben offlinefähig.
+
+Ein VS-Code-Maintainer-Task wird nicht mehr mitgeliefert. Das bisherige Skript
+`internal/scripts/update-hcw-format.sh` bleibt auf dem Maintainer-Rechner
+lokal erhalten, ist aber ebenso wie die Word-Referenzen per `.gitignore` aus
+dem Repository ausgeschlossen. Ein neuer Klon benötigt diese Dateien nicht.
 
 ## Hinweis zur Erstellung
 

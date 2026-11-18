@@ -153,9 +153,11 @@ bibliography: content/references.bib
 csl: internal/csl/ieee.csl
 ```
 
-Die IEEE-Datei stammt vom Citation Style Language-Projekt; Herkunft und
-Lizenz sind in `internal/requirements/README.md` dokumentiert. Sie wird beim
-Build nicht aus dem Internet geladen. Ein anderer mit der Betreuung
+Die IEEE-Datei ist eine unveränderte Kopie des
+[IEEE-Stils des Citation Style Language-Projekts](https://github.com/citation-style-language/styles/blob/master/ieee.csl),
+übernommen am 11. November 2026. Urheber:innen und die Lizenz CC BY-SA 3.0
+stehen im Dateikopf von `internal/csl/ieee.csl`. Sie wird beim Build nicht aus
+dem Internet geladen. Ein anderer mit der Betreuung
 abgestimmter Zitierstil kann durch Austausch der CSL-Datei und Anpassung
 dieses Pfads gewählt werden. Ohne CSL-Datei greift der Quarto-Standardstil.
 

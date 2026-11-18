@@ -2,6 +2,24 @@
 
 [← Quick Start und Inhaltsverzeichnis](../../README.md)
 
+## Unveröffentlicht
+
+Stand 18. November 2026:
+
+- Interne Freigabe durch den Vorgesetzten laut Rückmeldung bestätigt.
+- macOS-Tests als abgeschlossen dokumentiert; Windows und Linux bleiben offen.
+- `internal/requirements/` und die reinen Maintainer-Skripte
+  `import-v1-images.py` und `update-hcw-format.sh` aus der Versionsverwaltung
+  genommen und in `.gitignore` aufgenommen. Lokal bleiben die Dateien erhalten.
+- Den VS-Code-Maintainer-Task entfernt und die Wartungsanleitung angepasst;
+  Build und Vorschau verwenden weiterhin die mitgelieferten Laufzeit-Skripte.
+- Herkunfts- und Lizenzhinweise so angepasst, dass ein neuer Klon keine
+  lokal vorbehaltenen Referenzdateien oder Wartungsskripte benötigt.
+
+Die folgenden Release-Einträge dokumentieren den jeweiligen damaligen Stand.
+Der bestehende Tag `v0.9.0` und die Git-Historie bleiben unverändert; dort
+bleiben die früher versionierten Dateien weiterhin enthalten.
+
 ## v0.9.0 - 2026-11-11
 
 Release Candidate für die abschließende Prüfung vor `v1.0.0`. Auf GitHub als

@@ -5,6 +5,9 @@ lokal installiert werden.
 
 Release Candidate: `v0.9.0` – [Änderungen und offene Punkte](internal/docs/CHANGELOG.md).
 
+Stand 18. November 2026: interne Freigabe bestätigt, macOS-Tests abgeschlossen.
+Windows- und Linux-Tests stehen noch aus.
+
 ## Quick Start
 
 Voraussetzungen: Git, VS Code und gestartetes Docker Desktop (Windows/macOS)

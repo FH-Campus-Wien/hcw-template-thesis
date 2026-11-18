@@ -30,11 +30,11 @@ hcw-template-thesis/
 │   │   └── en/                 englischer Nachspann
 │   ├── images/                 Abbildungen beider Sprachfassungen
 │   └── references.bib          gemeinsame BibTeX-Literaturdatenbank
-├── internal/                   interne Technik und Referenzen
+├── internal/                   interne Technik und Dokumentation
 │   ├── README.md               Überblick für Vorlagenbetreuer:innen
-│   ├── scripts/                Build, Vorschau und Wartungswerkzeuge
+│   ├── scripts/                Laufzeit-Skripte für Build und Vorschau
 │   ├── latex/                  Titelseite, Präambel und Hintergrundbild
-│   ├── requirements/           offizielle Word-Referenzvorlagen
+│   ├── csl/                    lokal mitgelieferter Zitierstil
 │   ├── docs/ROADMAP.md          Schritte bis zum stabilen Template v1.0.0
 │   └── hcw-format-version.txt  übernommener Release-Tag des HCW-Formats
 ├── build/                      erzeugte PDF und weitere Ausgaben
@@ -52,6 +52,11 @@ Die Quarto-Konfigurationen, `index.qmd` und `_extensions/` bleiben an den
 vorgesehenen Stellen im Projektstamm. Der versteckte Ordner `.quarto/` wird von
 Quarto automatisch als Arbeitsverzeichnis angelegt; `build/` enthält die
 fertigen Ausgaben. Beide gehören nicht in Git.
+
+Bei Vorlagenbetreuer:innen können zusätzlich `internal/requirements/` mit den
+Word-Referenzen sowie lokale Wartungsskripte vorhanden sein. Sie sind über
+`.gitignore` ausgeschlossen, werden nicht mit dem Repository ausgeliefert
+und sind für Schreiben, PDF-Build und Vorschau nicht erforderlich.
 
 `.gitattributes` bleibt ebenfalls im Projektstamm: Sie sorgt insbesondere
 dafür, dass Shell-Skripte auch nach einem Checkout unter Windows die für den
@@ -84,8 +89,8 @@ Sprachprofil darüber.
 
 ## Seitenränder und Fließtext nach den V1-Vorlagen
 
-Die vier verbindlichen V1-Word-Vorlagen unter `internal/requirements/`
-verwenden dieselben Einstellungen. Die Titelseite hat ein eigenes Layout;
+Die vier als Inhaltsquelle verwendeten V1-Word-Vorlagen verwenden dieselben
+Einstellungen. Sie werden nicht im Repository mitgeliefert. Die Titelseite hat ein eigenes Layout;
 für die folgenden Seiten gilt:
 
 | Abschnitt | Oben | Rechts | Unten | Links |
@@ -184,9 +189,9 @@ andere Fassung geladen und keine automatische Übersetzung erzeugt.
 Das Hintergrundbild liegt ausschließlich in diesem Thesis-Template unter
 `internal/latex/assets/hcw-thesis-title-background.jpg`. Es enthält bereits das Logo
 und das Linienmotiv und wird nur auf der Titelseite eingesetzt. Die vier
-V1-Word-Vorlagen unter `internal/requirements/` sind die verbindlichen Referenzen für
-Deutsch/Englisch und Bachelor/Master. Sie werden zum Schreiben der
-Quarto-Arbeit nicht benötigt.
+V1-Word-Vorlagen bildeten die Referenz für Deutsch/Englisch und Bachelor/Master.
+Die Word-Dateien bleiben nur lokal bei den Vorlagenbetreuer:innen und werden
+zum Schreiben der Quarto-Arbeit nicht benötigt.
 
 ## Textausrichtung: Flattersatz oder Blocksatz
 
@@ -256,8 +261,11 @@ den gespeicherten Word-Zeilen abweichen. Dies ist keine inhaltliche Neufassung
 der Vorlagentexte und keine Festlegung auf IEEE als einzig erlaubten Stil.
 
 Die Herkunft der Grafiken ist unter `content/images/v1/README.md` und
-`content/images/v1/manifest.json` dokumentiert. Die Quellen und technischen
-Abweichungen der Inhaltsübernahme stehen in `internal/requirements/README.md`.
+`content/images/v1/manifest.json` dokumentiert. Die dort genannten Word-Pfade
+beschreiben die ursprünglichen Quellen, keine mitgelieferten Dateien.
+Die technischen Abweichungen der Inhaltsübernahme sind in diesem Abschnitt
+beschrieben; Lizenz und Herkunft des Zitierstils stehen unter
+[Literatur und BibTeX](literatur.md#verarbeitung-und-zitierstil).
 
 ## Vorspann
 

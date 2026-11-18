@@ -47,26 +47,6 @@
       "args": ["stop", "thesis-preview"],
       "options": { "cwd": "${workspaceFolder}" },
       "problemMatcher": []
-    },
-    {
-      "label": "Maintainer: HCW-Format aktualisieren",
-      "type": "process",
-      "command": "docker",
-      "args": [
-        "run", "--rm",
-        "--mount", "type=bind,source=${workspaceFolder},target=/work",
-        "--workdir", "/work",
-        "--entrypoint", "/bin/sh",
-        "ghcr.io/fh-campus-wien/hcw-document-builder:1.4.0",
-        "internal/scripts/update-hcw-format.sh"
-      ],
-      "options": { "cwd": "${workspaceFolder}" },
-      "problemMatcher": [],
-      "presentation": {
-        "reveal": "always",
-        "focus": true,
-        "panel": "dedicated"
-      }
     }
   ]
 }

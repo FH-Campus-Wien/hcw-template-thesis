@@ -8,4 +8,9 @@
 *.lol
 /abschlussarbeit.tex
 
+# Nur lokale Maintainer-Unterlagen, nicht Teil des ausgelieferten Templates.
+/internal/requirements/
+/internal/scripts/import-v1-images.py
+/internal/scripts/update-hcw-format.sh
+
 **/*.quarto_ipynb

@@ -12,11 +12,8 @@ Auch die Docker-Tasks führen ihre Befehle dort aus.
 |---|---|---|
 | `internal/scripts/thesis.sh` | Liest die Sprache aus `setup.tex` und startet PDF-Build oder Vorschau. | Ja, automatisch durch die Tasks. |
 | `internal/scripts/thesis-setup.lua` | Prüft Sprache und Abschlussart, wählt BA/MA-Textvarianten und übernimmt Kurzbeschriftungen in die Verzeichnisse. | Ja, automatisch beim Build. |
-| `internal/scripts/update-hcw-format.sh` | Übernimmt gezielt die festgelegte Version des gemeinsamen HCW-Formats. | Nein, nur für Wartung. |
-| `internal/scripts/import-v1-images.py` | Extrahiert die bereits übernommenen Bildbeispiele aus den Word-Vorlagen. | Nein, optionales Maintainer-Werkzeug. |
 | `internal/latex/` | Thesis-spezifische Titelseite, Präambel und Hintergrundbild. | Ja, automatisch beim Build. |
 | `internal/csl/ieee.csl` | Lokal mitgelieferter IEEE-Stil für numerische BibTeX-Zitate; eigene Lizenz im Dateikopf. | Ja, automatisch beim Build. |
-| `internal/requirements/` | Offizielle Word-Referenzvorlagen für BA/MA in Deutsch und Englisch. | Nein, dienen als Referenz. |
 | `internal/docs/ROADMAP.md` | Entwicklungsschritte bis zu einer stabilen Veröffentlichung. | Nein. |
 | `internal/hcw-format-version.txt` | Festgelegter Release-Tag für ein bewusstes Format-Update. | Nur beim Format-Update. |
 
@@ -26,6 +23,21 @@ Bauen und Aktualisieren sind dort verlinkt und liegen unter `internal/docs/`.
 Das gemeinsame Format selbst bleibt unter
 `_extensions/FH-Campus-Wien/hcw/`, wo Quarto es findet. Editor-Tasks und
 Git-Konfiguration bleiben ebenfalls an ihren üblichen Stellen im Projektstamm.
+
+## Nur lokal vorhandene Maintainer-Dateien
+
+Die Word-Referenzen unter `internal/requirements/` sowie die optionalen Skripte
+`internal/scripts/import-v1-images.py` und
+`internal/scripts/update-hcw-format.sh` werden nicht mehr mit dem Repository
+ausgeliefert. Auf dem Maintainer-Rechner bleiben sie lokal erhalten und sind
+über `.gitignore` ausgeschlossen. Ein neuer Klon enthält diese Dateien nicht.
+
+PDF-Build und Vorschau benötigen sie nicht. Die notwendigen Skripte
+`thesis.sh` und `thesis-setup.lua` bleiben versioniert. Auch Roadmap,
+Dokumentation, Format-Versionsdatei, CSL-Stil und LaTeX-Konfiguration bleiben
+im Repository. Die manuelle Format-Aktualisierung ist unter
+[Toolchain und Wartung](docs/toolchain-und-wartung.md#hcw-format-im-template-aktualisieren)
+beschrieben; ein Maintainer-Task wird nicht mehr mitgeliefert.
 
 ## Hinweis zur Erstellung
 

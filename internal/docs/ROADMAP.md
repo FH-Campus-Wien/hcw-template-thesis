@@ -5,9 +5,11 @@
 Aktueller Release Candidate: `v0.9.0` (GitHub-Vorabversion).
 
 Die Inhalte der vier V1-Word-Vorlagen sind technisch integriert. Mit `v0.9.0`
-beginnt die abschließende Reviewphase vor dem stabilen Release. Dieser Stand
-ist noch keine formale Freigabe durch die Hochschule; offene Prüfungen bleiben
-unten ausdrücklich als offen vermerkt.
+beginnt die abschließende Reviewphase vor dem stabilen Release. Laut Rückmeldung
+vom 18. November 2026 hat der Vorgesetzte den Vorlagenstand freigegeben;
+die macOS-Tests sind abgeschlossen. Windows- und Linux-Tests bleiben offen.
+Dies dokumentiert die interne Projektfreigabe, keine darüber hinausgehende
+institutionelle Zertifizierung. Weitere offene Prüfungen sind unten vermerkt.
 Die Versionsnummern sind Meilensteine, keine Prozentangaben zum Fortschritt.
 
 ## Stand des Release Candidates
@@ -29,13 +31,15 @@ Bereits umgesetzt und technisch geprüft:
 - Alle vier BA/MA- und DE/EN-Varianten offline gebaut und die PDFs visuell geprüft.
 - Builder `1.4.0`, gemeinsames Format `v0.1.1` und lokaler IEEE-Zitierstil
   ausdrücklich festgelegt.
+- Interne Freigabe des Vorlagenstands und abgeschlossene macOS-Tests laut
+  Rückmeldung vom 18. November 2026.
 
-Vor `v1.0.0` bleiben insbesondere die verbindlichen Pflichtbestandteile,
-akademischen Bezeichnungen, Zitierweise und weitere Gestaltungsdetails
-abzustimmen. Vollständige Endanwender- und VS-Code-Bedienungstests unter
-Windows/macOS/Linux sowie der Test durch eine neue Person sind ebenfalls
-noch offen. Automatisierte Container-Tests auf AMD64 und ARM64 ersetzen diese
-Betriebssystem- und Bedienungstests nicht.
+Vor `v1.0.0` bleiben die vollständigen Endanwender- und VS-Code-Bedienungstests
+unter Windows und Linux sowie der Test durch eine neue Person offen.
+Automatisierte Container-Tests auf AMD64 und ARM64 ersetzen diese
+Betriebssystem- und Bedienungstests nicht. Etwaige abweichende Anforderungen
+eines konkreten Studiengangs oder Abgabeprozesses werden weiterhin gesondert
+abgeglichen.
 
 Die Änderungen dieses Stands stehen in den [Release Notes](CHANGELOG.md).
 
@@ -57,20 +61,20 @@ sind die Kriterien für `v1.0.0` weiter unten.
 - Bachelor- und Masterkonfiguration getrennt prüfen
 - Beispiele und Dokumentation vervollständigen
 
-### Hochschulvorgaben (Integration seit `v0.3.0-alpha.1`, Freigabe offen)
+### Hochschulvorgaben (interne Freigabe bestätigt)
 
-- endgültige Pflichtbestandteile mit den zuständigen Stellen abstimmen
-- zusätzliche Anforderungen des Studiengangs beziehungsweise des Abgabeprozesses
-  klären; die vier V1-Vorlagen enthalten keine Eigenständigkeitserklärung
-- Vorgaben zur Dokumentation eingesetzter KI-Werkzeuge festhalten
-- akademische Grade und Bezeichnungen prüfen
+- [x] Vorlagenstand durch den Vorgesetzten freigegeben, laut Rückmeldung
+  vom 18. November 2026.
+- [x] Vorgaben aus den vier V1-Dateien einschließlich KI-Übersicht übernommen.
+- Zusätzliche Anforderungen eines konkreten Studiengangs beziehungsweise
+  Abgabeprozesses bei Bedarf gesondert klären; die vier V1-Dateien enthalten
+  keine Eigenständigkeitserklärung.
 
 ### Plattform- und Bedienungstests (offen vor `v1.0.0`)
 
-- PDF-Erzeugung und Vorschau unter Windows testen
-- PDF-Erzeugung und Vorschau unter macOS testen
-- PDF-Erzeugung und Vorschau unter Linux testen
-- dokumentierte VS-Code-Tasks auf allen Plattformen prüfen
+- [x] macOS-Tests laut Rückmeldung vom 18. November 2026 abgeschlossen.
+- [ ] Windows: PDF-Erzeugung, Vorschau und dokumentierte VS-Code-Tasks testen.
+- [ ] Linux: PDF-Erzeugung, Vorschau und dokumentierte VS-Code-Tasks testen.
 
 ### `v0.9.0` - Release Candidate (veröffentlicht)
 
